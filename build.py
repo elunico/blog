@@ -1,9 +1,11 @@
+import argparse
 from curses import meta
 from datetime import datetime
 import enum
 import json
 from pkgutil import extend_path
 from pydoc import classname
+import shutil
 import markdown
 import os
 import urllib
@@ -62,7 +64,21 @@ def write_index(content):
         f.write(style(template).replace('%{{content}}', content))
 
 
+def parse_args():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('-k', '--keep', action='store_true', help='DO not clean public dir before building')
+    return ap.parse_args()
+
+
 def main():
+    options = parse_args()
+
+    if not options.keep:
+        print('[*] Cleaning public dir')
+        shutil.rmtree(html_dir)
+        print('[*] Re-creating public dir')
+        os.mkdir(html_dir)
+
     index_content = ''
     blog_meta = {}
     print('[*] Building HTML files from Markdown')

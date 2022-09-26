@@ -12,7 +12,7 @@
 </style>
 
 <body>
-  <div class="footer"><a href="../">Return home</a></div>
+  <div class="footer"><a href="./">Return home</a></div>
   <main>
 
     %{{content}}
