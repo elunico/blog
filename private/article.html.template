@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Document</title>
+</head>
+<style>
+  @css-content {}
+
+</style>
+
+<body>
+  <div class="footer"><a href="../">Return home</a></div>
+  <main>
+
+    %{{content}}
+  </main>
+</body>
+
+</html>

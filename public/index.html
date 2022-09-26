@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>eluni.co Blog</title>
+
+  <style>
+    :root {
+  --post-padding: 1em 0;
+  --blog-title-padding: 0.5em;
+  --root-font-size: 0.9em;
+  --footer-color: rgb(123, 123, 123);
+  --tag-background-color: aliceblue;
+  --tag-border-radius: 10px;
+  --tag-padding: calc(var(--tag-border-radius) / 2);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+}
+
+main {
+  width: 50%;
+}
+
+.main-title {
+  font-size: 3em;
+}
+
+.footer {
+  font-size: var(--root-font-size);
+  color: var(--footer-color);
+  font-weight: bold;
+}
+
+.blog-title {
+  font-size: 1.75em;
+  font-weight: bold;
+  padding-bottom: var(--blog-title-padding);
+}
+
+.pub-date {
+  font-weight: normal;
+}
+
+.tag {
+  font-style: italic;
+  border-radius: var(--tag-border-radius);
+  background-color: var(--tag-background-color);
+  padding: var(--tag-padding);
+  font-weight: normal;
+}
+
+.tag>a:link,
+.tag>a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.tag>a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.post {
+  padding: var(--post-padding);
+}
+
+.summary {
+  padding: var(--post-padding);
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <h1 class="main-title">Tom's Blog</h1>
+
+  <main>
+    
+    <div class="post">
+    <div class="blog-title"> <a href="my%20first%20post.html">My First Post</a></div>
+    <div class="summary"> The first post explaining my motivation for starting and a blog
+</div>
+    <div class="footer tags">Tags: <span class="tag"><a href="search/%20first%20post"> first post</a></span>
+<span class="tag"><a href="search/topic%20start">topic start</a></span>
+<span class="tag"><a href="search/explanation">explanation</a></span>
+<span class="tag"><a href="search/meta%0A">meta
+</a></span></div>
+    <div class="footer published">Published: <span class="pub-date">2022-09-26T16:41:13.924907</span></div>
+    </div>
+    <hr>
+    
+  </main>
+
+</body>
+
+</html>
