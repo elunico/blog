@@ -1,5 +1,6 @@
 from curses import meta
 from datetime import datetime
+import enum
 import json
 from pkgutil import extend_path
 from pydoc import classname
@@ -8,7 +9,7 @@ import os
 import urllib
 import os.path
 import re
-import msgpack
+
 
 html_dir = 'public'
 
@@ -66,7 +67,7 @@ def strip_file_metadata(path):
         for line in f:
             if line.startswith('%tags'):
                 try:
-                    file_meta['tags'] = [i for i in re.split(r',\s+', line[5:]) if i]
+                    file_meta['tags'] = [i.strip() for i in re.split(r',\s+', line[5:]) if i]
                 except (IndexError) as e:
                     raise ValueError('Invalid tag metadata') from e
             elif line.startswith('%date'):
@@ -77,7 +78,7 @@ def strip_file_metadata(path):
                     raise ValueError('Invalid date metadata') from e
             elif line.startswith('%summary'):
                 try:
-                    file_meta['summary'] = line[len('%summary'):]
+                    file_meta['summary'] = line[len('%summary'):].strip()
                 except IndexError as e:
                     raise ValueError("Invalid summary metadata") from e
             else:
@@ -101,8 +102,11 @@ def write_index(content):
 def main():
     index_content = ''
     blog_meta = {}
-    for file in os.listdir('source'):
-        print("Building file {}".format(file))
+    print('[*] Building HTML files from Markdown')
+    listing = os.listdir('source')
+    lastidx = len(listing) - 1
+    for i, file in enumerate(listing):
+        print("\t{} '{}'".format('\u2517' if i == lastidx else '\u2523', file))
         path = os.path.join('source', file)
         blog_meta[file], file_content = strip_file_metadata(path)
         file_content = re.sub(r'\n([^\n])', r'\1', file_content)
@@ -112,8 +116,10 @@ def main():
                 open(os.path.join('private', 'article.html.template')) as g):
             f.write(style(g.read()).replace("%{{content}}", html))
 
+    print("[*] Creating index file")
     write_index(index_content)
 
+    print("[*] Serializing metadata")
     serialize(blog_meta, 'public', 'metadata')
 
 
