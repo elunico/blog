@@ -6,8 +6,6 @@
 
 ## Contents
 
-[TOC]
-
 This is my first post on what I am calling my "blog". This blog is a little different than most
 people's blogs—at least when they intend to start a blog for blogging. I am starting this blog
 not because I have a lot to say nor because I was sponsored by SquareSpace, but rather because
