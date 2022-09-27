@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>eluni.co Blog</title>
+  <title>Search Results</title>
   <script src="/analytics.js"></script>
-
   <style>
     :root {
   --post-padding: 1em 0;
@@ -100,24 +99,46 @@ main {
 </head>
 
 <body>
+  <h1>Search Results for <code id="search-term"></code></h1>
+  <div class="hit-count">Results: <span id="hits"></span></div>
 
-  <h1 class="main-title">Tom's Blog</h1>
+  <div id="results-area"></div>
 
-  <main>
-    
-    <div class="post">
-    <div class="blog-title"> <a href="my%20first%20post.html">My First Post</a></div>
-    <div class="summary">The first post explaining my motivation for starting and a blog</div>
-    <div class="footer tags">Tags: <span class="tag"><a href="search.html?tag=first%20post">first post</a></span>
-<span class="tag"><a href="search.html?tag=topic%20start">topic start</a></span>
-<span class="tag"><a href="search.html?tag=explanation">explanation</a></span>
-<span class="tag"><a href="search.html?tag=meta">meta</a></span></div>
-    <div class="footer published">Published: <span class="pub-date">2022-09-26T16:41:13.924907</span></div>
-    </div>
-    <hr>
-    
-  </main>
 
+  <script>
+
+    async function getMetadata() {
+      let resp = await fetch('tags.json');
+      let text = await resp.text();
+      let metadata = JSON.parse(text);
+      console.log(metadata);
+      return metadata;
+    }
+
+    async function getSearchResults() {
+      let tag = new URLSearchParams(window.location.search).get('tag');
+      console.log(tag);
+      if (!tag) {
+        document.writeln(`No results for '${tag}'`);
+      }
+      document.querySelector('#search-term').textContent = tag;
+
+      let destination = document.querySelector('#results-area');
+      let hits = document.querySelector('#hits');
+      let data = await getMetadata();
+      let articles = data[tag];
+      hits.textContent = articles.length;
+      for (let article of articles) {
+        let a = document.createElement('a');
+        a.href = `./${article.link}`;
+        a.textContent = article.title;
+        destination.appendChild(a);
+      }
+      return true;
+    }
+
+    getSearchResults().then(r => console.log(r));
+  </script>
 </body>
 
 </html>
