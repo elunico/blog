@@ -28,8 +28,8 @@ def main():
     html_path = os.path.join('public', html_file)
     confirm = input('PERMANENTLY DELETE "{}" and "{}"? (y/n) '.format(html_path, md_path)).strip().lower()
     if confirm.strip().lower().startswith('y'):
-        # os.unlink(md_path)
-        # os.unlink(html_path)
+        os.unlink(md_path)
+        os.unlink(html_path)
         result = input('(d)eploy changes to the web or just re(b)uild? '.format(html_path, md_path)).strip().lower()
         if result.startswith('b'):
             os.execl('/Users/thomaspovinelli/Coding/blog/venv/bin/python3', '/Users/thomaspovinelli/Coding/blog/venv/bin/python3', 'build.py')
