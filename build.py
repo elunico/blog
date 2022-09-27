@@ -35,7 +35,7 @@ def strip_file_metadata(path):
             elif line.startswith('%date'):
                 try:
                     # validate date by parsing
-                    file_meta['date'] = datetime.fromisoformat(line[5:]).isoformat()
+                    file_meta['date'] = datetime.fromisoformat(line[5:].strip()).isoformat()
                 except (IndexError, ValueError, TypeError) as e:
                     raise ValueError('Invalid date metadata') from e
             elif line.startswith('%summary'):
@@ -118,6 +118,10 @@ def fill_template(template, file, content, meta):
     return text
 
 
+def birthtime_for_filename(filename):
+    return os.stat(os.path.join('source', filename)).st_birthtime
+
+
 def main():
     options = parse_args()
 
@@ -133,7 +137,7 @@ def main():
     print('[*] Building HTML files from Markdown')
     listing = os.listdir('source')
     lastidx = len(listing) - 1
-    for i, file in enumerate(listing):
+    for i, file in enumerate(sorted(listing, key=birthtime_for_filename, reverse=True)):
         print("\t{} '{}'".format('\u2517' if i == lastidx else '\u2523', file))
         path = os.path.join('source', file)
         blog_meta[file], file_content = strip_file_metadata(path)
