@@ -179,6 +179,9 @@ main {
       <select name="search-box" disabled id="search-box" class="navitem"></select>
 
       <script>
+        const clearOption = '<no filter>';
+        let pageTag = new URLSearchParams(window.location.search).get('tag');
+
         let box = document.querySelector('#search-box');
 
         fetch('tags.json').then(r => r.json()).then(obj => {
@@ -189,10 +192,31 @@ main {
             box.appendChild(option);
           }
           box.removeAttribute('disabled');
+
+          let option = document.createElement('option');
+          option.textContent = clearOption;
+          box.appendChild(option);
+
+          box.selectedIndex = box.options.length - 1;
+
+          if (pageTag) {
+            let optionString = [];
+            for (let i = 0; i < box.options.length; i++) {
+              optionString.push(box.options[i].value);
+            }
+            console.log(optionString);
+            box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
+          }
         });
 
         box.addEventListener('change', event => {
-          window.location = `./search?tag=${box.options[box.selectedIndex].value}`;
+          let tag = box.options[box.selectedIndex].value;
+          if (tag === clearOption) {
+            window.location = "./";
+          }
+          else {
+            window.location = `./search?tag=${tag}`;
+          }
         })
       </script>
     </div>
@@ -204,6 +228,22 @@ main {
   <h1 class="main-title">Tom's Blog</h1>
 
   <main>
+    
+    <div class="post">
+    <div class="blog-title"> <a href="blogress.html">Blogress</a></div>
+    <div class="summary">An update on the progress of my roll-your-own-blog blog</div>
+    <div class="footer tags">Tags: <span class="tag"><a href="search.html?tag=update">update</a></span>
+<span class="tag"><a href="search.html?tag=meta">meta</a></span>
+<span class="tag"><a href="search.html?tag=blog">blog</a></span>
+<span class="tag"><a href="search.html?tag=programming">programming</a></span>
+<span class="tag"><a href="search.html?tag=python">python</a></span>
+<span class="tag"><a href="search.html?tag=web">web</a></span>
+<span class="tag"><a href="search.html?tag=ui">ui</a></span>
+<span class="tag"><a href="search.html?tag=design">design</a></span>
+<span class="tag"><a href="search.html?tag=css">css</a></span></div>
+    <div class="footer published">Published: <span class="pub-date">2022-09-27T17:51:05.900902</span></div>
+    </div>
+    <hr>
     
     <div class="post">
     <div class="blog-title"> <a href="my%20first%20post.html">My First Post</a></div>

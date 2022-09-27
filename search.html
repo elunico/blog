@@ -178,6 +178,9 @@ main {
       <select name="search-box" disabled id="search-box" class="navitem"></select>
 
       <script>
+        const clearOption = '<no filter>';
+        let pageTag = new URLSearchParams(window.location.search).get('tag');
+
         let box = document.querySelector('#search-box');
 
         fetch('tags.json').then(r => r.json()).then(obj => {
@@ -188,10 +191,31 @@ main {
             box.appendChild(option);
           }
           box.removeAttribute('disabled');
+
+          let option = document.createElement('option');
+          option.textContent = clearOption;
+          box.appendChild(option);
+
+          box.selectedIndex = box.options.length - 1;
+
+          if (pageTag) {
+            let optionString = [];
+            for (let i = 0; i < box.options.length; i++) {
+              optionString.push(box.options[i].value);
+            }
+            console.log(optionString);
+            box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
+          }
         });
 
         box.addEventListener('change', event => {
-          window.location = `./search?tag=${box.options[box.selectedIndex].value}`;
+          let tag = box.options[box.selectedIndex].value;
+          if (tag === clearOption) {
+            window.location = "./";
+          }
+          else {
+            window.location = `./search?tag=${tag}`;
+          }
         })
       </script>
     </div>
@@ -212,13 +236,11 @@ main {
       let resp = await fetch('tags.json');
       let text = await resp.text();
       let metadata = JSON.parse(text);
-      console.log(metadata);
       return metadata;
     }
 
     async function getSearchResults() {
       let tag = new URLSearchParams(window.location.search).get('tag');
-      console.log(tag);
       if (!tag) {
         document.writeln(`No results for '${tag}'`);
       }
@@ -230,10 +252,6 @@ main {
       let articles = data[tag];
       hits.textContent = articles.length;
       for (let article of articles) {
-        // let a = document.createElement('a');
-        // a.href = `./${article.link}`;
-        // a.textContent = article.title;
-        // destination.appendChild(a);
         let div = document.createElement('div');
         div.innerHTML = article['internal_content'];
         destination.appendChild(div);
