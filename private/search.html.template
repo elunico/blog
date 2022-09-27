@@ -13,10 +13,12 @@
 </head>
 
 <body>
+  <div class="footer"><a href="./">Return home</a></div>
+
   <h1>Search Results for <code id="search-term"></code></h1>
   <div class="hit-count">Results: <span id="hits"></span></div>
 
-  <div id="results-area"></div>
+  <main id="results-area"></main>
 
 
   <script>
@@ -43,10 +45,13 @@
       let articles = data[tag];
       hits.textContent = articles.length;
       for (let article of articles) {
-        let a = document.createElement('a');
-        a.href = `./${article.link}`;
-        a.textContent = article.title;
-        destination.appendChild(a);
+        // let a = document.createElement('a');
+        // a.href = `./${article.link}`;
+        // a.textContent = article.title;
+        // destination.appendChild(a);
+        let div = document.createElement('div');
+        div.innerHTML = article['internal_content'];
+        destination.appendChild(div);
       }
       return true;
     }

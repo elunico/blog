@@ -70,10 +70,10 @@ def parse_args():
     return ap.parse_args()
 
 
-def add_tags(tags, file_tags, file):
-    for tag in file_tags:
+def add_tags(tags, meta, file):
+    for tag in meta['tags']:
         lst = tags.get(tag, [])
-        lst.append({'link': linkify(html_name(file)), 'title': titlify(file)})
+        lst.append({'link': linkify(html_name(file)), 'title': titlify(file), 'internal_content': index_entry(html_name(file), meta)})
         tags[tag] = lst
 
 
@@ -96,7 +96,7 @@ def main():
         print("\t{} '{}'".format('\u2517' if i == lastidx else '\u2523', file))
         path = os.path.join('source', file)
         blog_meta[file], file_content = strip_file_metadata(path)
-        add_tags(tag_data, blog_meta[file]['tags'], file)
+        add_tags(tag_data, blog_meta[file], file)
         file_content = re.sub(r'\n([^\n])', r'\1', file_content)
         index_content += index_entry(html_name(file), blog_meta[file])
         html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
