@@ -30,7 +30,7 @@ def main():
     if confirm.strip().lower().startswith('y'):
         os.unlink(md_path)
         os.unlink(html_path)
-        result = input('(d)eploy changes to the web or just re(b)uild? '.format(html_path, md_path)).strip().lower()
+        result = input('(d)eploy changes to the web, re(b)uild, or (n)othing? '.format(html_path, md_path)).strip().lower()
         if result.startswith('b'):
             os.execl('/Users/thomaspovinelli/Coding/blog/venv/bin/python3', '/Users/thomaspovinelli/Coding/blog/venv/bin/python3', 'build.py')
         elif result.startswith('d'):
