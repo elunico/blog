@@ -93,7 +93,7 @@ def main():
         html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
         with (open(os.path.join(html_dir, html_name(file)), 'w') as f,
                 open(os.path.join('private', 'article.html.template')) as g):
-            f.write(style(g.read()).replace("%{{content}}", html))
+            f.write(style(g.read()).replace("%{{content}}", html).replace('%{{title}}', titlify(file)))
 
     print("[*] Creating index file")
     write_index(index_content)
