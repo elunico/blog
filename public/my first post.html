@@ -18,17 +18,18 @@
 }
 
 body {
+  margin-top: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding-bottom: 20vh;
   line-height: 1.7;
 }
 
 main {
   width: 50%;
-  padding-bottom: 20vh;
 }
 
 .main-title {
@@ -76,6 +77,21 @@ main {
 
 .summary {
   padding: var(--post-padding);
+}
+
+.hit-count {
+  padding-bottom: var(--blog-title-padding);
+  color: var(--footer-color);
+  font-size: var(--root-font-size);
+}
+
+#results-area {
+  padding-top: calc(var(--blog-title-padding) * 2);
+}
+
+.article-tags {
+
+  padding-top: calc(var(--blog-title-padding) * 2);
 }
 
 
@@ -127,6 +143,14 @@ rolling your own, but I wouldn't recommend using mine.</p>
 <p>The build process probably. Mac OS X, OS X, and macOS stuff. Programming and technology in general. Probably a little
 about fonts and typography also.</p>
   </main>
+  <footer class="article-tags">
+    <div class="footer tags">Tags: <span class="tag"><a href="search.html?tag=first%20post">first post</a></span>
+<span class="tag"><a href="search.html?tag=topic%20start">topic start</a></span>
+<span class="tag"><a href="search.html?tag=explanation">explanation</a></span>
+<span class="tag"><a href="search.html?tag=meta">meta</a></span></div>
+  </footer>
+
+
 </body>
 
 </html>

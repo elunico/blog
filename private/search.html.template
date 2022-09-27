@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Search Results</title>
+  <script src="/analytics.js"></script>
+  <style>
+    @css-content {}
+
+  </style>
+</head>
+
+<body>
+  <h1>Search Results for <code id="search-term"></code></h1>
+  <div class="hit-count">Results: <span id="hits"></span></div>
+
+  <div id="results-area"></div>
+
+
+  <script>
+
+    async function getMetadata() {
+      let resp = await fetch('tags.json');
+      let text = await resp.text();
+      let metadata = JSON.parse(text);
+      console.log(metadata);
+      return metadata;
+    }
+
+    async function getSearchResults() {
+      let tag = new URLSearchParams(window.location.search).get('tag');
+      console.log(tag);
+      if (!tag) {
+        document.writeln(`No results for '${tag}'`);
+      }
+      document.querySelector('#search-term').textContent = tag;
+
+      let destination = document.querySelector('#results-area');
+      let hits = document.querySelector('#hits');
+      let data = await getMetadata();
+      let articles = data[tag];
+      hits.textContent = articles.length;
+      for (let article of articles) {
+        let a = document.createElement('a');
+        a.href = `./${article.link}`;
+        a.textContent = article.title;
+        destination.appendChild(a);
+      }
+      return true;
+    }
+
+    getSearchResults().then(r => console.log(r));
+  </script>
+</body>
+
+</html>

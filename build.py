@@ -70,6 +70,13 @@ def parse_args():
     return ap.parse_args()
 
 
+def add_tags(tags, file_tags, file):
+    for tag in file_tags:
+        lst = tags.get(tag, [])
+        lst.append({'link': linkify(html_name(file)), 'title': titlify(file)})
+        tags[tag] = lst
+
+
 def main():
     options = parse_args()
 
@@ -81,6 +88,7 @@ def main():
 
     index_content = ''
     blog_meta = {}
+    tag_data = {}
     print('[*] Building HTML files from Markdown')
     listing = os.listdir('source')
     lastidx = len(listing) - 1
@@ -88,18 +96,27 @@ def main():
         print("\t{} '{}'".format('\u2517' if i == lastidx else '\u2523', file))
         path = os.path.join('source', file)
         blog_meta[file], file_content = strip_file_metadata(path)
+        add_tags(tag_data, blog_meta[file]['tags'], file)
         file_content = re.sub(r'\n([^\n])', r'\1', file_content)
         index_content += index_entry(html_name(file), blog_meta[file])
         html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
         with (open(os.path.join(html_dir, html_name(file)), 'w') as f,
                 open(os.path.join('private', 'article.html.template')) as g):
-            f.write(style(g.read()).replace("%{{content}}", html).replace('%{{title}}', titlify(file)))
+            f.write(style(g.read()).replace("%{{content}}", html).replace('%{{title}}', titlify(file)).replace('%{{tags}}', tags_for_file(file, blog_meta[file])))
 
     print("[*] Creating index file")
     write_index(index_content)
 
     print("[*] Serializing metadata")
     serialize(blog_meta, 'public', 'metadata')
+
+    print('[*] Writing tag database')
+    serialize(tag_data, 'public', 'tags')
+
+    print('[*] Preparing Search Template')
+    with (open(os.path.join('private', 'search.html.template')) as f,
+          open(os.path.join('public', 'search.html'), 'w') as g):
+        g.write(style(f.read()))
 
 
 if __name__ == '__main__':

@@ -18,6 +18,11 @@
 
     %{{content}}
   </main>
+  <footer class="article-tags">
+    %{{tags}}
+  </footer>
+
+
 </body>
 
 </html>
