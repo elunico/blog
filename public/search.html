@@ -7,10 +7,12 @@
   <title>Search Results</title>
   <script src="/analytics.js"></script>
   <style>
-    :root {
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
   --post-padding: 1em 0;
   --blog-title-padding: 0.5em;
-  --root-font-size: 0.85em;
+  --root-font-size: 1em;
   --footer-color: rgb(123, 123, 123);
   --tag-background-color: aliceblue;
   --tag-border-radius: 10px;
@@ -23,10 +25,11 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Nunito", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-bottom: 20vh;
-  line-height: 1.7;
+  line-height: 1.65;
   height: 100%;
+  font-size: 1.15em;
 }
 
 main {
@@ -46,7 +49,7 @@ main {
 }
 
 .main-title {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .footer {
@@ -57,7 +60,7 @@ main {
 }
 
 .blog-title {
-  font-size: 1.75em;
+  font-size: 1.5em;
   font-weight: bold;
   padding-bottom: var(--blog-title-padding);
 }
