@@ -1,14 +1,9 @@
 import argparse
-from curses import meta
 from datetime import datetime
-import enum
-import json
-from pkgutil import extend_path
-from pydoc import classname
+import math
 import shutil
 import markdown
 import os
-import urllib
 import os.path
 import re
 
@@ -76,7 +71,7 @@ def write_index(content):
         template = f.read()
 
     with open(os.path.join(html_dir, 'index.html'), 'w') as f:
-        f.write(style(template).replace('%{{content}}', content))
+        f.write(fill_includes(style(template).replace('%{{content}}', content)))
 
 
 def parse_args():
@@ -90,6 +85,37 @@ def add_tags(tags, meta, file):
         lst = tags.get(tag, [])
         lst.append({'link': linkify(html_name(file)), 'title': titlify(file), 'internal_content': index_entry(html_name(file), meta)})
         tags[tag] = lst
+
+
+def fill_includes(text):
+    def file_replacer(match):
+        try:
+            name_prefix = match.group(1)
+        except (AttributeError, IndexError) as e:
+            raise ValueError("Invalid @include directive '{}'".format(match)) from e
+
+        filename = '{}.html.partial'.format(name_prefix)
+        try:
+            with open(os.path.join('private', filename)) as f:
+                return f.read()
+        except (FileNotFoundError) as e:
+            raise ValueError("Invalid @include directive '{}': File not found".format(match.group())) from e
+        except OSError as e:
+            raise ValueError("Invalid @include directive '{}'. Could not access file".format(match.group())) from e
+
+    text = re.sub(r'@include\s+(\w+)', file_replacer, text)
+    return text
+
+
+def fill_template(template, file, content, meta):
+    text = (style(template)
+            .replace("%{{content}}", content)
+            .replace('%{{title}}', titlify(file))
+            .replace('%{{tags}}', tags_for_file(file, meta))
+            )
+
+    text = fill_includes(text)
+    return text
 
 
 def main():
@@ -117,7 +143,8 @@ def main():
         html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
         with (open(os.path.join(html_dir, html_name(file)), 'w') as f,
                 open(os.path.join('private', 'article.html.template')) as g):
-            f.write(style(g.read()).replace("%{{content}}", html).replace('%{{title}}', titlify(file)).replace('%{{tags}}', tags_for_file(file, blog_meta[file])))
+            text = fill_template(g.read(), file, html, blog_meta[file])
+            f.write(text)
 
     print("[*] Creating index file")
     write_index(index_content)
@@ -131,7 +158,7 @@ def main():
     print('[*] Preparing Search Template')
     with (open(os.path.join('private', 'search.html.template')) as f,
           open(os.path.join('public', 'search.html'), 'w') as g):
-        g.write(style(f.read()))
+        g.write(fill_includes(style(f.read())))
 
 
 if __name__ == '__main__':

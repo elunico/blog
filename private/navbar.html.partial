@@ -1,0 +1,84 @@
+<style>
+  .nav-background {
+    height: 3em;
+    position: sticky;
+    top: 0px;
+    /* background-color: rgb(91, 121, 255); */
+    background: linear-gradient(#566acb, #4256b9);
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    box-shadow: rgb(123, 123, 123) 0px 4px 2px;
+
+  }
+
+  .navbar {
+    height: 3em;
+    position: sticky;
+    top: 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25em;
+    width: 50%;
+    text-align: center;
+    place-items: center;
+    line-height: 1;
+    color: white;
+
+  }
+
+  .navbar>div {
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid darkgray; */
+    /* border-radius: 10px; */
+    line-height: unset;
+
+  }
+
+  .navitem>a:link,
+  .navitem>a:visited {
+    color: white;
+  }
+
+  .navitem>select {
+    width: 80%;
+  }
+
+</style>
+<div class="nav-background">
+  <div class="navbar" id="navbar">
+    <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
+    <div class="navitem"><a href="./">Blog Homepage</a></div>
+    <div class="navitem">
+      <label class="navitem" for="search-box">Filter by Tag: </label>
+      <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
+      <select name="search-box" disabled id="search-box" class="navitem"></select>
+
+      <script>
+        let box = document.querySelector('#search-box');
+
+        fetch('tags.json').then(r => r.json()).then(obj => {
+          let tags = Object.keys(obj);
+          for (let tag of tags) {
+            let option = document.createElement('option');
+            option.textContent = tag;
+            box.appendChild(option);
+          }
+          box.removeAttribute('disabled');
+        });
+
+        box.addEventListener('change', event => {
+          window.location = `./search?tag=${box.options[box.selectedIndex].value}`;
+        })
+      </script>
+    </div>
+    <!-- <div class="navitem"><a href="javascript:window.history.back()">Back</a></div> -->
+  </div>
+</div>

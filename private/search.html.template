@@ -13,7 +13,8 @@
 </head>
 
 <body>
-  <div class="footer"><a href="./">Return home</a></div>
+
+  @include navbar
 
   <h1>Search Results for <code id="search-term"></code></h1>
   <div class="hit-count">Results: <span id="hits"></span></div>
