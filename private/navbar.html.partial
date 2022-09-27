@@ -62,6 +62,9 @@
       <select name="search-box" disabled id="search-box" class="navitem"></select>
 
       <script>
+        const clearOption = '<no filter>';
+        let pageTag = new URLSearchParams(window.location.search).get('tag');
+
         let box = document.querySelector('#search-box');
 
         fetch('tags.json').then(r => r.json()).then(obj => {
@@ -72,10 +75,31 @@
             box.appendChild(option);
           }
           box.removeAttribute('disabled');
+
+          let option = document.createElement('option');
+          option.textContent = clearOption;
+          box.appendChild(option);
+
+          box.selectedIndex = box.options.length - 1;
+
+          if (pageTag) {
+            let optionString = [];
+            for (let i = 0; i < box.options.length; i++) {
+              optionString.push(box.options[i].value);
+            }
+            console.log(optionString);
+            box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
+          }
         });
 
         box.addEventListener('change', event => {
-          window.location = `./search?tag=${box.options[box.selectedIndex].value}`;
+          let tag = box.options[box.selectedIndex].value;
+          if (tag === clearOption) {
+            window.location = "./";
+          }
+          else {
+            window.location = `./search?tag=${tag}`;
+          }
         })
       </script>
     </div>
