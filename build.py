@@ -26,8 +26,10 @@ def html_name(md_filename):
 
 
 def strip_file_metadata(path):
-    file_meta = {'tags': [], 'data': '', 'summary': 'No Summary Provided!'}
+    file_meta = {'tags': [], 'data': '', 'summary': 'No Summary Provided!', "needs_toc": False}
     content = ''
+    sections = 0
+    title_set = False
     with open(path) as f:
         for line in f:
             if line.startswith('%tags'):
@@ -48,10 +50,23 @@ def strip_file_metadata(path):
                     raise ValueError("Invalid summary metadata") from e
             else:
                 content += line + '\n'
+                if re.match(r'#[^#]', line):
+                    if title_set:
+                        raise ValueError("Too Many Level 1 Headings: '{}'".format(line))
+                    content += '{TOC_EMBED}'
+                    title_set = True
+                elif line.startswith('##'):
+                    sections += 1
 
     if 'date' not in file_meta:
         s = os.stat(path)
         file_meta['date'] = datetime.fromtimestamp(s.st_birthtime).isoformat()
+
+    if sections > 4:
+        file_meta['needs_toc'] = True
+        content = content.format(TOC_EMBED='[TOC]')
+    else:
+        content = content.format(TOC_EMBED='')
 
     return file_meta, content
 
