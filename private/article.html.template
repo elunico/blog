@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Document</title>
-</head>
-<style>
-  @css-content {}
+  <script src="/analytics.js"></script>
+  <style>
+    @css-content {}
 
-</style>
+  </style>
+</head>
 
 <body>
   <div class="footer"><a href="./">Return home</a></div>
