@@ -25,7 +25,7 @@
   <script>
 
     async function getMetadata() {
-      let resp = await fetch('tags.json');
+      let resp = await fetch('/blog/tags.json');
       let text = await resp.text();
       let metadata = JSON.parse(text);
       return metadata;

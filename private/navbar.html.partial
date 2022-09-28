@@ -55,7 +55,7 @@
 <div class="nav-background">
   <div class="navbar" id="navbar">
     <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
-    <div class="navitem"><a href="./">Blog Homepage</a></div>
+    <div class="navitem"><a href="/blog/">Blog Homepage</a></div>
     <div class="navitem">
       <label class="navitem" for="search-box">Filter by Tag: </label>
       <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
@@ -67,7 +67,7 @@
 
         let box = document.querySelector('#search-box');
 
-        fetch('tags.json').then(r => r.json()).then(obj => {
+        fetch('/blog/tags.json').then(r => r.json()).then(obj => {
           let tags = Object.keys(obj);
           tags.sort();
           for (let tag of tags) {
@@ -99,7 +99,7 @@
             window.location = "./";
           }
           else {
-            window.location = `./search?tag=${tag}`;
+            window.location = `/blog/search?tag=${tag}`;
           }
         })
       </script>

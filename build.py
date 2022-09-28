@@ -11,7 +11,7 @@ from python.util import *
 from python.html import *
 
 
-html_dir = 'public'
+kBuildDirRoot = 'public'
 
 
 def html_name(md_filename):
@@ -66,12 +66,35 @@ def strip_file_metadata(path):
     return file_meta, content
 
 
+def no_pages(template):
+    return template.replace('@{{page-nav}}', '').replace('@{{page-title}}', '')
+
+
+def page_nav(page_list):
+    with open(os.path.join('private', 'page-nav.html.partial'))as f:
+        partial_content = f.read()
+
+    content = '{}'
+    inside = ''
+    for page in page_list:
+        inside += partial_content.replace('@{{page-num}}', str(page))
+    return content.format(inside)
+
+
 def write_index(content):
     with open(os.path.join('private', 'index.html.template')) as f:
         template = f.read()
+    if None in content:
+        with open(os.path.join(kBuildDirRoot, 'index.html'), 'w') as f:
+            f.write(no_pages(fill_includes(style(template).replace('%{{content}}', content[None]))))
+    else:
+        nav = page_nav(content.keys())
+        for page_key in content:
+            with open(os.path.join(kBuildDirRoot, 'page-{}'.format(page_key), 'index.html'), 'w') as f:
+                f.write(fill_includes(style(template).replace('%{{content}}', content[page_key])).replace('@{{page-nav}}', nav).replace('@{{page-title}}', ' - Page {}'.format(page_key)))
 
-    with open(os.path.join(html_dir, 'index.html'), 'w') as f:
-        f.write(fill_includes(style(template).replace('%{{content}}', content)))
+        with open(os.path.join(kBuildDirRoot, 'index.html'), 'w') as f:
+            f.write('<script>window.location = "/blog/page-1"</script>')
 
 
 def parse_args():
@@ -80,10 +103,10 @@ def parse_args():
     return ap.parse_args()
 
 
-def add_tags(tags, meta, file):
+def add_tags(tags, meta, file, page):
     for tag in meta['tags']:
         lst = tags.get(tag, [])
-        lst.append({'link': linkify(html_name(file)), 'title': titlify(file), 'internal_content': index_entry(html_name(file), meta)})
+        lst.append({'link': linkify(html_name(file)), 'title': titlify(file), 'internal_content': index_entry(html_name(file), meta, page)})
         tags[tag] = lst
 
 
@@ -124,31 +147,58 @@ def birthtime_for_filename(filename):
 
 def main():
     options = parse_args()
+    kArticlesPerPage = 10
+    kPageString = 'page-{}'
 
     if not options.keep:
         print('[*] Cleaning public dir')
-        shutil.rmtree(html_dir)
+        shutil.rmtree(kBuildDirRoot)
         print('[*] Re-creating public dir')
-        os.mkdir(html_dir)
+        os.mkdir(kBuildDirRoot)
 
-    index_content = ''
+    print('[*] Building HTML files from Markdown')
+    index_content = {}
     blog_meta = {}
     tag_data = {}
-    print('[*] Building HTML files from Markdown')
-    listing = os.listdir('source')
-    lastidx = len(listing) - 1
-    for i, file in enumerate(sorted(listing, key=birthtime_for_filename, reverse=True)):
-        print("\t{} '{}'".format('\u2517' if i == lastidx else '\u2523', file))
-        path = os.path.join('source', file)
-        blog_meta[file], file_content = strip_file_metadata(path)
-        add_tags(tag_data, blog_meta[file], file)
-        file_content = re.sub(r'\n([^\n])', r'\1', file_content)
-        index_content += index_entry(html_name(file), blog_meta[file])
-        html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
-        with (open(os.path.join(html_dir, html_name(file)), 'w') as f,
-                open(os.path.join('private', 'article.html.template')) as g):
-            text = fill_template(g.read(), file, html, blog_meta[file])
-            f.write(text)
+
+    def build_article_pages(listing, destination, page=None):
+        nonlocal index_content, blog_meta, tag_data
+        lastidx = len(listing) - 1
+        for i, file in enumerate(listing):
+            print("\t{} '{}'".format('\u2517' if i == lastidx else '\u2523', file))
+            path = os.path.join('source', file)
+            blog_meta[file], file_content = strip_file_metadata(path)
+            add_tags(tag_data, blog_meta[file], file, page)
+            file_content = re.sub(r'\n([^\n])', r'\1', file_content)
+            index_content[page] = index_content.get(page, '') + index_entry(html_name(file), blog_meta[file], page)
+            html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
+            with (open(os.path.join(destination, html_name(file)), 'w') as f,
+                    open(os.path.join('private', 'article.html.template')) as g):
+                text = fill_template(g.read(), file, html, blog_meta[file])
+                f.write(text)
+
+    listing = sorted(os.listdir('source'), key=birthtime_for_filename, reverse=True)
+
+    count = len(listing)
+
+    if count > kArticlesPerPage:
+        print("[*] Too many articles! Rendering {} pages".format(count))
+        dir_count = count // kArticlesPerPage + (0 if not count % kArticlesPerPage else 1)
+        current_page = 0
+        for i in range(dir_count - 1):
+            print("[*] Rendering page {}".format(i + 1))
+            page_dir = os.path.join(kBuildDirRoot, kPageString.format(i + 1))
+            if not os.path.isdir(page_dir):
+                os.mkdir(page_dir)
+            build_article_pages(listing[current_page * kArticlesPerPage: (current_page + 1) * kArticlesPerPage], page_dir, i + 1)
+            current_page += 1
+
+        print("[*] Rendering page {}".format(dir_count))
+        os.mkdir(os.path.join(kBuildDirRoot, kPageString.format(dir_count)))
+        build_article_pages(listing[current_page * kArticlesPerPage:], os.path.join(kBuildDirRoot, kPageString.format(dir_count)), dir_count)
+    else:
+        listing.reverse()
+        build_article_pages(listing, kBuildDirRoot)
 
     print("[*] Creating index file")
     write_index(index_content)

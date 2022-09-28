@@ -1,0 +1,1 @@
+<span class="page-link" id="page-link-@{{page-num}}"><a href="/blog/page-@{{page-num}}">Page @{{page-num}}</a></span>
