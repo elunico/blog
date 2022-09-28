@@ -69,6 +69,7 @@
 
         fetch('tags.json').then(r => r.json()).then(obj => {
           let tags = Object.keys(obj);
+          tags.sort();
           for (let tag of tags) {
             let option = document.createElement('option');
             option.textContent = tag;
