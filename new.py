@@ -32,7 +32,7 @@ def main():
             print("Abort!")
             return
 
-    if len(sys.argv) > 1 and sys.argv[1] != '-q':
+    if len(sys.argv) <= 1 or (len(sys.argv) > 1 and sys.argv[1] != '-q'):
         tags = input("Enter comma separated tags: ")
         summary = input("Enter article summary: ")
     else:
