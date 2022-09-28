@@ -21,7 +21,25 @@
 
   --post-padding: calc(1.05 * var(--base-font-size)) 0;
   --blog-title-padding: calc(var(--base-font-size) / 2.25);
+  --main-content-width: 65%;
 }
+
+@media (max-width: 950px) {
+  :root {
+    --root-font-size: 1em;
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: aliceblue;
+    --tag-border-radius: 10px;
+    --tag-padding: calc(var(--tag-border-radius) / 2);
+    --base-font-size: 1.1em;
+    --minor-font-size: calc(0.8 * var(--base-font-size));
+
+    --post-padding: calc(1.05 * var(--base-font-size)) 0;
+    --blog-title-padding: calc(var(--base-font-size) / 2.25);
+    --main-content-width: 80%;
+  }
+}
+
 
 body {
   margin-top: 0;
@@ -37,20 +55,12 @@ body {
 }
 
 main {
-  width: 65%;
+  width: var(--main-content-width);
   background-color: #f5f8fd;
   height: 100%;
   padding: 1em;
 }
 
-@media (max-width: 950px) {
-  main {
-    width: 80%;
-    background-color: #f5f8fd;
-    height: 100%;
-    padding: 1em;
-  }
-}
 
 .main-title {
   font-size: calc(2.25 * var(--base-font-size));
@@ -113,6 +123,15 @@ main {
 .article-tags {
 
   padding-top: calc(var(--blog-title-padding) * 2);
+}
+
+.page-nav {
+  width: var(--main-content-width);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: var(--base-font-size);
+
 }
 
 
@@ -178,7 +197,7 @@ main {
 <div class="nav-background">
   <div class="navbar" id="navbar">
     <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
-    <div class="navitem"><a href="./">Blog Homepage</a></div>
+    <div class="navitem"><a href="/blog/">Blog Homepage</a></div>
     <div class="navitem">
       <label class="navitem" for="search-box">Filter by Tag: </label>
       <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
@@ -190,7 +209,7 @@ main {
 
         let box = document.querySelector('#search-box');
 
-        fetch('tags.json').then(r => r.json()).then(obj => {
+        fetch('/blog/tags.json').then(r => r.json()).then(obj => {
           let tags = Object.keys(obj);
           tags.sort();
           for (let tag of tags) {
@@ -222,7 +241,7 @@ main {
             window.location = "./";
           }
           else {
-            window.location = `./search?tag=${tag}`;
+            window.location = `/blog/search?tag=${tag}`;
           }
         })
       </script>
@@ -239,15 +258,15 @@ main {
 <p>I have some experience doing web development for both Chrome and Firefox. I have a (very) modestly popular extension that supports both browsers and I try to get all the websites I make looking good in Firefox, Chrome, and Safari. Clearly, this can lead to some issues because supporting more than one (nevermind 3 or more) browsers adds complexity and work to any web project. The alternative, though, is one where someone (probably Chrome) dominates and monopolizes the browser space. This is clearly not ideal for many reasons. Google's "approach" to privacy and ad-tracking is not optimal. Their ability to flout standards because of their market share (cf. Internet Explorer), and their abililty to influence other browsers (such as with their seemingly effective attempt to kill ad-block extensions with manifest v3 is a marked downside of a browser monopoly. All the same, it would certainly simplify most web-based projects at least until 10 years from now when a new Browser war begins and we are dealing with whatever the Chrome equivalent of ActiveX controls are for the next 2 decades. </p>
   </main>
   <footer class="article-tags">
-    <div class="footer tags">Tags: <span class="tag"><a href="search.html?tag=browsers">browsers</a></span>
-<span class="tag"><a href="search.html?tag=firefox">firefox</a></span>
-<span class="tag"><a href="search.html?tag=chrome">chrome</a></span>
-<span class="tag"><a href="search.html?tag=websites">websites</a></span>
-<span class="tag"><a href="search.html?tag=webdev">webdev</a></span>
-<span class="tag"><a href="search.html?tag=programming">programming</a></span>
-<span class="tag"><a href="search.html?tag=web">web</a></span>
-<span class="tag"><a href="search.html?tag=design">design</a></span>
-<span class="tag"><a href="search.html?tag=ui">ui</a></span></div>
+    <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=browsers">browsers</a></span>
+<span class="tag"><a href="/blog/search.html?tag=firefox">firefox</a></span>
+<span class="tag"><a href="/blog/search.html?tag=chrome">chrome</a></span>
+<span class="tag"><a href="/blog/search.html?tag=websites">websites</a></span>
+<span class="tag"><a href="/blog/search.html?tag=webdev">webdev</a></span>
+<span class="tag"><a href="/blog/search.html?tag=programming">programming</a></span>
+<span class="tag"><a href="/blog/search.html?tag=web">web</a></span>
+<span class="tag"><a href="/blog/search.html?tag=design">design</a></span>
+<span class="tag"><a href="/blog/search.html?tag=ui">ui</a></span></div>
   </footer>
 
 
