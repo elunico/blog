@@ -11,13 +11,17 @@
     @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-  --post-padding: 1em 0;
-  --blog-title-padding: 0.5em;
+
   --root-font-size: 1em;
   --footer-color: rgb(123, 123, 123);
   --tag-background-color: aliceblue;
   --tag-border-radius: 10px;
   --tag-padding: calc(var(--tag-border-radius) / 2);
+  --base-font-size: 1.1em;
+  --minor-font-size: calc(0.8 * var(--base-font-size));
+
+  --post-padding: calc(1.05 * var(--base-font-size)) 0;
+  --blog-title-padding: calc(var(--base-font-size) / 2.25);
 }
 
 body {
@@ -28,9 +32,9 @@ body {
   flex-direction: column;
   font-family: "Nunito", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-bottom: 20vh;
-  line-height: 1.65;
+  line-height: 1.5;
   height: 100%;
-  font-size: 1.15em;
+  font-size: var(--base-font-size);
 }
 
 main {
@@ -50,18 +54,18 @@ main {
 }
 
 .main-title {
-  font-size: 2.5em;
+  font-size: calc(2.25 * var(--base-font-size));
 }
 
 .footer {
-  font-size: var(--root-font-size);
+  font-size: var(--minor-font-size);
   color: var(--footer-color);
   font-weight: bold;
   width: 100%;
 }
 
 .blog-title {
-  font-size: 1.5em;
+  font-size: calc(1.5 * var(--base-font-size));
   font-weight: bold;
   padding-bottom: var(--blog-title-padding);
 }
@@ -100,7 +104,7 @@ main {
 .hit-count {
   padding-bottom: var(--blog-title-padding);
   color: var(--footer-color);
-  font-size: var(--root-font-size);
+  font-size: var(--minor-font-size);
 }
 
 #results-area {
@@ -231,6 +235,22 @@ main {
   <h1 class="main-title">Tom's Blog</h1>
 
   <main>
+    
+    <div class="post">
+    <div class="blog-title"> <a href="Supporting%20Multiple%20Browsers.html">Supporting Multiple Browsers</a></div>
+    <div class="summary">The challenge of supporting multiple browsers or the price of monopolies</div>
+    <div class="footer tags">Tags: <span class="tag"><a href="search.html?tag=browsers">browsers</a></span>
+<span class="tag"><a href="search.html?tag=firefox">firefox</a></span>
+<span class="tag"><a href="search.html?tag=chrome">chrome</a></span>
+<span class="tag"><a href="search.html?tag=websites">websites</a></span>
+<span class="tag"><a href="search.html?tag=webdev">webdev</a></span>
+<span class="tag"><a href="search.html?tag=programming">programming</a></span>
+<span class="tag"><a href="search.html?tag=web">web</a></span>
+<span class="tag"><a href="search.html?tag=design">design</a></span>
+<span class="tag"><a href="search.html?tag=ui">ui</a></span></div>
+    <div class="footer published">Published: <span class="pub-date">2022-09-27T22:54:58.309988</span></div>
+    </div>
+    <hr>
     
     <div class="post">
     <div class="blog-title"> <a href="blogress.html">Blogress</a></div>
