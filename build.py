@@ -129,6 +129,18 @@ def fill_includes(text):
     text = re.sub(r'@include\s+(\w+)', file_replacer, text)
     return text
 
+kDefaultTemplateArgs = lambda content, file, meta: {
+    'content': content,
+    'title': titlify(file),
+    'tags': tags_for_file(file, meta)
+}
+
+def render_template(template, **kwargs):
+    text = style(template)
+    for key in kwargs:
+        text = text.replace('%{{' + str(key) + '}}', kwargs[key])
+
+    text = fill_includes(text)
 
 def fill_template(template, file, content, meta):
     text = (style(template)
@@ -197,7 +209,6 @@ def main():
         os.mkdir(os.path.join(kBuildDirRoot, kPageString.format(dir_count)))
         build_article_pages(listing[current_page * kArticlesPerPage:], os.path.join(kBuildDirRoot, kPageString.format(dir_count)), dir_count)
     else:
-        listing.reverse()
         build_article_pages(listing, kBuildDirRoot)
 
     print("[*] Creating index file")
