@@ -11,11 +11,16 @@
     @css-content {}
 
   </style>
+
+  <script defer src="https://eluni.co/background-render.js"></script>
+  <link rel="stylesheet" href="https://eluni.co/background-style.css">
 </head>
 
 <body>
 
   @include navbar
+
+  <div class="bg"></div>
 
   <h1 class="main-title">Tom's Blog@{{page-title}}</h1>
 

@@ -21,7 +21,8 @@
 
   <main id="results-area"></main>
 
-
+  <script defer src="https://eluni.co/background-render.js"></script>
+  <link rel="stylesheet" href="https://eluni.co/background-style.css">
   <script>
 
     async function getMetadata() {
@@ -53,6 +54,8 @@
 
     getSearchResults().then(r => console.log(r));
   </script>
+  <div class="bg"></div>
+
 </body>
 
 </html>
