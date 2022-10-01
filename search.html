@@ -22,6 +22,7 @@
   --post-padding: calc(1.05 * var(--base-font-size)) 0;
   --blog-title-padding: calc(var(--base-font-size) / 2.25);
   --main-content-width: 65%;
+  --bg-text-color: rgb(221, 221, 221);
 }
 
 @media (max-width: 950px) {
@@ -64,6 +65,7 @@ main {
 
 .main-title {
   font-size: calc(2.25 * var(--base-font-size));
+  text-shadow: #aaa 5px 5px 10px;
 }
 
 .footer {
@@ -73,10 +75,16 @@ main {
   width: 100%;
 }
 
+h1 {
+  text-shadow: #aaa 5px 5px 10px;
+
+}
+
 .blog-title {
   font-size: calc(1.5 * var(--base-font-size));
   font-weight: bold;
   padding-bottom: var(--blog-title-padding);
+
 }
 
 .pub-date {
@@ -256,7 +264,8 @@ main {
 
   <main id="results-area"></main>
 
-
+  <script defer src="https://eluni.co/background-render.js"></script>
+  <link rel="stylesheet" href="https://eluni.co/background-style.css">
   <script>
 
     async function getMetadata() {
@@ -288,6 +297,8 @@ main {
 
     getSearchResults().then(r => console.log(r));
   </script>
+  <div class="bg"></div>
+
 </body>
 
 </html>
