@@ -48,7 +48,7 @@ def strip_file_metadata(path):
                 if re.match(r'#[^#]', line):
                     if title_set:
                         raise ValueError("Too Many Level 1 Headings: '{}'".format(line))
-                    content += '{TOC_EMBED}'
+                    content += '@{{TOC_EMBED}}'
                     title_set = True
                 elif line.startswith('##'):
                     sections += 1
@@ -59,9 +59,9 @@ def strip_file_metadata(path):
 
     if sections > 4:
         file_meta['needs_toc'] = True
-        content = content.format(TOC_EMBED='[TOC]')
+        content = content.replace('@{{TOC_EMBED}}', '[TOC]')
     else:
-        content = content.format(TOC_EMBED='')
+        content = content.replace('@{{TOC_EMBED}}', '')
 
     return file_meta, content
 
@@ -129,11 +129,13 @@ def fill_includes(text):
     text = re.sub(r'@include\s+(\w+)', file_replacer, text)
     return text
 
-kDefaultTemplateArgs = lambda content, file, meta: {
+
+def kDefaultTemplateArgs(content, file, meta): return {
     'content': content,
     'title': titlify(file),
     'tags': tags_for_file(file, meta)
 }
+
 
 def render_template(template, **kwargs):
     text = style(template)
@@ -141,6 +143,7 @@ def render_template(template, **kwargs):
         text = text.replace('%{{' + str(key) + '}}', kwargs[key])
 
     text = fill_includes(text)
+
 
 def fill_template(template, file, content, meta):
     text = (style(template)
