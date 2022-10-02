@@ -25,8 +25,8 @@
   <link rel="stylesheet" href="https://eluni.co/background-style.css">
   <script>
 
-    async function getMetadata() {
-      let resp = await fetch('/blog/tags.json');
+    async function getMetadata(tag) {
+      let resp = await fetch(`/blog/tags/${tag}.json`);
       let text = await resp.text();
       let metadata = JSON.parse(text);
       return metadata;
@@ -36,20 +36,21 @@
       let tag = new URLSearchParams(window.location.search).get('tag');
       if (!tag) {
         document.writeln(`No results for '${tag}'`);
+      } else {
+        document.querySelector('#search-term').textContent = tag;
+        let data = await getMetadata(tag);
+        let destination = document.querySelector('#results-area');
+        let hits = document.querySelector('#hits');
+        // let articles = data[tag];
+        // hits.textContent = articles.length;
+        hits.textContent = data.length;
+        for (let article of data) {
+          let div = document.createElement('div');
+          div.innerHTML = article['internal_content'];
+          destination.appendChild(div);
+        }
+        return true;
       }
-      document.querySelector('#search-term').textContent = tag;
-
-      let destination = document.querySelector('#results-area');
-      let hits = document.querySelector('#hits');
-      let data = await getMetadata();
-      let articles = data[tag];
-      hits.textContent = articles.length;
-      for (let article of articles) {
-        let div = document.createElement('div');
-        div.innerHTML = article['internal_content'];
-        destination.appendChild(div);
-      }
-      return true;
     }
 
     getSearchResults().then(r => console.log(r));

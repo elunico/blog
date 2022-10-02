@@ -20,6 +20,10 @@ def html_name(md_filename):
     return '{}.html'.format(name)
 
 
+def clean(tag):
+    return ''.join(i for i in tag if i.isalnum() or i == ' ')
+
+
 def strip_file_metadata(path):
     file_meta = {'tags': [], 'data': '', 'summary': 'No Summary Provided!', "needs_toc": False}
     content = ''
@@ -29,7 +33,7 @@ def strip_file_metadata(path):
         for line in f:
             if line.startswith('%tags'):
                 try:
-                    file_meta['tags'] = [i.strip() for i in re.split(r',\s+', line[5:]) if i]
+                    file_meta['tags'] = [clean(i.strip()) for i in re.split(r',\s+', line[5:]) if i]
                 except (IndexError) as e:
                     raise ValueError('Invalid tag metadata') from e
             elif line.startswith('%date'):
@@ -187,7 +191,6 @@ def main():
             file_content = re.sub(r'\n([^\n])', r'\1', file_content)
             index_content[page] = index_content.get(page, '') + index_entry(html_name(file), blog_meta[file], page)
             html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
-            print(html)
             with (open(os.path.join(destination, html_name(file)), 'w') as f,
                     open(os.path.join('private', 'article.html.template')) as g):
                 text = fill_template(g.read(), file, html, blog_meta[file])
@@ -221,8 +224,19 @@ def main():
     print("[*] Serializing metadata")
     serialize(blog_meta, 'public', 'metadata')
 
-    print('[*] Writing tag database')
-    serialize(tag_data, 'public', 'tags')
+    print('[*] Writing tag list')
+    serialize(list(tag_data.keys()), os.path.join('public', 'tags'), '_all')
+    print('[*] Writing tag files')
+    tags = list(tag_data)
+    last = tags.pop()
+    for tag in tags:
+        print("\t┣ Writing tag file for '{}'".format(tag))
+        serialize(list(tag_data[tag]), os.path.join('public', 'tags'), tag)
+
+    print("\t┗ Writing tag file for '{}'".format(last))
+    serialize(list(tag_data[last]), os.path.join('public', 'tags'), last)
+
+    # serialize(tag_data, 'public', 'tags')
 
     print('[*] Preparing Search Template')
     with (open(os.path.join('private', 'search.html.template')) as f,

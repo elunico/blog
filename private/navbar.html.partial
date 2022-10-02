@@ -67,8 +67,8 @@
 
         let box = document.querySelector('#search-box');
 
-        fetch('/blog/tags.json').then(r => r.json()).then(obj => {
-          let tags = Object.keys(obj);
+        fetch('/blog/tags/_all.json').then(r => r.json()).then(obj => {
+          let tags = obj;
           tags.sort();
           for (let tag of tags) {
             let option = document.createElement('option');
