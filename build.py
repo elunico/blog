@@ -59,7 +59,7 @@ def strip_file_metadata(path):
 
     if sections > 4:
         file_meta['needs_toc'] = True
-        content = content.replace('@{{TOC_EMBED}}', '[TOC]')
+        content = content.replace('@{{TOC_EMBED}}', '\n[TOC]\n')
     else:
         content = content.replace('@{{TOC_EMBED}}', '')
 
@@ -187,6 +187,7 @@ def main():
             file_content = re.sub(r'\n([^\n])', r'\1', file_content)
             index_content[page] = index_content.get(page, '') + index_entry(html_name(file), blog_meta[file], page)
             html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
+            print(html)
             with (open(os.path.join(destination, html_name(file)), 'w') as f,
                     open(os.path.join('private', 'article.html.template')) as g):
                 text = fill_template(g.read(), file, html, blog_meta[file])
