@@ -245,7 +245,7 @@ p {
 
         let box = document.querySelector('#search-box');
 
-        fetch('/blog/tags/_all.json').then(r => r.json()).then(obj => {
+        fetch('/blog/tags/.all.json').then(r => r.json()).then(obj => {
           let tags = obj;
           tags.sort();
           for (let tag of tags) {
