@@ -170,12 +170,12 @@ def main():
     kPageString = 'page-{}'
 
     if not options.keep:
-        print('[*] Cleaning public dir')
+        print('❗️ Cleaning public dir')
         shutil.rmtree(kBuildDirRoot)
-        print('[*] Re-creating public dir')
+        print('📂 Re-creating public dir')
         os.mkdir(kBuildDirRoot)
 
-    print('[*] Building HTML files from Markdown')
+    print('🗂  Building HTML files from Markdown')
     index_content = {}
     blog_meta = {}
     tag_data = {}
@@ -201,32 +201,32 @@ def main():
     count = len(listing)
 
     if count > kArticlesPerPage:
-        print("[*] Too many articles! Rendering {} pages".format(count))
+        print("⚠️ Too many articles! Rendering {} pages".format(count))
         dir_count = count // kArticlesPerPage + (0 if not count % kArticlesPerPage else 1)
         current_page = 0
         for i in range(dir_count - 1):
-            print("[*] Rendering page {}".format(i + 1))
+            print("🗂 Rendering page {}".format(i + 1))
             page_dir = os.path.join(kBuildDirRoot, kPageString.format(i + 1))
             if not os.path.isdir(page_dir):
                 os.mkdir(page_dir)
             build_article_pages(listing[current_page * kArticlesPerPage: (current_page + 1) * kArticlesPerPage], page_dir, i + 1)
             current_page += 1
 
-        print("[*] Rendering page {}".format(dir_count))
+        print("🗂 Rendering page {}".format(dir_count))
         os.mkdir(os.path.join(kBuildDirRoot, kPageString.format(dir_count)))
         build_article_pages(listing[current_page * kArticlesPerPage:], os.path.join(kBuildDirRoot, kPageString.format(dir_count)), dir_count)
     else:
         build_article_pages(listing, kBuildDirRoot)
 
-    print("[*] Creating index file")
+    print("📄 Creating index file")
     write_index(index_content)
 
-    print("[*] Serializing metadata")
+    print("📄 Serializing metadata")
     serialize(blog_meta, 'public', 'metadata')
 
-    print('[*] Writing tag list')
+    print('📄 Writing tag list')
     serialize(list(tag_data.keys()), os.path.join('public', 'tags'), '_all')
-    print('[*] Writing tag files')
+    print('🗂  Writing tag files')
     tags = list(tag_data)
     last = tags.pop()
     for tag in tags:
@@ -236,12 +236,12 @@ def main():
     print("\t┗ Writing tag file for '{}'".format(last))
     serialize(list(tag_data[last]), os.path.join('public', 'tags'), last)
 
-    # serialize(tag_data, 'public', 'tags')
-
-    print('[*] Preparing Search Template')
+    print('📄 Preparing Search Template')
     with (open(os.path.join('private', 'search.html.template')) as f,
           open(os.path.join('public', 'search.html'), 'w') as g):
         g.write(fill_includes(style(f.read())))
+
+    print('✅ Build complete!')
 
 
 if __name__ == '__main__':
