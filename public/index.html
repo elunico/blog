@@ -8,8 +8,10 @@
   <script src="/analytics.js"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&display=swap');
 :root {
 
   --root-font-size: 1em;
@@ -17,12 +19,26 @@
   --tag-background-color: aliceblue;
   --tag-border-radius: 10px;
   --tag-padding: calc(var(--tag-border-radius) / 2);
-  --base-font-size: 1.1em;
+  /*--base-font-size: 1em;*/
+
+
+  --libre-baskerville-family: "Libre Baskerville",  serif;
+  --libre-baskerville-size: 0.9em;
+  --libre-baskerville-lineheight: 1.6;
+
+  --crimson-pro-family: "Crimson Pro",  serif;
+  --crimson-pro-size: 1.15em;
+  --crimson-pro-lineheight: 1.35;
+
+  --para-font: var(--crimson-pro-family);
+  --base-font-size: var(--crimson-pro-size);
+  --body-line-height: var(--crimson-pro-lineheight);
+
   --minor-font-size: calc(0.8 * var(--base-font-size));
 
   --post-padding: calc(1.05 * var(--base-font-size)) 0;
   --blog-title-padding: calc(var(--base-font-size) / 2.25);
-  --main-content-width: 65%;
+  --main-content-width: 60%;
   --bg-text-color: rgb(221, 221, 221);
 }
 
@@ -51,7 +67,7 @@ body {
   flex-direction: column;
   font-family: "Nunito", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-bottom: 20vh;
-  line-height: 1.5;
+  line-height: var(--body-line-height);
   height: 100%;
   font-size: var(--base-font-size);
 }
@@ -117,6 +133,7 @@ h1 {
 
 .summary {
   padding: var(--post-padding);
+  font-family: var(--para-font);
 }
 
 .hit-count {
@@ -143,6 +160,13 @@ h1 {
 
 }
 
+p {
+  font-family: var(--para-font);
+}
+
+.toc {
+  font-family: var(--para-font);
+}
 
   </style>
 
@@ -263,11 +287,9 @@ h1 {
 </div>
 
 
-  <div class="bg"></div>
-
   <h1 class="main-title">Tom's Blog</h1>
 
-  <main>
+  <main id="main">
     
     <div class="post">
     <div class="blog-title"> <a href="default%20arguments%20in%20python.html">Default Arguments In Python</a></div>
