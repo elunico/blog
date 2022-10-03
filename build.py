@@ -225,7 +225,7 @@ def main():
     serialize(blog_meta, 'public', 'metadata')
 
     print('📄 Writing tag list')
-    serialize(list(tag_data.keys()), os.path.join('public', 'tags'), '_all')
+    serialize(list(tag_data.keys()), os.path.join('public', 'tags'), '.all')
     print('🗂  Writing tag files')
     tags = list(tag_data)
     last = tags.pop()
