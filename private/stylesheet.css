@@ -96,6 +96,8 @@ h1 {
 
 .pub-date {
   font-weight: normal;
+  font-family: var(--para-font);
+
 }
 
 .tag {
@@ -104,6 +106,7 @@ h1 {
   background-color: var(--tag-background-color);
   padding: var(--tag-padding);
   font-weight: normal;
+  font-family: var(--para-font);
 }
 
 .tag>a:link,
@@ -156,4 +159,8 @@ p {
 
 .toc {
   font-family: var(--para-font);
+}
+
+#remove-button {
+  position: sticky;
 }

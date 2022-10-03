@@ -105,6 +105,8 @@ h1 {
 
 .pub-date {
   font-weight: normal;
+  font-family: var(--para-font);
+
 }
 
 .tag {
@@ -113,6 +115,7 @@ h1 {
   background-color: var(--tag-background-color);
   padding: var(--tag-padding);
   font-weight: normal;
+  font-family: var(--para-font);
 }
 
 .tag>a:link,
@@ -165,6 +168,10 @@ p {
 
 .toc {
   font-family: var(--para-font);
+}
+
+#remove-button {
+  position: sticky;
 }
 
   </style>
@@ -243,7 +250,7 @@ p {
 
         let box = document.querySelector('#search-box');
 
-        fetch('/blog/tags/.all.json').then(r => r.json()).then(obj => {
+        fetch('/blog/tags/all.json').then(r => r.json()).then(obj => {
           let tags = obj;
           tags.sort();
           for (let tag of tags) {
