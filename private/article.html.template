@@ -17,10 +17,9 @@
 <body>
 
   @include navbar
-  <div class="bg"></div>
 
 
-  <main>
+  <main id="main">
 
     %{{content}}
   </main>

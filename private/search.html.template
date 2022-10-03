@@ -19,7 +19,7 @@
   <h1>Search Results for <code id="search-term"></code></h1>
   <div class="hit-count">Results: <span id="hits"></span></div>
 
-  <main id="results-area"></main>
+  <main id="main"></main>
 
   <script defer src="https://eluni.co/background-render.js"></script>
   <link rel="stylesheet" href="https://eluni.co/background-style.css">
@@ -39,7 +39,7 @@
       } else {
         document.querySelector('#search-term').textContent = tag;
         let data = await getMetadata(tag);
-        let destination = document.querySelector('#results-area');
+        let destination = document.querySelector('#main');
         let hits = document.querySelector('#hits');
         // let articles = data[tag];
         // hits.textContent = articles.length;
@@ -55,7 +55,6 @@
 
     getSearchResults().then(r => console.log(r));
   </script>
-  <div class="bg"></div>
 
 </body>
 

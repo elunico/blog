@@ -20,11 +20,9 @@
 
   @include navbar
 
-  <div class="bg"></div>
-
   <h1 class="main-title">Tom's Blog@{{page-title}}</h1>
 
-  <main>
+  <main id="main">
     %{{content}}
   </main>
 
