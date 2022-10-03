@@ -162,5 +162,5 @@ p {
 }
 
 #remove-button {
-  position: sticky;
+  position: fixed !important;
 }
