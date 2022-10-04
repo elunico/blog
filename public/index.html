@@ -26,21 +26,22 @@
 
 
   --libre-baskerville-family: "Libre Baskerville", serif;
-  --libre-baskerville-size: 0.95em;
+  --libre-baskerville-size: 0.9em;
   --libre-baskerville-lineheight: 1.6;
 
   --crimson-pro-family: "Crimson Pro", serif;
   --crimson-pro-lineheight: 1.35;
-  --crimson-pro-size: 1.25em;
+  --crimson-pro-size: 1.15em;
 
   --para-font: var(--crimson-pro-family);
   --base-font-size: var(--crimson-pro-size);
   --body-line-height: var(--crimson-pro-lineheight);
 
   --minor-font-size: calc(0.8 * var(--base-font-size));
+  --title-font-size: calc(1.5 * var(--base-font-size));
 
   --post-padding: calc(1.05 * var(--base-font-size)) 0;
-  --blog-title-padding: calc(var(--base-font-size) / 2.25);
+  --blog-title-padding: calc(var(--base-font-size) / 3.25);
   --main-content-width: 60%;
 
   --main-background-color: #f5f8fd;
@@ -59,12 +60,14 @@
     --tag-padding: calc(var(--tag-border-radius) / 2);
     --minor-font-size: calc(0.8 * var(--base-font-size));
 
-  --libre-baskerville-size: 1.2em;
+    --libre-baskerville-size: 1.1em;
+    --crimson-pro-size: 1.3em;
+    --base-font-size: var(--crimson-pro-size);
+    --title-font-size: calc(1.1 * var(--base-font-size));
 
-  --crimson-pro-size: 1.5em;
     --post-padding: calc(1.05 * var(--base-font-size)) 0;
     --blog-title-padding: calc(var(--base-font-size) / 2.25);
-    --main-content-width: 80%;
+    --main-content-width: 50%;
   }
 }
 
@@ -106,7 +109,7 @@ main {
 
 
 .main-title {
-  font-size: calc(2.25 * var(--base-font-size));
+  font-size: var(-title-font-size);
   text-shadow: var(--text-shadow);
 }
 
@@ -115,6 +118,7 @@ main {
   color: var(--footer-color);
   font-weight: bold;
   width: 100%;
+  padding: calc(var(--base-font-size) / 3);
 }
 
 h1 {
@@ -123,7 +127,7 @@ h1 {
 }
 
 .blog-title {
-  font-size: calc(1.5 * var(--base-font-size));
+  font-size: var(--title-font-size);
   font-weight: bold;
   padding-bottom: var(--blog-title-padding);
 
@@ -170,6 +174,7 @@ a:visited {
 .summary {
   padding: var(--post-padding);
   font-family: var(--para-font);
+  font-size: var(--base-font-size);
 }
 
 .hit-count {
@@ -198,10 +203,12 @@ a:visited {
 
 p {
   font-family: var(--para-font);
+  font-size: var(--base-font-size);
 }
 
 .toc {
   font-family: var(--para-font);
+  font-size: var(--base-font-size);
 }
 
 #remove-button {
