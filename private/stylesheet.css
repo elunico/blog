@@ -5,7 +5,7 @@
 
 :root {
 
-  --root-font-size: 1em;
+  --root-font-size: 1.05em;
   --footer-color: rgb(123, 123, 123);
   --tag-background-color: aliceblue;
   --tag-border-radius: 10px;
@@ -18,7 +18,7 @@
   --libre-baskerville-lineheight: 1.6;
 
   --crimson-pro-family: "Crimson Pro", serif;
-  --crimson-pro-size: 1.15em;
+  --crimson-pro-size: 1.2em;
   --crimson-pro-lineheight: 1.35;
 
   --para-font: var(--crimson-pro-family);
@@ -42,10 +42,10 @@
 
 @media (max-width: 1200px) {
   :root {
-    --root-font-size: 1em;
+    --root-font-size: 1.05em;
     --tag-border-radius: 10px;
     --tag-padding: calc(var(--tag-border-radius) / 2);
-    --base-font-size: 1.3em;
+    --base-font-size: 1.35em;
     --minor-font-size: calc(0.8 * var(--base-font-size));
 
     --post-padding: calc(1.05 * var(--base-font-size)) 0;
