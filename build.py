@@ -154,6 +154,7 @@ def fill_template(template, file, content, meta):
             .replace("%{{content}}", content)
             .replace('%{{title}}', titlify(file))
             .replace('%{{tags}}', tags_for_file(file, meta))
+            .replace('%{{published}}', meta['date'])
             )
 
     text = fill_includes(text)

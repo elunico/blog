@@ -68,7 +68,7 @@
 
 </style>
 <div class="nav-background">
-  <div class="navbar" id="navbar">
+  <nav class="navbar" id="navbar">
     <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
     <div class="navitem"><a href="/blog/">Blog Homepage</a></div>
     <div class="navitem">
@@ -120,5 +120,5 @@
       </script>
     </div>
     <!-- <div class="navitem"><a href="javascript:window.history.back()">Back</a></div> -->
-  </div>
+  </nav>
 </div>

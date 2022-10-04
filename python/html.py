@@ -23,12 +23,12 @@ def index_entry(filename, meta, page):
     link = linkify(filename) if page is None else '/blog/page-{}/{}'.format(page, linkify(filename))
 
     return '''
-    <div class="post">
-    <div class="blog-title"> <a href="{}">{}</a></div>
-    <div class="summary">{}</div>
+    <article class="post">
+    <section class="blog-title"> <a href="{}">{}</a></section>
+    <summary class="summary">{}</summary>
     {}
-    <div class="footer published">Published: <span class="pub-date">{}</span></div>
-    </div>
+    <section data-has-date class="footer published">Published: <span class="pub-date">{}</span></section>
+    </article>
     <hr>
     '''.format(link, titlify(filename), meta['summary'], tags_for_file(filename, meta),
                meta['date'])

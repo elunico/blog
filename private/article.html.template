@@ -22,12 +22,13 @@
 
 
   <main id="main">
-
     %{{content}}
-  </main>
   <footer class="article-tags">
     %{{tags}}
   </footer>
+    <section data-has-date class="footer published">Published: <span class="pub-date">%{{published}}</span></section>
+  </main>
+
 
 
 </body>

@@ -28,9 +28,9 @@
     %{{content}}
   </main>
 
-  <div class="page-nav">
+  <footer class="page-nav">
     @{{page-nav}}
-  </div>
+  </footer>
 
 </body>
 

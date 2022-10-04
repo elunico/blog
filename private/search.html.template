@@ -18,8 +18,10 @@
 
   @include navbar
 
+  <header>
   <h1>Search Results for <code id="search-term"></code></h1>
-  <div class="hit-count">Results: <span id="hits"></span></div>
+  </header>
+  <aside class="hit-count">Results: <span id="hits"></span></aside>
 
   <main id="main"></main>
 
