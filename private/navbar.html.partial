@@ -1,16 +1,30 @@
 <style>
+  :root {
+    --nv-background-color: linear-gradient(#566acb, #4256b9);
+    --nv-text-color: white;
+    --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --nv-background-color: linear-gradient(#2436a4, #0f1e77);
+      --nv-text-color: white;
+      --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
+    }
+  }
+
   .nav-background {
     height: 3em;
     position: sticky;
     top: 0px;
     /* background-color: rgb(91, 121, 255); */
-    background: linear-gradient(#566acb, #4256b9);
+    background: var(--nv-background-color);
     width: 100vw;
     margin: 0;
     padding: 0;
     display: grid;
     place-items: center;
-    box-shadow: rgb(123, 123, 123) 0px 4px 2px;
+    box-shadow: var(--nv-shadow);
 
   }
 
@@ -25,7 +39,7 @@
     text-align: center;
     place-items: center;
     line-height: 1;
-    color: white;
+    color: var(--nv-text-color);
 
   }
 
@@ -43,8 +57,9 @@
   }
 
   .navitem>a:link,
-  .navitem>a:visited {
-    color: white;
+  .navitem>a:visited,
+  label{
+    color: var(--nv-text-color);
   }
 
   .navitem>select {
