@@ -12,6 +12,7 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
 
   --root-font-size: 1em;
@@ -22,11 +23,11 @@
   /*--base-font-size: 1em;*/
 
 
-  --libre-baskerville-family: "Libre Baskerville",  serif;
+  --libre-baskerville-family: "Libre Baskerville", serif;
   --libre-baskerville-size: 0.9em;
   --libre-baskerville-lineheight: 1.6;
 
-  --crimson-pro-family: "Crimson Pro",  serif;
+  --crimson-pro-family: "Crimson Pro", serif;
   --crimson-pro-size: 1.15em;
   --crimson-pro-lineheight: 1.35;
 
@@ -39,22 +40,40 @@
   --post-padding: calc(1.05 * var(--base-font-size)) 0;
   --blog-title-padding: calc(var(--base-font-size) / 2.25);
   --main-content-width: 60%;
-  --bg-text-color: rgb(221, 221, 221);
+
+  --main-background-color: #f5f8fd;
+
+  --text-shadow: #aaa 5px 5px 10px;
+  --link-color: #0e51d2;
+  --body-main-color: black;
+  --link-visited-color: #992fc0;
+
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1200px) {
   :root {
     --root-font-size: 1em;
-    --footer-color: rgb(123, 123, 123);
-    --tag-background-color: aliceblue;
     --tag-border-radius: 10px;
     --tag-padding: calc(var(--tag-border-radius) / 2);
-    --base-font-size: 1.1em;
+    --base-font-size: 1.3em;
     --minor-font-size: calc(0.8 * var(--base-font-size));
 
     --post-padding: calc(1.05 * var(--base-font-size)) 0;
     --blog-title-padding: calc(var(--base-font-size) / 2.25);
     --main-content-width: 80%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: #25252d;
+    --text-shadow: #070707 5px 5px 10px;
+    --link-color: #83c7ff;
+    --body-main-color: white;
+    --main-background-color: #2d2d2d;
+    --link-visited-color: #d285ee;
+
   }
 }
 
@@ -70,11 +89,13 @@ body {
   line-height: var(--body-line-height);
   height: 100%;
   font-size: var(--base-font-size);
+  color: var(--body-main-color);
+  background-color: var(--body-main-color);
 }
 
 main {
   width: var(--main-content-width);
-  background-color: #f5f8fd;
+  background-color: var(--main-background-color);
   height: 100%;
   padding: 1em;
 }
@@ -82,7 +103,7 @@ main {
 
 .main-title {
   font-size: calc(2.25 * var(--base-font-size));
-  text-shadow: #aaa 5px 5px 10px;
+  text-shadow: var(--text-shadow);
 }
 
 .footer {
@@ -93,7 +114,7 @@ main {
 }
 
 h1 {
-  text-shadow: #aaa 5px 5px 10px;
+  text-shadow: var(--text-shadow);
 
 }
 
@@ -119,6 +140,14 @@ h1 {
   font-family: var(--para-font);
 }
 
+a:link {
+  color: var(--link-color);
+}
+
+a:visited {
+  color: var(--link-visited-color);
+}
+
 .tag>a:link,
 .tag>a:visited {
   text-decoration: none;
@@ -126,7 +155,7 @@ h1 {
 }
 
 .tag>a:hover {
-  color: blue;
+  color: var(--link-color);
   text-decoration: underline;
 }
 
@@ -184,18 +213,32 @@ p {
 <body>
 
   <style>
+  :root {
+    --nv-background-color: linear-gradient(#566acb, #4256b9);
+    --nv-text-color: white;
+    --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --nv-background-color: linear-gradient(#2436a4, #0f1e77);
+      --nv-text-color: white;
+      --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
+    }
+  }
+
   .nav-background {
     height: 3em;
     position: sticky;
     top: 0px;
     /* background-color: rgb(91, 121, 255); */
-    background: linear-gradient(#566acb, #4256b9);
+    background: var(--nv-background-color);
     width: 100vw;
     margin: 0;
     padding: 0;
     display: grid;
     place-items: center;
-    box-shadow: rgb(123, 123, 123) 0px 4px 2px;
+    box-shadow: var(--nv-shadow);
 
   }
 
@@ -210,7 +253,7 @@ p {
     text-align: center;
     place-items: center;
     line-height: 1;
-    color: white;
+    color: var(--nv-text-color);
 
   }
 
@@ -228,8 +271,9 @@ p {
   }
 
   .navitem>a:link,
-  .navitem>a:visited {
-    color: white;
+  .navitem>a:visited,
+  label{
+    color: var(--nv-text-color);
   }
 
   .navitem>select {
