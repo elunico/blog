@@ -14,12 +14,12 @@
 
 
   --libre-baskerville-family: "Libre Baskerville", serif;
-  --libre-baskerville-size: 0.9em;
+  --libre-baskerville-size: 0.95em;
   --libre-baskerville-lineheight: 1.6;
 
   --crimson-pro-family: "Crimson Pro", serif;
   --crimson-pro-lineheight: 1.35;
-  --crimson-pro-size: 1.2em;
+  --crimson-pro-size: 1.25em;
 
   --para-font: var(--crimson-pro-family);
   --base-font-size: var(--crimson-pro-size);
