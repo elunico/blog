@@ -10,29 +10,29 @@ choose to make font-wise or what they choose to do with their asterisks. Please 
 
 ## History and Introduction to Why I Like Menlo
 I do a lot of coding and I learned to program on a MacBook Pro. I have always loved the Mac for its software above all. 
-Yes a lot of the hardware was good most of the time (not including the 2015-2018 MacBooks), but it was always the software. 
+Yes, a lot of the hardware was good most of the time (not including the 2015-2018 MacBooks), but it was always the software that brought me to the Mac. 
 Even before Apple had [Continuity](https://www.apple.com/macos/continuity/) and 
 [Handoff](https://support.apple.com/en-us/HT209455) and [iCloud Drive](https://www.apple.com/icloud/), 
 they had [UNIX](https://web.archive.org/web/20080418011023/http://www.apple.com/macosx/technology/). I have always expressed my great admiration and love for the UNIXes and their philosophy and it is
-one of the many things that makes Linux so appealing to me (even though Linux is not technically a UNIX). 
-When Apple had no "ecosystem" and you were lucky to have an iPhone never mind watch, tablet, or headphones
-I still thought Mac OS X was the best. 
+one of the many things that makes Linux so appealing to me (even though Linux is not technically a UNIX). Mac OS X is a UNIX based operating system, and they have been UNIX certified since 2007ish (almost the entire time).
+When Apple had no "ecosystem" and you were lucky to have an iPhone never mind watch, tablet, or headphones I still thought Mac OS X 
+was the best because it brought you the ease of use of Mac OS_like universal font panels, proxies, drag & drop, Aqua_but the power of UNIX.
 
-## Why You Should Also Like Menlo
 Anyway, that's true but not the point. Though it seems I cannot really post on this blog without gushing about Mac OS X for a bit. 
 The point of this article is [Menlo](https://en.wikipedia.org/wiki/Menlo_(typeface)) or, more specifically, a particular feature of [Meslo](https://github.com/andreberg/Meslo-Font)
 Since I have been a developer on the Mac since 2011, I have grown a particular fondness for Menlo (the font). Not only is it my favorite
 Coding font, I find it to be a pleasant and balanced typeface overall. I cannot say whether this is due to the influence of Mac OS X or 
 if Menlo is just naturally a really nice font that I like, but I can say_for whatever reason_I do love it. 
 
+## Why You Should Also Like Menlo
 Many things about Menlo are appealing: it has very distinct `l`, `i`, and `1` characters (unlike Consolas for example). It has very nice metrics (in my opinion), 
 and I think the `a`, `l`, `M`, and `0` are among its best features. 
 
 "Ok, so that's great, but what is the point of this post?" I hear you cry. 
 
-## Background on What Meslo is and Why It Exists
 Well just be patient, we're getting there. 
 
+## Background on What Meslo is and Why It Exists
 First you need to know that Menlo was crafted for Apple by Jim Lyles (you can see this in the Metadata for Menlo on Mac OS X). That said, it is nearly identical to the 
 public domain font [DejaVu Sans Mono](https://en.wikipedia.org/wiki/DejaVu_fonts) itself being based on the [Vera](https://en.wikipedia.org/wiki/Bitstream_Vera) font by Bitstream.
 The main differences that Menlo brings are a slashed, not dotted zero; thicker and longer dash; thicker underscore which sits on rather than under the baseline;
@@ -49,7 +49,7 @@ and functional design that Apple brings to things. Take for example this sample 
 I realize this is a small and insignificant example, but rest assured, Menlo was a very good font for this particular language. 
 
 The next thing you have to know that until like 17 minutes ago, Xcode lacked the ability to change the line height of the font in the editor. This
-lead many people to be disatisfied with Menlo for its tight line spacing. Luckily, along came [Meslo](https://github.com/andreberg/Meslo-Font)
+lead many people to be dissatisfied with Menlo for its tight line spacing. Luckily, along came [Meslo](https://github.com/andreberg/Meslo-Font)
 which is_essentially just Menlo_with 3 options for line height. This is accomplished by baking in space in the font rather than relying on the editor settings. 
 
 ## Why Meslo Why? Finally
