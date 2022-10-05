@@ -1,0 +1,25 @@
+<script>
+
+    function logging(a) {
+        console.log(a);
+        return a;
+    }
+
+    let elements = document.querySelectorAll('*[data-has-date]');
+    for (let element of elements) {
+        let text = element.textContent.trim();
+        let date = Date.parse(text);
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        }
+        element.textContent = new Intl.DateTimeFormat(navigator.language, options).format(date);
+        element.removeAttribute('data-has-date');
+    }
+</script>

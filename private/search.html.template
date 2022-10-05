@@ -59,6 +59,7 @@
 
     getSearchResults().then(r => console.log(r));
   </script>
+  @include date_script
 
 </body>
 

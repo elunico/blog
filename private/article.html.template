@@ -26,9 +26,10 @@
   <footer class="article-tags">
     %{{tags}}
   </footer>
-    <section data-has-date class="footer published">Published: <span class="pub-date">%{{published}}</span></section>
+    <section class="footer published">Published: <span data-has-date class="pub-date">%{{published}}</span></section>
   </main>
 
+@include date_script
 
 
 </body>
