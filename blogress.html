@@ -392,9 +392,34 @@ must be done on the client. Currently, for the size of the blog, this is not an 
 <span class="tag"><a href="/blog/search.html?tag=design">design</a></span>
 <span class="tag"><a href="/blog/search.html?tag=css">css</a></span></div>
   </footer>
-    <section data-has-date class="footer published">Published: <span class="pub-date">2022-09-27T17:51:05.900902</span></section>
+    <section class="footer published">Published: <span data-has-date class="pub-date">2022-09-27T17:51:05.900902</span></section>
   </main>
 
+<script>
+
+    function logging(a) {
+        console.log(a);
+        return a;
+    }
+
+    let elements = document.querySelectorAll('*[data-has-date]');
+    for (let element of elements) {
+        let text = element.textContent.trim();
+        let date = Date.parse(text);
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        }
+        element.textContent = new Intl.DateTimeFormat(navigator.language, options).format(date);
+        element.removeAttribute('data-has-date');
+    }
+</script>
 
 
 </body>
