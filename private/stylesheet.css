@@ -19,8 +19,8 @@
   --libre-baskerville-lineheight: 1.6;
 
   --crimson-pro-family: "Literata TT", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
-  --crimson-pro-lineheight: 1.35;
-  --crimson-pro-size: 1.15em;
+  --crimson-pro-lineheight: 1.5;
+  --crimson-pro-size: 1.05em;
 
   --para-font: var(--crimson-pro-family);
   --base-font-size: var(--crimson-pro-size);
