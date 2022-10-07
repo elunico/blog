@@ -5,7 +5,7 @@ import os
 import os.path
 import sys
 import urllib.parse
-
+import re
 
 def filename_from_link(link):
     parts = urllib.parse.urlsplit(link).path.split('/')
@@ -24,6 +24,7 @@ def html_from_link(link):
 
 def main():
     title = input("Enter the title of the post to create: ").strip()
+    title = re.sub(r'[^a-zA-Z0-9.,+_-]', '-', title)
 
     destination = os.path.join('source', '{}.md'.format(title))
     if os.path.exists(destination):
