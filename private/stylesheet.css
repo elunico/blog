@@ -204,3 +204,7 @@ p {
 #remove-button {
   position: fixed !important;
 }
+
+code {
+  font-size: 1.2em;
+}

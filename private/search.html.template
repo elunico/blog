@@ -8,10 +8,8 @@
   <meta name="theme-color" content="#5468C0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#22377A" media="(prefers-color-scheme: dark)">
   <script src="/analytics.js"></script>
-  <style>
-    @css-content {}
+  @include-css stylesheet
 
-  </style>
 </head>
 
 <body>

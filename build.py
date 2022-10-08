@@ -90,12 +90,12 @@ def write_index(content):
         template = f.read()
     if None in content:
         with open(os.path.join(kBuildDirRoot, 'index.html'), 'w') as f:
-            f.write(no_pages(fill_includes(style(template).replace('%{{content}}', content[None]))))
+            f.write(no_pages(fill_includes(template.replace('%{{content}}', content[None]))))
     else:
         nav = page_nav(content.keys())
         for page_key in content:
             with open(os.path.join(kBuildDirRoot, 'page-{}'.format(page_key), 'index.html'), 'w') as f:
-                f.write(fill_includes(style(template).replace('%{{content}}', content[page_key])).replace('@{{page-nav}}', nav).replace('@{{page-title}}', ' - Page {}'.format(page_key)))
+                f.write(fill_includes(template.replace('%{{content}}', content[page_key])).replace('@{{page-nav}}', nav).replace('@{{page-title}}', ' - Page {}'.format(page_key)))
 
         with open(os.path.join(kBuildDirRoot, 'index.html'), 'w') as f:
             f.write('<script>window.location = "/blog/page-1"</script>')
@@ -113,24 +113,29 @@ def add_tags(tags, meta, file, page):
         lst.append({'link': linkify(html_name(file)), 'title': titlify(file), 'internal_content': index_entry(html_name(file), meta, page)})
         tags[tag] = lst
 
+def identity(arg):
+    return arg
 
 def fill_includes(text):
-    def file_replacer(match):
-        try:
-            name_prefix = match.group(1)
-        except (AttributeError, IndexError) as e:
-            raise ValueError("Invalid @include directive '{}'".format(match)) from e
+    def make_replacer(extension, transform=identity):
+        def file_replacer(match):
+            try:
+                name_prefix = match.group(1)
+            except (AttributeError, IndexError) as e:
+                raise ValueError("Invalid @include directive '{}'".format(match)) from e
 
-        filename = '{}.html.partial'.format(name_prefix)
-        try:
-            with open(os.path.join('private', filename)) as f:
-                return f.read()
-        except (FileNotFoundError) as e:
-            raise ValueError("Invalid @include directive '{}': File not found".format(match.group())) from e
-        except OSError as e:
-            raise ValueError("Invalid @include directive '{}'. Could not access file".format(match.group())) from e
+            filename = '{}.{}'.format(name_prefix, extension)
+            try:
+                with open(os.path.join('private', filename)) as f:
+                    return transform(f.read())
+            except (FileNotFoundError) as e:
+                raise ValueError("Invalid @include directive '{}': File not found".format(match.group())) from e
+            except OSError as e:
+                raise ValueError("Invalid @include directive '{}'. Could not access file".format(match.group())) from e
+        return file_replacer
 
-    text = re.sub(r'@include\s+(\w+)', file_replacer, text)
+    text = re.sub(r'@include-css\s+(\w+)', make_replacer('css', lambda content: '<style>{}</style>'.format(content)), text)
+    text = re.sub(r'@include\s+(\w+)', make_replacer('html.partial'), text)
     return text
 
 
@@ -142,22 +147,20 @@ def kDefaultTemplateArgs(content, file, meta): return {
 
 
 def render_template(template, **kwargs):
-    text = style(template)
     for key in kwargs:
-        text = text.replace('%{{' + str(key) + '}}', kwargs[key])
+        template = template.replace('%{{' + str(key) + '}}', kwargs[key])
 
-    text = fill_includes(text)
+    template = fill_includes(template)
 
 
 def fill_template(template, file, content, meta):
-    text = (style(template)
+    text = (fill_includes(template)
             .replace("%{{content}}", content)
             .replace('%{{title}}', titlify(file))
             .replace('%{{tags}}', tags_for_file(file, meta))
             .replace('%{{published}}', meta['date'])
             )
 
-    text = fill_includes(text)
     return text
 
 
@@ -240,7 +243,7 @@ def main():
     print('📄 Preparing Search Template')
     with (open(os.path.join('private', 'search.html.template')) as f,
           open(os.path.join('public', 'search.html'), 'w') as g):
-        g.write(fill_includes(style(f.read())))
+        g.write(fill_includes(f.read()))
 
     print('✅ Build complete!')
 

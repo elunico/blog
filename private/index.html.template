@@ -8,11 +8,8 @@
   <meta name="theme-color" content="#5468C0" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#22377A" media="(prefers-color-scheme: dark)">
   <script src="/analytics.js"></script>
+  @include-css stylesheet
 
-  <style>
-    @css-content {}
-
-  </style>
 
   <script defer src="https://eluni.co/background-render.js"></script>
   <link rel="stylesheet" href="https://eluni.co/background-style.css">

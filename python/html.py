@@ -14,11 +14,6 @@ def tag_spans(iterator, className=''):
     return '\n'.join('<span class="{}"><a href="/blog/search.html?tag={}">{}</a></span>'.format(className, urllib.parse.quote(i), i) for i in iterator)
 
 
-def style(html_template):
-    with open(os.path.join('private', 'stylesheet.css')) as f:
-        return html_template.replace('@css-content {}', f.read())
-
-
 def index_entry(filename, meta, page):
     link = linkify(filename) if page is None else '/blog/page-{}/{}'.format(page, linkify(filename))
 
