@@ -184,11 +184,26 @@ a:visited {
 
 .page-nav {
   width: var(--main-content-width);
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  gap: var(--base-font-size);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(50%);
+}
 
+@supports (display: grid) {
+  .page-nav {
+    transform: none;
+    align-items: unset;
+    align-content: unset;
+    justify-content: unset;
+
+    width: var(--main-content-width);
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: var(--base-font-size);
+  }
 }
 
 p {

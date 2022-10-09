@@ -194,11 +194,26 @@ a:visited {
 
 .page-nav {
   width: var(--main-content-width);
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  gap: var(--base-font-size);
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(50%);
+}
 
+@supports (display: grid) {
+  .page-nav {
+    transform: none;
+    align-items: unset;
+    align-content: unset;
+    justify-content: unset;
+
+    width: var(--main-content-width);
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: var(--base-font-size);
+  }
 }
 
 p {
@@ -224,128 +239,147 @@ code {
 <body>
 
   <style>
-  :root {
-    --nv-background-color: linear-gradient(#566acb, #4256b9);
-    --nv-text-color: white;
-    --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
-  }
-
-  @media (prefers-color-scheme: dark) {
     :root {
-      --nv-background-color: linear-gradient(#2436a4, #0f1e77);
-      --nv-text-color: white;
-      --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
+        --nv-background-color: linear-gradient(#566acb, #4256b9);
+        --nv-text-color: white;
+        --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
     }
-  }
 
-  .nav-background {
-    height: 3em;
-    position: sticky;
-    top: 0px;
-    /* background-color: rgb(91, 121, 255); */
-    background: var(--nv-background-color);
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    place-items: center;
-    box-shadow: var(--nv-shadow);
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --nv-background-color: linear-gradient(#2436a4, #0f1e77);
+            --nv-text-color: white;
+            --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
+        }
+    }
 
-  }
+    .nav-background {
+        height: 3em;
+        position: sticky;
+        top: 0px;
+        /* background-color: rgb(91, 121, 255); */
+        background: var(--nv-background-color);
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        box-shadow: var(--nv-shadow);
 
-  .navbar {
-    height: 3em;
-    position: sticky;
-    top: 0px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.25em;
-    width: 50%;
-    text-align: center;
-    place-items: center;
-    line-height: 1;
-    color: var(--nv-text-color);
+    }
 
-  }
+    .navbar {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(50%);
 
-  .navbar>div {
+        height: 3em;
+        position: sticky;
+        top: 0;
+        width: 50%;
+        text-align: center;
+    }
 
-    display: grid;
-    place-items: center;
+    .navbar>div {
+        width: 100%;        
+        height: 100%;
+        /* border: 2px solid darkgray; */
+        /* border-radius: 10px; */
+        line-height: unset;
+    }
 
-    width: 100%;
-    height: 100%;
-    /* border: 2px solid darkgray; */
-    /* border-radius: 10px; */
-    line-height: unset;
+    @supports (display: grid) {
+        .navbar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25em;
+            text-align: center;
+            place-items: center;
+            transform: none;
+        }
 
-  }
 
-  .navitem>a:link,
-  .navitem>a:visited,
-  label{
-    color: var(--nv-text-color);
-  }
+        .navbar > div {
 
-  .navitem>select {
-    width: 80%;
-  }
+            display: grid;
+            place-items: center;
+
+            width: 100%;
+            height: 100%;
+            /* border: 2px solid darkgray; */
+            /* border-radius: 10px; */
+            line-height: unset;
+
+        }
+
+    }
+
+    .navitem > a:link,
+    .navitem > a:visited,
+    label {
+        color: var(--nv-text-color);
+    }
+
+    .navitem > select {
+        width: 80%;
+    }
 
 </style>
 <div class="nav-background">
-  <nav class="navbar" id="navbar">
-    <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
-    <div class="navitem"><a href="/blog/">Blog Homepage</a></div>
-    <div class="navitem">
-      <label class="navitem" for="search-box">Filter by Tag: </label>
-      <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
-      <select name="search-box" disabled id="search-box" class="navitem"></select>
+    <nav class="navbar" id="navbar">
+        <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
+        <div class="navitem"><a href="/blog/">Blog Homepage</a></div>
+        <div class="navitem">
+            <label class="navitem" for="search-box">Filter by Tag: </label>
+            <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
+            <select name="search-box" disabled id="search-box" class="navitem"></select>
 
-      <script>
-        const clearOption = '<no filter>';
-        let pageTag = new URLSearchParams(window.location.search).get('tag');
+            <script>
+                const clearOption = '<no filter>';
+                let pageTag = new URLSearchParams(window.location.search).get('tag');
 
-        let box = document.querySelector('#search-box');
+                let box = document.querySelector('#search-box');
 
-        fetch('/blog/tags/all.json').then(r => r.json()).then(obj => {
-          let tags = obj;
-          tags.sort();
-          for (let tag of tags) {
-            let option = document.createElement('option');
-            option.textContent = tag;
-            box.appendChild(option);
-          }
-          box.removeAttribute('disabled');
+                fetch('/blog/tags/all.json').then(r => r.json()).then(obj => {
+                    let tags = obj;
+                    tags.sort();
+                    for (let tag of tags) {
+                        let option = document.createElement('option');
+                        option.textContent = tag;
+                        box.appendChild(option);
+                    }
+                    box.removeAttribute('disabled');
 
-          let option = document.createElement('option');
-          option.textContent = clearOption;
-          box.appendChild(option);
+                    let option = document.createElement('option');
+                    option.textContent = clearOption;
+                    box.appendChild(option);
 
-          box.selectedIndex = box.options.length - 1;
+                    box.selectedIndex = box.options.length - 1;
 
-          if (pageTag) {
-            let optionString = [];
-            for (let i = 0; i < box.options.length; i++) {
-              optionString.push(box.options[i].value);
-            }
-            console.log(optionString);
-            box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
-          }
-        });
+                    if (pageTag) {
+                        let optionString = [];
+                        for (let i = 0; i < box.options.length; i++) {
+                            optionString.push(box.options[i].value);
+                        }
+                        console.log(optionString);
+                        box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
+                    }
+                });
 
-        box.addEventListener('change', event => {
-          let tag = box.options[box.selectedIndex].value;
-          if (tag === clearOption) {
-            window.location = "./";
-          }
-          else {
-            window.location = `/blog/search?tag=${tag}`;
-          }
-        })
-      </script>
-    </div>
-    <!-- <div class="navitem"><a href="javascript:window.history.back()">Back</a></div> -->
-  </nav>
+                box.addEventListener('change', event => {
+                    let tag = box.options[box.selectedIndex].value;
+                    if (tag === clearOption) {
+                        window.location = "./";
+                    } else {
+                        window.location = `/blog/search?tag=${tag}`;
+                    }
+                })
+            </script>
+        </div>
+        <!-- <div class="navitem"><a href="javascript:window.history.back()">Back</a></div> -->
+    </nav>
 </div>
 
 
