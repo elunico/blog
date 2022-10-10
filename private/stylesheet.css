@@ -2,7 +2,8 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
 /*@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400;1,7..72,700&family=Source+Sans+3:wght@700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400;1,7..72,700&family=Source+Sans+3:wght@700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
 
@@ -18,8 +19,8 @@
   --libre-baskerville-size: 0.9em;
   --libre-baskerville-lineheight: 1.6;
 
-  --crimson-pro-family: "Literata TT", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
-  --crimson-pro-lineheight: 1.5;
+  --crimson-pro-family: "Source Serif Pro", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
+  --crimson-pro-lineheight: 1.4;
   --crimson-pro-size: 1.05em;
 
   --para-font: var(--crimson-pro-family);
@@ -34,7 +35,8 @@
   --main-content-width: 60%;
 
   --main-background-color: #f5f8fd;
-
+  --code-background-color: #fff;
+  
   --text-shadow: #aaa 5px 5px 10px;
   --link-color: #0e51d2;
   --body-main-color: black;
@@ -69,6 +71,8 @@
     --body-main-color: white;
     --main-background-color: #2d2d2d;
     --link-visited-color: #d285ee;
+
+    --code-background-color: #000;
 
   }
 }
@@ -222,4 +226,14 @@ p {
 
 code {
   font-size: 1.2em;
+}
+
+.codehilite {
+  display: inline-block;
+  width: 100%;
+  padding: 0.5em 0;
+  overflow: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(--body-main-color) var(--main-background-color);
+  background-color: var(--code-background-color);
 }
