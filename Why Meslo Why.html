@@ -52,6 +52,9 @@
   --body-main-color: black;
   --link-visited-color: #992fc0;
 
+  --main-box-shadow: 8px 8px lightgray;
+  --main-border: 2px solid #222;
+
 }
 
 @media (max-width: 1200px) {
@@ -83,7 +86,8 @@
     --link-visited-color: #d285ee;
 
     --code-background-color: #000;
-
+    --main-box-shadow: 8px 8px rgb(30, 30, 30);
+    --main-border: 2px solid #ddd;
   }
 }
 
@@ -109,6 +113,10 @@ main {
   background-color: var(--main-background-color);
   height: 100%;
   padding: 1em;
+  border-radius: 15px;
+  border: var(--main-border);
+  box-shadow: var(--main-box-shadow);
+  margin-top: 15px;
 }
 
 
