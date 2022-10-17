@@ -24,7 +24,7 @@ def index_entry(filename, meta, page):
     {}
     <section class="footer published">Published: <span data-has-date class="pub-date">{}</span></section>
     </article>
-    <hr>
+
     '''.format(link, titlify(filename), meta['summary'], tags_for_file(filename, meta),
                meta['date'])
 

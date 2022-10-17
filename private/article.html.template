@@ -18,7 +18,7 @@
   @include navbar
 
 
-  <main id="main">
+  <main id="main" class="article-main">
     %{{content}}
   <footer class="article-tags">
     %{{tags}}

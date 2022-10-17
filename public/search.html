@@ -40,7 +40,8 @@
   --minor-font-size: calc(0.8 * var(--base-font-size));
   --title-font-size: calc(1.5 * var(--base-font-size));
 
-  --post-padding: calc(1.05 * var(--base-font-size)) 0;
+  --post-padding-top: calc(1.1 * var(--base-font-size));
+  --post-padding-left: calc(1.1 * var(--base-font-size));
   --blog-title-padding: calc(var(--base-font-size) / 3.25);
   --main-content-width: 60%;
 
@@ -69,7 +70,7 @@
     --base-font-size: var(--crimson-pro-size);
     --title-font-size: calc(1.1 * var(--base-font-size));
 
-    --post-padding: calc(1.05 * var(--base-font-size)) 0;
+    --post-padding-top: calc(1.05 * var(--base-font-size)) 0;
     --blog-title-padding: calc(var(--base-font-size) / 2.25);
     --main-content-width: 50%;
   }
@@ -110,14 +111,15 @@ body {
 
 main {
   width: var(--main-content-width);
-  background-color: var(--main-background-color);
   height: 100%;
   padding: 1em;
-  border-radius: 15px;
-  border: var(--main-border);
-  box-shadow: var(--main-box-shadow);
+  /*border-radius: 15px;*/
+  /*border: var(--main-border);*/
+  /*box-shadow: var(--main-box-shadow);*/
   margin-top: 15px;
 }
+
+
 
 
 .main-title {
@@ -179,12 +181,17 @@ a:visited {
   text-decoration: underline;
 }
 
-.post {
-  padding: var(--post-padding);
+.post, .article-main {
+  background-color: var(--main-background-color);
+  padding: var(--post-padding-top) var(--post-padding-left);
+  border-radius: 15px;
+  border: var(--main-border);
+  box-shadow: var(--main-box-shadow);
+  margin: 1rem;
 }
 
 .summary {
-  padding: var(--post-padding);
+  /*padding: var(--post-padding-top) var(--post-padding-left);*/
   font-family: var(--para-font);
   font-size: var(--base-font-size);
 }
@@ -269,7 +276,7 @@ code {
 
     @media (prefers-color-scheme: dark) {
         :root {
-            --nv-background-color: linear-gradient(#2436a4, #0f1e77);
+            --nv-background-color: linear-gradient(#2d3c9a, #202e72);
             --nv-text-color: white;
             --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
         }
