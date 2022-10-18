@@ -10,7 +10,7 @@
   <script src="/analytics.js"></script>
   <style>/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Gentium+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
 :root {
 
@@ -18,7 +18,7 @@
   --footer-color: rgb(123, 123, 123);
   --tag-background-color: aliceblue;
   --tag-border-radius: 10px;
-  --tag-padding: calc(var(--tag-border-radius) / 2);
+  --tag-padding: calc(var(--tag-border-radius) / 6) calc(var(--tag-border-radius));
   /*--base-font-size: 1em;*/
 
   --main-font-family: "Gentium Plus", "Source Serif Pro", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
@@ -99,6 +99,7 @@
 
 
 body {
+  margin: 5vmin;
   margin-top: 0;
   display: flex;
   align-items: center;
@@ -126,12 +127,12 @@ main {
 .index-main {
   display: grid;
   grid-template-columns: var(--main-template-columns);
-  width: 80%;
+  width: 100%;
   text-align: center;
 }
 
 .index-post {
-  height: 15em;
+  height: 17.5em;
 }
 
 .index-post a:link,
@@ -186,6 +187,8 @@ h1 {
   padding: var(--tag-padding);
   font-weight: normal;
   font-family: var(--para-font);
+  display: inline-block;
+
 }
 
 a:link {
@@ -233,7 +236,7 @@ a:visited {
 
 .summary {
   /*padding: var(--post-padding-top) var(--post-padding-left);*/
-  font-family: var(--para-font);
+  /* font-family: var(--para-font); */
   font-size: var(--base-font-size);
 }
 
