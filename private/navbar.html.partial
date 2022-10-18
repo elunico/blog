@@ -1,13 +1,13 @@
 <style>
     :root {
-        --nv-background-color: linear-gradient(#566acb, #4256b9);
+        --nv-background-color: linear-gradient(#586e75, #657b83);
         --nv-text-color: white;
         --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
     }
 
     @media (prefers-color-scheme: dark) {
         :root {
-            --nv-background-color: linear-gradient(#2436a4, #0f1e77);
+            --nv-background-color: linear-gradient(#002b36, #073642);
             --nv-text-color: white;
             --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
         }

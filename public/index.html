@@ -29,15 +29,15 @@
   --body-line-height: var(--main-font-lineheight);
 
   --minor-font-size: calc(0.8 * var(--base-font-size));
-  --title-font-size: calc(1.5 * var(--base-font-size));
+  --title-font-size: calc(1.35 * var(--base-font-size));
 
   --post-padding-top: calc(1.1 * var(--base-font-size));
   --post-padding-left: calc(1.1 * var(--base-font-size));
   --blog-title-padding: calc(var(--base-font-size) / 3.25);
-  --main-content-width: 60%;
+  --main-content-width: 65%;
 
-  --main-background-color: #f5f8fd;
-  --code-background-color: #fff;
+  --main-background-color: #fff;
+  --code-background-color: #eee8d5;
 
   --text-shadow: #aaa 5px 5px 10px;
   --link-color: #0e51d2;
@@ -47,7 +47,11 @@
   --main-box-shadow: 8px 8px lightgray;
   --main-border: 2px solid #222;
 
+  --main-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+
 }
+
 
 @media (max-width: 1200px) {
   :root {
@@ -64,8 +68,14 @@
     --post-padding-top: calc(1.1 * var(--base-font-size));
     --post-padding-left: calc(1.1 * var(--base-font-size));
     --blog-title-padding: calc(var(--base-font-size) / 2.25);
-    --main-content-width: 50%;
+    --main-content-width: 55%;
+
+    --main-template-columns: minmax(300px, 1fr);
+
+
   }
+
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -78,7 +88,7 @@
     --main-background-color: #2d2d2d;
     --link-visited-color: #d285ee;
 
-    --code-background-color: #000;
+    --code-background-color: #073642;
     --main-box-shadow: 8px 8px rgb(30, 30, 30);
     --main-border: 2px solid #ddd;
   }
@@ -102,13 +112,29 @@ body {
 }
 
 main {
-  width: var(--main-content-width);
   height: 100%;
   padding: 1em;
   /*border-radius: 15px;*/
   /*border: var(--main-border);*/
   /*box-shadow: var(--main-box-shadow);*/
   margin-top: 15px;
+}
+
+.index-main {
+  display: grid;
+  grid-template-columns: var(--main-template-columns);
+  width: 80%;
+  text-align: center;
+}
+
+.index-post {
+  height: 15em;
+}
+
+.index-post a:link,
+.index-post a:visited {
+  color: black;
+  text-decoration: none;
 }
 
 img {
@@ -120,7 +146,7 @@ img {
 
 
 .main-title {
-  font-size: var(-title-font-size);
+  font-size: 3.5em;
   text-shadow: var(--text-shadow);
 }
 
@@ -141,7 +167,7 @@ h1 {
   font-size: var(--title-font-size);
   font-weight: bold;
   padding-bottom: var(--blog-title-padding);
-
+  text-decoration: underline;
 }
 
 .pub-date {
@@ -178,6 +204,20 @@ a:visited {
   text-decoration: underline;
 }
 
+.post {
+  /* display: grid; */
+  /* place-items: center; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-main {
+  width: var(--main-content-width);
+}
+
 .post,
 .article-main {
   background-color: var(--main-background-color);
@@ -205,7 +245,6 @@ a:visited {
 }
 
 .article-tags {
-
   padding-top: calc(var(--blog-title-padding) * 2);
 }
 
@@ -248,7 +287,7 @@ p {
 }
 
 code {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .codehilite {
@@ -259,6 +298,16 @@ code {
   scrollbar-width: thin;
   scrollbar-color: var(--body-main-color) var(--main-background-color);
   background-color: var(--code-background-color);
+}
+
+.intro-blurb {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.post-outer-link {
+  height: 100%;
+  width: 100%;
 }
 </style>
 
@@ -271,14 +320,14 @@ code {
 
   <style>
     :root {
-        --nv-background-color: linear-gradient(#566acb, #4256b9);
+        --nv-background-color: linear-gradient(#586e75, #657b83);
         --nv-text-color: white;
         --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
     }
 
     @media (prefers-color-scheme: dark) {
         :root {
-            --nv-background-color: linear-gradient(#2436a4, #0f1e77);
+            --nv-background-color: linear-gradient(#002b36, #073642);
             --nv-text-color: white;
             --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
         }
@@ -416,11 +465,14 @@ code {
 
   <h1 class="main-title">Tom's Blog</h1>
 
-  <main id="main">
+  <div class="intro-blurb">Posts</div>
+  <main class="index-main" id="main">
     
-    <article class="post">
-    <section class="blog-title"> <a href="Why%20Meslo%20Why.html">Why Meslo Why</a></section>
+    <article class="post index-post">
+    <a class="post-outer-link" href=Why%20Meslo%20Why.html>
+    <section class="blog-title">Why Meslo Why</section>
     <summary class="summary">A positively puzzling decision on a single redesign choice in a font</summary>
+    </a>
     <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=font">font</a></span>
 <span class="tag"><a href="/blog/search.html?tag=monospace%20font">monospace font</a></span>
 <span class="tag"><a href="/blog/search.html?tag=programming">programming</a></span>
@@ -434,9 +486,11 @@ code {
     </article>
 
     
-    <article class="post">
-    <section class="blog-title"> <a href="terminal%20emulators.html">Terminal Emulators</a></section>
+    <article class="post index-post">
+    <a class="post-outer-link" href=terminal%20emulators.html>
+    <section class="blog-title">Terminal Emulators</section>
     <summary class="summary">Thoughts on choosing a terminal emulator for the Mac and the nature of telemtry in software</summary>
+    </a>
     <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=terminal">terminal</a></span>
 <span class="tag"><a href="/blog/search.html?tag=programming">programming</a></span>
 <span class="tag"><a href="/blog/search.html?tag=programming%20languages">programming languages</a></span>
@@ -450,9 +504,11 @@ code {
     </article>
 
     
-    <article class="post">
-    <section class="blog-title"> <a href="default%20arguments%20in%20python.html">Default Arguments In Python</a></section>
+    <article class="post index-post">
+    <a class="post-outer-link" href=default%20arguments%20in%20python.html>
+    <section class="blog-title">Default Arguments In Python</section>
     <summary class="summary">My issues with Python despite it being a go to language</summary>
+    </a>
     <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=python">python</a></span>
 <span class="tag"><a href="/blog/search.html?tag=programming">programming</a></span>
 <span class="tag"><a href="/blog/search.html?tag=arguments">arguments</a></span>
@@ -464,9 +520,11 @@ code {
     </article>
 
     
-    <article class="post">
-    <section class="blog-title"> <a href="Supporting%20Multiple%20Browsers.html">Supporting Multiple Browsers</a></section>
+    <article class="post index-post">
+    <a class="post-outer-link" href=Supporting%20Multiple%20Browsers.html>
+    <section class="blog-title">Supporting Multiple Browsers</section>
     <summary class="summary">The challenge of supporting multiple browsers or the price of monopolies</summary>
+    </a>
     <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=browsers">browsers</a></span>
 <span class="tag"><a href="/blog/search.html?tag=firefox">firefox</a></span>
 <span class="tag"><a href="/blog/search.html?tag=chrome">chrome</a></span>
@@ -480,9 +538,11 @@ code {
     </article>
 
     
-    <article class="post">
-    <section class="blog-title"> <a href="blogress.html">Blogress</a></section>
+    <article class="post index-post">
+    <a class="post-outer-link" href=blogress.html>
+    <section class="blog-title">Blogress</section>
     <summary class="summary">An update on the progress of my roll-your-own-blog blog</summary>
+    </a>
     <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=update">update</a></span>
 <span class="tag"><a href="/blog/search.html?tag=meta">meta</a></span>
 <span class="tag"><a href="/blog/search.html?tag=blog">blog</a></span>
@@ -496,9 +556,11 @@ code {
     </article>
 
     
-    <article class="post">
-    <section class="blog-title"> <a href="my%20first%20post.html">My First Post</a></section>
+    <article class="post index-post">
+    <a class="post-outer-link" href=my%20first%20post.html>
+    <section class="blog-title">My First Post</section>
     <summary class="summary">The first post explaining my motivation for starting and a blog</summary>
+    </a>
     <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=first%20post">first post</a></span>
 <span class="tag"><a href="/blog/search.html?tag=topic%20start">topic start</a></span>
 <span class="tag"><a href="/blog/search.html?tag=explanation">explanation</a></span>
