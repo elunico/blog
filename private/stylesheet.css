@@ -1,9 +1,5 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400;1,7..72,700&family=Source+Sans+3:wght@700&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
 
@@ -14,18 +10,13 @@
   --tag-padding: calc(var(--tag-border-radius) / 2);
   /*--base-font-size: 1em;*/
 
+  --main-font-family: "Gentium Book Plus", "Source Serif Pro", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
+  --main-font-lineheight: 1.4;
+  --main-font-size: 1.05em;
 
-  --libre-baskerville-family: "Libre Baskerville", serif;
-  --libre-baskerville-size: 0.9em;
-  --libre-baskerville-lineheight: 1.6;
-
-  --crimson-pro-family: "Source Serif Pro", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
-  --crimson-pro-lineheight: 1.4;
-  --crimson-pro-size: 1.05em;
-
-  --para-font: var(--crimson-pro-family);
-  --base-font-size: var(--crimson-pro-size);
-  --body-line-height: var(--crimson-pro-lineheight);
+  --para-font: var(--main-font-family);
+  --base-font-size: var(--main-font-size);
+  --body-line-height: var(--main-font-lineheight);
 
   --minor-font-size: calc(0.8 * var(--base-font-size));
   --title-font-size: calc(1.5 * var(--base-font-size));
@@ -37,7 +28,7 @@
 
   --main-background-color: #f5f8fd;
   --code-background-color: #fff;
-  
+
   --text-shadow: #aaa 5px 5px 10px;
   --link-color: #0e51d2;
   --body-main-color: black;
@@ -55,12 +46,13 @@
     --tag-padding: calc(var(--tag-border-radius) / 2);
     --minor-font-size: calc(0.8 * var(--base-font-size));
 
-    --libre-baskerville-size: 1.1em;
-    --crimson-pro-size: 1.3em;
-    --base-font-size: var(--crimson-pro-size);
+
+    --main-font-size: 1.3em;
+    --base-font-size: var(--main-font-size);
     --title-font-size: calc(1.1 * var(--base-font-size));
 
-    --post-padding-top: calc(1.05 * var(--base-font-size)) 0;
+    --post-padding-top: calc(1.1 * var(--base-font-size));
+    --post-padding-left: calc(1.1 * var(--base-font-size));
     --blog-title-padding: calc(var(--base-font-size) / 2.25);
     --main-content-width: 50%;
   }
@@ -89,7 +81,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: "Source Sans Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
   padding-bottom: 20vh;
   line-height: var(--body-line-height);
   height: 100%;
@@ -109,7 +101,12 @@ main {
   margin-top: 15px;
 }
 
-
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /*width: 50%;*/
+}
 
 
 .main-title {
@@ -171,7 +168,8 @@ a:visited {
   text-decoration: underline;
 }
 
-.post, .article-main {
+.post,
+.article-main {
   background-color: var(--main-background-color);
   padding: var(--post-padding-top) var(--post-padding-left);
   border-radius: 15px;
