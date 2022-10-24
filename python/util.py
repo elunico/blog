@@ -13,3 +13,6 @@ def serialize(metadata, folder, file_prefix):
 def unserialize(folder, file_prefix):
     with open(os.path.join(folder, '{}.json'.format(file_prefix))) as f:
         return json.load(f)
+
+def birthtime_for_filename(filename):
+    return os.stat(os.path.join('source', filename)).st_birthtime

@@ -19,7 +19,7 @@
 
   @include navbar
 
-  <h1 class="main-title">Tom's Blog@{{page-title}}</h1>
+  <h1 class="main-title">Tom's Blog%{{page-title}}</h1>
 
   <div class="intro-blurb">Posts</div>
   <main class="index-main" id="main">
@@ -27,7 +27,7 @@
   </main>
 
   <footer class="page-nav">
-    @{{page-nav}}
+    %{{page-nav}}
   </footer>
   @include date_script
 

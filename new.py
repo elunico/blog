@@ -43,10 +43,10 @@ def main():
     with open(os.path.join('private', 'article.md.template')) as f:
         template = f.read()
 
-    template = (template.replace('@{{title}}', title.title())
-                .replace('@{{tags}}', tags)
-                .replace('@{{summary}}', summary)
-                .replace('@{{date}}', datetime.datetime.now().isoformat())
+    template = (template.replace('%{{title}}', title.title())
+                .replace('%{{tags}}', tags)
+                .replace('%{{summary}}', summary)
+                .replace('%{{date}}', datetime.datetime.now().isoformat())
                 )
 
     with open(destination, 'w') as g:
