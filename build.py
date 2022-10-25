@@ -1,6 +1,8 @@
 import argparse
+import re
+from datetime import datetime
 
-from builder import *
+from ebbuild import EngineBuilder, BasicListMetadataFactory, BasicStrMetadataFactory
 
 
 def parse_args():
@@ -18,6 +20,9 @@ def main():
 
     print('🚗 Building Engine')
     e = EngineBuilder()
+    e.set_public_dir('public')
+    e.set_private_dir('private')
+    e.set_source_dir('source')
 
     if not options.keep:
         e.clean_public_dir_before_building(True)

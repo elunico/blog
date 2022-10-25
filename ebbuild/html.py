@@ -1,13 +1,6 @@
 import urllib.parse
-import os.path
 
-
-def linkify(title):
-    return urllib.parse.quote(title)
-
-
-def titlify(filename):
-    return '.'.join(filename.rsplit('.')[:-1]).title()
+from ebbuild.util import linkify, titlify
 
 
 def tag_spans(iterator, className=''):
