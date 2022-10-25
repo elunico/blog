@@ -11,7 +11,7 @@ from python.html import *
 from python.util import *
 
 
-def generate_representation(cls):
+def autorepr(cls):
     def debug_repr(self):
         inner = ', '.join(['{}={}'.format(attr, repr(val)) for attr, val in self.__dict__.items()])
         return '{}({})'.format(type(self).__name__, inner)
@@ -24,7 +24,7 @@ T = TypeVar('collection_type')
 Result = TypeVar('result_type')
 
 
-@generate_representation
+@autorepr
 class MetadataCategory(Generic[T, Result]):
     def __init__(self, name: str) -> None:
         self.name = name
@@ -218,7 +218,7 @@ def include_suffix(extension: str) -> str:
         return '-{}'.format(extension)
 
 
-@generate_representation
+@autorepr
 class FileIncluder:
     def __init__(self, base_dir='./private'):
         self.substitutions = []
@@ -323,6 +323,7 @@ def page_nav(page_list):
     return content.format(inside)
 
 
+@autorepr
 class EngineBuilder:
     def __init__(self) -> None:
         self.article_template = 'article.html.template'
