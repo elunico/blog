@@ -17,8 +17,10 @@ def clean(tag):
 
 def main():
     options = parse_args()
+    tag_pat = re.compile(r',\s+')
 
     print('🚗 Building Engine')
+
     e = EngineBuilder()
     e.set_public_dir('public')
     e.set_private_dir('private')
@@ -27,19 +29,15 @@ def main():
     if not options.keep:
         e.clean_public_dir_before_building(True)
 
-    tag_pat = re.compile(r',\s+')
-    (e.add_includer_pattern('html.partial')
-     .add_includer_pattern('css', lambda s: '<style>{}</style>'.format(s))
-     .add_markdown_extension('fenced_code', 'codehilite')
-     .add_metadata_category(BasicListMetadataFactory('tags', lambda s: [clean(i.strip()) for i in tag_pat.split(s)]))
-     .add_metadata_category(BasicStrMetadataFactory('date', lambda s: datetime.fromisoformat(s.strip()).isoformat()))
-     .add_metadata_category(BasicStrMetadataFactory('summary', lambda s: s.strip())))
-
+    e.add_includer_pattern('html.partial')
+    e.add_includer_pattern('css', lambda s: '<style>{}</style>'.format(s))
+    e.add_markdown_extension('fenced_code', 'codehilite')
+    e.add_metadata_category(BasicListMetadataFactory('tags', lambda s: [clean(i.strip()) for i in tag_pat.split(s)]))
+    e.add_metadata_category(BasicStrMetadataFactory('date', lambda s: datetime.fromisoformat(s.strip()).isoformat()))
+    e.add_metadata_category(BasicStrMetadataFactory('summary', lambda s: s.strip()))
     e.set_toc_condition(lambda _1, sections, _2: sections > 4)
 
-    engine = e.build()
-    engine.generate()
-
+    e.build().generate()
 
 if __name__ == '__main__':
     raise SystemExit(main())
