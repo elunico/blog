@@ -37,7 +37,7 @@ class Engine:
             with open(os.path.join(self.public_dir, 'index.html'), 'w') as f:
                 f.write(no_pages(render_template(template, self.includer, content=content[None])))
         else:
-            nav = page_nav(content.keys())
+            nav = page_nav(content.keys(), self.private_dir)
             for page_key in content:
                 with open(os.path.join(self.public_dir, self.kPageUrlFmt.format(page_key), 'index.html'), 'w') as f:
                     f.write(render_template(template, self.includer, content=content[page_key], page_nav=nav,

@@ -112,8 +112,8 @@ def no_pages(template):
     return render_template(template, None, page_nav="", page_title="")
 
 
-def page_nav(page_list):
-    with open(os.path.join('../private', 'page-nav.html.partial')) as f:
+def page_nav(page_list, private_dir):
+    with open(os.path.join(private_dir, 'page-nav.html.partial')) as f:
         partial_content = f.read()
 
     content = '{}'
