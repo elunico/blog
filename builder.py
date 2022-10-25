@@ -1,6 +1,7 @@
 import copy
 import os
 import re
+import shutil
 from datetime import datetime
 from typing import *
 
@@ -323,14 +324,34 @@ def page_nav(page_list):
 
 
 class EngineBuilder:
-    def __init__(self, source_dir: str, private_dir: str, public_dir: str, articles_per_page: int = 10) -> None:
-        self.source_dir = source_dir
-        self.private_dir = private_dir
-        self.public_dir = public_dir
-        self.articles_per_page = articles_per_page
+    def __init__(self) -> None:
+        self.article_template = 'article.html.template'
+        self.index_template = 'index.html.template'
+        self.md_extensions = []
+        self.source_dir = 'source'
+        self.private_dir = 'private'
+        self.public_dir = 'public'
+        self.clean_before_building = True
+        self.articles_per_page = 10
         self.meta_categories: list[MetadataCategory] = []
         self.toc_condition: Callable[[str, int, Tracker], bool] = lambda s, i, t: False
         self.includer = FileIncluder()
+
+    def set_articles_per_page(self, count: int) -> "EngineBuilder":
+        self.articles_per_page = count
+        return self
+
+    def set_source_dir(self, source_dir) -> "EngineBuilder":
+        self.source_dir = source_dir
+        return self
+
+    def set_private_dir(self, private_dir) -> "EngineBuilder":
+        self.private_dir = private_dir
+        return self
+
+    def set_public_dir(self, public_dir) -> "EngineBuilder":
+        self.public_dir = public_dir
+        return self
 
     def add_includer_pattern(self, file_extension: str,
                              include_transform: Callable[[str], str] = lambda a: a) -> 'EngineBuilder':
@@ -342,6 +363,7 @@ class EngineBuilder:
         return self
 
     def set_toc_condition(self, predicate: Callable[[str, int, Tracker], str]) -> 'EngineBuilder':
+        self.md_extensions.append('toc')
         self.toc_condition = predicate
         return self
 
@@ -351,11 +373,24 @@ class EngineBuilder:
             e.includer.add_pattern(f, i)
         e.toc_condition = self.toc_condition
         e.meta_categories = copy.deepcopy(self.meta_categories)
+        e.clean_before_building = self.clean_before_building
+        e.md_extensions = copy.copy(self.md_extensions)
+        e.index_template = self.index_template
+        e.article_template = self.article_template
         return e
+
+    def clean_public_dir_before_building(self, value) -> "EngineBuilder":
+        self.clean_before_building = value
+        return self
+
+    def add_markdown_extension(self, *extensions) -> "EngineBuilder":
+        self.md_extensions.extend(extensions)
+        return self
 
 
 class Engine:
     def __init__(self, source_dir: str, private_dir: str, public_dir: str, articles_per_page: int = 10) -> None:
+        self.kPageUrlFmt = 'page-{}'
         self.index_content = {}
         self.tag_data = {}
         self.source_dir = source_dir
@@ -366,22 +401,13 @@ class Engine:
         self.meta_categories: list[MetadataCategory] = []
         self.toc_condition: Callable[[str, int, Tracker], bool] = lambda s, i, t: False
         self.includer = FileIncluder()
+        self.clean_before_building = True
+        self.md_extensions = []
+        self.index_template = 'index.html.template'
+        self.article_template = 'article.html.template'
 
-    # def add_includer_pattern(self, file_extension: str,
-    #                          include_transform: Callable[[str], str] = lambda a: a) -> 'Engine':
-    #     self.includer.add_pattern(file_extension, include_transform)
-    #     return self
-    #
-    # def add_metadata_category(self, metadata_category: MetadataCategory) -> 'Engine':
-    #     self.meta_categories.append(metadata_category)
-    #     return self
-    #
-    # def set_toc_condition(self, predicate: Callable[[str, int, Tracker], str]) -> 'Engine':
-    #     self.toc_condition = predicate
-    #     return self
-
-    def build_index(self, content):
-        with open(os.path.join('private', 'index.html.template')) as f:
+    def _build_index(self, content):
+        with open(os.path.join(self.private_dir, self.index_template)) as f:
             template = f.read()
         if None in content:
             with open(os.path.join(self.public_dir, 'index.html'), 'w') as f:
@@ -389,14 +415,14 @@ class Engine:
         else:
             nav = page_nav(content.keys())
             for page_key in content:
-                with open(os.path.join(self.public_dir, 'page-{}'.format(page_key), 'index.html'), 'w') as f:
+                with open(os.path.join(self.public_dir, self.kPageUrlFmt.format(page_key), 'index.html'), 'w') as f:
                     f.write(render_template(template, self.includer, content=content[page_key], page_nav=nav,
                                             page_title=' - Page {}'.format(page_key)))
 
             with open(os.path.join(self.public_dir, 'index.html'), 'w') as f:
                 f.write('<script>window.location = "/blog/page-1"</script>')
 
-    def produce(self, filename, destination, page=None):
+    def _produce(self, filename, destination, page=None):
         path = os.path.join(self.source_dir, filename)
         with open(path) as f:
             self.metadata[filename], file_content = strip_file_meta(path, copy.deepcopy(self.meta_categories),
@@ -404,9 +430,9 @@ class Engine:
             add_tags(self.tag_data, self.metadata[filename], filename, page)
             self.index_content[page] = self.index_content.get(page, '') + index_entry(html_name(filename),
                                                                                       self.metadata[filename], page)
-            html = markdown.markdown(file_content, extensions=['fenced_code', 'codehilite', 'toc'])
+            html = markdown.markdown(file_content, extensions=self.md_extensions)
             with (open(os.path.join(destination, html_name(filename)), 'w') as f,
-                  open(os.path.join('private', 'article.html.template')) as g):
+                  open(os.path.join(self.private_dir, self.article_template)) as g):
                 template = g.read()
                 meta = self.metadata[filename]
                 text = render_template(template, self.includer,
@@ -416,77 +442,82 @@ class Engine:
                                        published=meta['date'].result)
                 f.write(text)
 
-    def build_articles(self, listing, destination, page=None):
+    def _build_articles(self, listing, destination, page=None):
         for i, file in enumerate(listing):
-            self.produce(file, destination, page)
+            self._produce(file, destination, page)
 
     def generate(self):
-        listing = sorted(os.listdir('source'), key=birthtime_for_filename, reverse=True)
-        kPageString = 'page-{}'
+        if self.clean_before_building:
+            print('❗️ Cleaning public dir')
+            shutil.rmtree(self.public_dir)
+            print('📂 Re-creating public dir')
+            os.mkdir(self.public_dir)
+
+        listing = sorted(os.listdir(self.source_dir), key=birthtime_for_filename, reverse=True)
 
         count = len(listing)
 
         if count > self.articles_per_page:
             print("⚠️ Too many articles! Rendering {} pages".format(count))
             dir_count = count // self.articles_per_page + (0 if not count % self.articles_per_page else 1)
-            self.build_paginated_articles(dir_count, kPageString, listing)
+            self._build_paginated_articles(dir_count, self.kPageUrlFmt, listing)
         else:
-            self.build_articles(listing, self.public_dir)
+            self._build_articles(listing, self.public_dir)
 
         print("📄 Creating index file")
-        self.build_index(self.index_content)
+        self._build_index(self.index_content)
 
         print("📄 Serializing metadata")
-        self.write_metadata()
+        self._write_metadata()
 
         print('📄 Writing tag list')
-        self.write_tag_files()
+        self._write_tag_files()
 
         print('📄 Preparing Search Template')
-        self.write_search_template()
+        self._write_search_template()
 
         print('✅ Build complete!')
 
-    def write_search_template(self):
-        with (open(os.path.join('private', 'search.html.template')) as f,
-              open(os.path.join('public', 'search.html'), 'w') as g):
+    def _write_search_template(self):
+        with (open(os.path.join(self.private_dir, 'search.html.template')) as f,
+              open(os.path.join(self.public_dir, 'search.html'), 'w') as g):
             g.write(self.includer.fill(f.read()))
 
-    def write_tag_files(self):
-        serialize(list(self.tag_data.keys()), os.path.join('public', 'tags'), 'all')
+    def _write_tag_files(self):
+        serialize(list(self.tag_data.keys()), os.path.join(self.public_dir, 'tags'), 'all')
         print('🗂  Writing tag files')
         tags = list(self.tag_data)
         last = tags.pop()
         for tag in tags:
             print("\t┣ Writing tag file for '{}'".format(tag))
-            serialize(list(self.tag_data[tag]), os.path.join('public', 'tags'), tag)
+            serialize(list(self.tag_data[tag]), os.path.join(self.public_dir, 'tags'), tag)
         print("\t┗ Writing tag file for '{}'".format(last))
-        serialize(list(self.tag_data[last]), os.path.join('public', 'tags'), last)
+        serialize(list(self.tag_data[last]), os.path.join(self.public_dir, 'tags'), last)
 
-    def write_metadata(self):
+    def _write_metadata(self):
         serialize(
             {filename: {key: value.result for key, value in meta.items()} for filename, meta in self.metadata.items()},
-            'public', 'metadata')
+            self.public_dir, 'metadata')
 
-    def build_paginated_articles(self, dir_count, kPageString, listing):
+    def _build_paginated_articles(self, dir_count, kPageString, listing):
         current_page = 0
         for i in range(dir_count - 1):
             slice = listing[current_page * self.articles_per_page: (current_page + 1) * self.articles_per_page]
-            current_page = self.render_paged_article(current_page, i, kPageString, slice)
+            current_page = self._render_paged_article(current_page, i, kPageString, slice)
 
-        self.render_paged_article(current_page, dir_count - 1, kPageString,
-                                  listing[current_page * self.articles_per_page:])
+        self._render_paged_article(current_page, dir_count - 1, kPageString,
+                                   listing[current_page * self.articles_per_page:])
 
         # print("🗂 Rendering page {}".format(dir_count))
         # os.mkdir(os.path.join(self.public_dir, kPageString.format(dir_count)))
         # self.build_articles(listing[current_page * self.articles_per_page:],
         #                     os.path.join(self.public_dir, kPageString.format(dir_count)), dir_count)
 
-    def render_paged_article(self, current_page, i, kPageString, listing_slice):
+    def _render_paged_article(self, current_page, i, kPageString, listing_slice):
         print("🗂 Rendering page {}".format(i + 1))
         page_dir = os.path.join(self.public_dir, kPageString.format(i + 1))
         if not os.path.isdir(page_dir):
             os.mkdir(page_dir)
-        self.build_articles(listing_slice, page_dir, i + 1)
+        self._build_articles(listing_slice, page_dir, i + 1)
         current_page += 1
         return current_page
