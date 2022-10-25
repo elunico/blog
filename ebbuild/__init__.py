@@ -1,3 +1,4 @@
-from .enginebuilder import EngineBuilder
 from .engine import Engine
-from .metadatacategory import MetadataCategory, BasicBoolMetadataFactory, BasicStrMetadataFactory, BasicListMetadataFactory
+from .enginebuilder import EngineBuilder
+from .metadatacategory import MetadataCategory, BasicBoolMetadataFactory, BasicStrMetadataFactory, \
+    BasicListMetadataFactory

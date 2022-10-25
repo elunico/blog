@@ -132,11 +132,6 @@ class Engine:
         self._render_paged_article(current_page, dir_count - 1, kPageString,
                                    listing[current_page * self.articles_per_page:])
 
-        # print("🗂 Rendering page {}".format(dir_count))
-        # os.mkdir(os.path.join(self.public_dir, kPageString.format(dir_count)))
-        # self.build_articles(listing[current_page * self.articles_per_page:],
-        #                     os.path.join(self.public_dir, kPageString.format(dir_count)), dir_count)
-
     def _render_paged_article(self, current_page, i, kPageString, listing_slice):
         print("🗂 Rendering page {}".format(i + 1))
         page_dir = os.path.join(self.public_dir, kPageString.format(i + 1))
