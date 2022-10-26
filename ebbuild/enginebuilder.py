@@ -55,7 +55,7 @@ class EngineBuilder:
 
     def build(self):
         e = Engine(self.source_dir, self.private_dir, self.public_dir, self.articles_per_page)
-        for f, i in self.includer.substitutions:
+        for f, i, pat in self.includer.substitutions:
             e.includer.add_pattern(f, i)
         e.toc_condition = self.toc_condition
         e.meta_categories = copy.deepcopy(self.meta_categories)

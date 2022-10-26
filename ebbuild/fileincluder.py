@@ -12,7 +12,8 @@ class FileIncluder:
         self.base_dir = os.path.realpath(base_dir)
 
     def add_pattern(self, file_extension: str, include_transform: Callable[[str], str] = lambda a: a) -> 'FileIncluder':
-        self.substitutions.append((file_extension, include_transform))
+        pattern = re.compile(r'@include{}\s+(\w+)'.format(re.escape(include_suffix(file_extension))))
+        self.substitutions.append((file_extension, include_transform, pattern))
         return self
 
     def _file_replacer(self, match: re.Match, extension: str, transform: Callable[[str], str]):
@@ -31,9 +32,8 @@ class FileIncluder:
             raise ValueError("Invalid @include directive '{}'. Could not access file".format(match.group())) from e
 
     def fill(self, text: str) -> str:
-        for extension, transform in self.substitutions:
-            pattern = r'@include{}\s+(\w+)'.format(re.escape(include_suffix(extension)))
+        for extension, transform, pattern in self.substitutions:
             matcher = lambda match: self._file_replacer(match, extension, transform)
-            text = re.sub(pattern, matcher, text)
+            text = pattern.sub(matcher, text)
 
         return text

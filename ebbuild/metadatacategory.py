@@ -15,6 +15,7 @@ class MetadataCategory(Generic[T, Result]):
         self.was_set = False
         self.done = False
         self.result = None
+        self.directive = '%{}'.format(self.name)
 
     def line_to_item_transform(self, item: str) -> T:
         '''
@@ -62,9 +63,6 @@ class MetadataCategory(Generic[T, Result]):
         self.result = self.final_transform(self.backing_collection())
         self.done = True
 
-    @property
-    def directive(self):
-        return '%{}'.format(self.name)
 
     def __eq__(self, o: object) -> bool:
         return hasattr(o, 'name') and self.name == o.name

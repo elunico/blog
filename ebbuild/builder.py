@@ -10,6 +10,8 @@ from ebbuild.util import html_name, linkify, titlify
 
 Tracker = Dict[str, MetadataCategory]
 
+kMDLineFixerPattern = re.compile(r'\n([^\n])')
+
 
 def strip_file_meta(path: str,
                     metas: list[MetadataCategory],
@@ -22,7 +24,8 @@ def strip_file_meta(path: str,
         for line in f:
             was_meta = False
             for meta in metas:
-                if line.startswith(meta.directive):
+                s = line[:len(meta.directive)]
+                if meta.directive == s:
                     try:
                         track[meta.name]._extend_internal(meta.line_to_item_transform(line[len(meta.directive):]))
                         was_meta = True
@@ -30,7 +33,7 @@ def strip_file_meta(path: str,
                         raise ValueError("Failed to process directive {}".format(meta.directive)) from e
             if not was_meta:
                 content += line + '\n'
-                if re.match(r'#[^#]', line):
+                if line[0] == '#' and line[1] != '#':
                     if title_set:
                         raise ValueError("Too Many Level 1 Headings: '{}'".format(line))
                     content += '%{{TOC_EMBED}}'
@@ -53,7 +56,7 @@ def strip_file_meta(path: str,
     # the markdown library has trouble with single new lines, so we need to clean things up for them
     # it should take 2 new lines in MD to create a <p> element, a single blank line should not be semantically
     # meaningful
-    content = re.sub(r'\n([^\n])', r'\1', content)
+    content = kMDLineFixerPattern.sub(r'\1', content)
 
     return track, content
 
@@ -121,5 +124,3 @@ def page_nav(page_list, private_dir):
     for page in page_list:
         inside += render_template(partial_content, None, page_num=str(page))
     return content.format(inside)
-
-

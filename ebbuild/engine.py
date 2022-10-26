@@ -79,12 +79,12 @@ class Engine:
 
         listing = sorted(os.listdir(self.source_dir), key=birthtime_for_filename, reverse=True)
 
-        count = len(listing)
+        article_count = len(listing)
+        page_count = article_count // self.articles_per_page + (0 if not article_count % self.articles_per_page else 1)
 
-        if count > self.articles_per_page:
-            print("⚠️ Too many articles! Rendering {} pages".format(count))
-            dir_count = count // self.articles_per_page + (0 if not count % self.articles_per_page else 1)
-            self._build_paginated_articles(dir_count, self.kPageUrlFmt, listing)
+        if article_count > self.articles_per_page:
+            print(f"⚠️ Too many articles! {article_count} articles will be broken up into {page_count} pages ")
+            self._build_paginated_articles(page_count, self.kPageUrlFmt, listing)
         else:
             self._build_articles(listing, self.public_dir)
 

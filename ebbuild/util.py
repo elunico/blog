@@ -16,7 +16,7 @@ def unserialize(folder, file_prefix):
         return json.load(f)
 
 
-def birthtime_for_filename(filename):
+def birthtime_for_filename(filename: str) -> int:
     return os.stat(os.path.join('source', filename)).st_birthtime
 
 
@@ -39,15 +39,14 @@ def include_suffix(extension: str) -> str:
         return '-{}'.format(extension)
 
 
-def html_name(md_filename):
-    *filename, ext = md_filename.rsplit('.')
-    name = '.'.join(filename)
-    return '{}.html'.format(name)
+def html_name(md_filename: str) -> str:
+    dot_index = md_filename.rindex('.')
+    return md_filename[:dot_index] + '.html'
 
 
-def linkify(title):
+def linkify(title: str) -> str:
     return urllib.parse.quote(title)
 
 
-def titlify(filename):
+def titlify(filename: str) -> str:
     return '.'.join(filename.rsplit('.')[:-1]).title()
