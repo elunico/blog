@@ -1,6 +1,7 @@
 import json
 import os.path
 import urllib.parse
+from datetime import datetime
 
 
 def serialize(metadata, folder, file_prefix):
@@ -16,8 +17,24 @@ def unserialize(folder, file_prefix):
         return json.load(f)
 
 
-def birthtime_for_filename(filename: str) -> int:
-    return os.stat(os.path.join('source', filename)).st_birthtime
+def birthtime_for_filename(filename: str) -> float:
+    with open(os.path.join('source', filename)) as f:
+        for line in f:
+            if line.startswith('%date'):
+                try:
+                    d = datetime.fromisoformat(line[6:].strip())
+                    break
+                except (IndexError, ValueError, TypeError) as e:
+                    print(e)
+                    print("[❗️] The %date data from file {} is broken using now()".format(filename))
+                    d = datetime.now()
+                    break
+        else:
+            d = datetime.now()
+            print('[⚠️] No %date directive for {} is missing using now()'.format(filename))
+
+    return d.timestamp()
+    # return os.stat(os.path.join('source', filename)).st_birthtime
 
 
 def autorepr(cls):

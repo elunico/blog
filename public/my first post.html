@@ -24,6 +24,7 @@
   --main-font-family: "Gentium Plus", "Source Serif Pro", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
   --main-font-lineheight: 1.4;
   --main-font-size: 1.085em;
+  --code-font-size: 1.1em;
 
   --para-font: var(--main-font-family);
   --base-font-size: var(--main-font-size);
@@ -66,6 +67,8 @@
     --main-font-size: 2vh;
     --base-font-size: var(--main-font-size);
     --title-font-size: calc(1.1 * var(--base-font-size));
+    --code-font-size: calc(var(--main-font-size) * 0.82);
+
 
     --post-padding-top: calc(1.1 * var(--base-font-size));
     --post-padding-left: calc(1.1 * var(--base-font-size));
@@ -73,7 +76,6 @@
     --main-content-width: 85%;
 
     --main-template-columns: minmax(300px, 1fr);
-
 
 
   }
@@ -293,7 +295,7 @@ p {
 }
 
 code {
-  font-size: 1.1em;
+  font-size: var(--code-font-size);
 }
 
 .codehilite {
@@ -525,7 +527,7 @@ about fonts and typography also.</p>
 <span class="tag"><a href="/blog/search.html?tag=explanation">explanation</a></span>
 <span class="tag"><a href="/blog/search.html?tag=meta">meta</a></span></div>
   </footer>
-    <section class="footer published">Published: <span data-has-date class="pub-date">2022-10-25T20:58:22.344199</span></section>
+    <section class="footer published">Published: <span data-has-date class="pub-date">2022-09-26T17:12:30</span></section>
   </main>
 
 <script>

@@ -1,6 +1,6 @@
 %tags first post, topic start, explanation, meta
 %summary The first post explaining my motivation for starting and a blog
-
+%date 2022-09-26T17:12:30
 
 # My First Post 😃
 

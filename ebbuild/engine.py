@@ -1,6 +1,7 @@
 import copy
 import os
 import shutil
+from datetime import datetime
 from typing import Callable
 
 import markdown
@@ -10,6 +11,13 @@ from ebbuild.fileincluder import FileIncluder
 from ebbuild.html import index_entry, tags_for_file
 from ebbuild.metadatacategory import MetadataCategory
 from ebbuild.util import html_name, birthtime_for_filename, serialize, titlify
+
+
+def metadata_date_key(metadata, pair):
+
+    fromisoformat = datetime.fromisoformat(metadata[pair[0]].get('date', datetime.now().isoformat()))
+    print(fromisoformat.isoformat())
+    return fromisoformat
 
 
 class Engine:
@@ -62,7 +70,7 @@ class Engine:
                 text = render_template(template, self.includer,
                                        content=html,
                                        title=titlify(filename),
-                                       tags=tags_for_file(filename, meta),
+                                       tags=tags_for_file(meta),
                                        published=meta['date'].result)
                 f.write(text)
 
