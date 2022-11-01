@@ -16,7 +16,9 @@ def unserialize(folder, file_prefix):
     with open(os.path.join(folder, '{}.json'.format(file_prefix))) as f:
         return json.load(f)
 
-
+# TODO: I think all metadata should be processed so files can be sorted, then build the index and the pages
+# currently, you cannot sort index articles after reading metadata bc pages are built concurrently
+# you have to know the metadata, sort, build the index page, but currenlty it is sort, build meta and index concurrently
 def birthtime_for_filename(filename: str) -> float:
     with open(os.path.join('source', filename)) as f:
         for line in f:
