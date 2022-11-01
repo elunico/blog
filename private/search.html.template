@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Search Results</title>
-  <meta name="theme-color" content="#5468C0" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#22377A" media="(prefers-color-scheme: dark)">
+  @include theme_meta
+
   <script src="/analytics.js"></script>
   @include-css stylesheet
 
@@ -17,7 +17,7 @@
   @include navbar
 
   <header>
-  <h1>Search Results for <code id="search-term"></code></h1>
+    <h1>Search Results for <code id="search-term"></code></h1>
   </header>
   <aside class="hit-count">Results: <span id="hits"></span></aside>
 

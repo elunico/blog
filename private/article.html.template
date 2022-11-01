@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>%{{title}}</title>
-  <meta name="theme-color" content="#5468C0" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#22377A" media="(prefers-color-scheme: dark)">
+  @include theme_meta
   <script src="/analytics.js"></script>
   @include-css stylesheet
   <script defer src="https://eluni.co/background-render.js"></script>
@@ -20,13 +19,13 @@
 
   <main id="main" class="article-main">
     %{{content}}
-  <footer class="article-tags">
-    %{{tags}}
-  </footer>
+    <footer class="article-tags">
+      %{{tags}}
+    </footer>
     <section class="footer published">Published: <span data-has-date class="pub-date">%{{published}}</span></section>
   </main>
 
-@include date_script
+  @include date_script
 
 
 </body>
