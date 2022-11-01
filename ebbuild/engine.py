@@ -10,16 +10,15 @@ from ebbuild.builder import Tracker, no_pages, render_template, page_nav, strip_
 from ebbuild.fileincluder import FileIncluder
 from ebbuild.html import index_entry, tags_for_file
 from ebbuild.metadatacategory import MetadataCategory
-from ebbuild.util import html_name, birthtime_for_filename, serialize, titlify
+from ebbuild.util import html_name, birthtime_for_filename, serialize, titlify, logger, EBLogLevel
 
 
 def metadata_date_key(metadata, pair):
-
     fromisoformat = datetime.fromisoformat(metadata[pair[0]].get('date', datetime.now().isoformat()))
-    print(fromisoformat.isoformat())
     return fromisoformat
 
 
+@logger
 class Engine:
     def __init__(self, source_dir: str, private_dir: str, public_dir: str, articles_per_page: int = 10) -> None:
         self.kPageUrlFmt = 'page-{}'
@@ -80,9 +79,9 @@ class Engine:
 
     def generate(self):
         if self.clean_before_building:
-            print('❗️ Cleaning public dir')
+            self.log('❗️ Cleaning public dir')
             shutil.rmtree(self.public_dir)
-            print('📂 Re-creating public dir')
+            self.log('📂 Re-creating public dir')
             os.mkdir(self.public_dir)
 
         listing = sorted(os.listdir(self.source_dir), key=birthtime_for_filename, reverse=True)
@@ -91,24 +90,24 @@ class Engine:
         page_count = article_count // self.articles_per_page + (0 if not article_count % self.articles_per_page else 1)
 
         if article_count > self.articles_per_page:
-            print(f"⚠️ Too many articles! {article_count} articles will be broken up into {page_count} pages ")
+            self.log(f"⚠️ Too many articles! {article_count} articles will be broken up into {page_count} pages ", level=EBLogLevel.WARN)
             self._build_paginated_articles(page_count, self.kPageUrlFmt, listing)
         else:
             self._build_articles(listing, self.public_dir)
 
-        print("📄 Creating index file")
+        self.log("📄 Creating index file")
         self._build_index(self.index_content)
 
-        print("📄 Serializing metadata")
+        self.log("📄 Serializing metadata")
         self._write_metadata()
 
-        print('📄 Writing tag list')
+        self.log('📄 Writing tag list')
         self._write_tag_files()
 
-        print('📄 Preparing Search Template')
+        self.log('📄 Preparing Search Template')
         self._write_search_template()
 
-        print('✅ Build complete!')
+        self.log('✅ Build complete!')
 
     def _write_search_template(self):
         with (open(os.path.join(self.private_dir, 'search.html.template')) as f,
@@ -117,13 +116,13 @@ class Engine:
 
     def _write_tag_files(self):
         serialize(list(self.tag_data.keys()), os.path.join(self.public_dir, 'tags'), 'all')
-        print('🗂  Writing tag files')
+        self.log('🗂  Writing tag files')
         tags = list(self.tag_data)
         last = tags.pop()
         for tag in tags:
-            print("\t┣ Writing tag file for '{}'".format(tag))
+            self.log("\t┣ Writing tag file for '{}'".format(tag))
             serialize(list(self.tag_data[tag]), os.path.join(self.public_dir, 'tags'), tag)
-        print("\t┗ Writing tag file for '{}'".format(last))
+        self.log("\t┗ Writing tag file for '{}'".format(last))
         serialize(list(self.tag_data[last]), os.path.join(self.public_dir, 'tags'), last)
 
     def _write_metadata(self):
@@ -141,7 +140,7 @@ class Engine:
                                    listing[current_page * self.articles_per_page:])
 
     def _render_paged_article(self, current_page, i, kPageString, listing_slice):
-        print("🗂 Rendering page {}".format(i + 1))
+        self.log("🗂 Rendering page {}".format(i + 1))
         page_dir = os.path.join(self.public_dir, kPageString.format(i + 1))
         if not os.path.isdir(page_dir):
             os.mkdir(page_dir)

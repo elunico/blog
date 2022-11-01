@@ -3,6 +3,7 @@ import re
 from datetime import datetime
 
 from ebbuild import EngineBuilder, BasicListMetadataFactory, BasicStrMetadataFactory
+from ebbuild.util import EBLogLevel
 
 
 def parse_args():
@@ -19,9 +20,10 @@ def main():
     options = parse_args()
     tag_pat = re.compile(r',\s+')
 
-    print('🚗 Building Engine')
 
     e = EngineBuilder()
+    e.set_log_level(EBLogLevel.INFO)
+    e.log('🚗 Building Engine')
     e.set_public_dir('public')
     e.set_private_dir('private')
     e.set_source_dir('source')

@@ -1,5 +1,6 @@
 import json
 import os.path
+import sys
 import urllib.parse
 from datetime import datetime
 
@@ -15,6 +16,7 @@ def serialize(metadata, folder, file_prefix):
 def unserialize(folder, file_prefix):
     with open(os.path.join(folder, '{}.json'.format(file_prefix))) as f:
         return json.load(f)
+
 
 # TODO: I think all metadata should be processed so files can be sorted, then build the index and the pages
 # currently, you cannot sort index articles after reading metadata bc pages are built concurrently
@@ -69,3 +71,25 @@ def linkify(title: str) -> str:
 
 def titlify(filename: str) -> str:
     return '.'.join(filename.rsplit('.')[:-1]).title()
+
+
+class EBLogLevel:
+    DEBUG = 1 << 0
+    INFO = 1 << 1
+    WARN = 1 << 2
+    STOP = 1 << 3
+    ERROR = 1 << 4
+    FATAL = 1 << 5
+    OFF = 1 << 31
+
+
+def logger(cls):
+    def log(self, *messages, file=sys.stdout, sep=' ', end='\n', level=EBLogLevel.INFO):
+        if level >= self.log_level:
+            print(*messages, file=file, sep=sep, end=end)
+
+    if not hasattr(cls, 'log_level') or getattr(cls, 'log_level', None) is None:
+        setattr(cls, 'log_level', EBLogLevel.INFO)
+
+    setattr(cls, 'log', log)
+    return cls

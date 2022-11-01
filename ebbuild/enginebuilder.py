@@ -5,12 +5,14 @@ from ebbuild.builder import Tracker
 from ebbuild.engine import Engine
 from ebbuild.fileincluder import FileIncluder
 from ebbuild.metadatacategory import MetadataCategory
-from ebbuild.util import autorepr
+from ebbuild.util import autorepr, logger,EBLogLevel
 
 
 @autorepr
+@logger
 class EngineBuilder:
     def __init__(self) -> None:
+        self.log_level = EBLogLevel.INFO
         self.article_template = 'article.html.template'
         self.index_template = 'index.html.template'
         self.md_extensions = []
@@ -53,6 +55,9 @@ class EngineBuilder:
         self.toc_condition = predicate
         return self
 
+    def set_log_level(self, level: EBLogLevel) -> 'EngineBuilder':
+        self.log_level = level
+
     def build(self):
         e = Engine(self.source_dir, self.private_dir, self.public_dir, self.articles_per_page)
         for f, i, pat in self.includer.substitutions:
@@ -63,6 +68,7 @@ class EngineBuilder:
         e.md_extensions = copy.copy(self.md_extensions)
         e.index_template = self.index_template
         e.article_template = self.article_template
+        e.log_level = self.log_level
         return e
 
     def clean_public_dir_before_building(self, value) -> "EngineBuilder":
