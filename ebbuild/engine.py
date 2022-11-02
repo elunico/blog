@@ -18,6 +18,10 @@ def metadata_date_key(metadata, pair):
     return fromisoformat
 
 
+class EngineBuildError(RuntimeError):
+    pass
+
+
 @logger
 class Engine:
     def __init__(self, source_dir: str, private_dir: str, public_dir: str, articles_per_page: int = 10) -> None:
@@ -78,11 +82,26 @@ class Engine:
             self._produce(file, destination, page)
 
     def generate(self):
+
+        def file_guard(fn, *args, action_description='', **kwargs):
+            try:
+                fn(*args, **kwargs)
+            except OSError as e:
+                message = '‼️ ERROR while {}: {}'.format(action_description, e)
+                self.log(message, level=EBLogLevel.ERROR)
+                raise EngineBuildError(message) from e
+
         if self.clean_before_building:
             self.log('❗️ Cleaning public dir')
-            shutil.rmtree(self.public_dir)
+            if os.path.exists(self.public_dir) and not os.path.isdir(self.public_dir):
+                raise EngineBuildError('‼️ specified public director "{}" is not a directory'.format(self.public_dir))
+            if not os.path.exists(self.public_dir):
+                self.log('⚠️ Cleaning public dir specified, but no public dir found', level=EBLogLevel.WARN)
+            else:
+                file_guard(shutil.rmtree, self.public_dir, action_description='removing existing files')
+
             self.log('📂 Re-creating public dir')
-            os.mkdir(self.public_dir)
+            file_guard(os.mkdir, self.public_dir, action_description='Re-creating public dir')
 
         listing = sorted(os.listdir(self.source_dir), key=birthtime_for_filename, reverse=True)
 
@@ -90,22 +109,24 @@ class Engine:
         page_count = article_count // self.articles_per_page + (0 if not article_count % self.articles_per_page else 1)
 
         if article_count > self.articles_per_page:
-            self.log(f"⚠️ Too many articles! {article_count} articles will be broken up into {page_count} pages ", level=EBLogLevel.WARN)
-            self._build_paginated_articles(page_count, self.kPageUrlFmt, listing)
+            self.log(f"⚠️ Too many articles! {article_count} articles will be broken up into {page_count} pages ",
+                     level=EBLogLevel.WARN)
+            file_guard(self._build_paginated_articles, page_count, self.kPageUrlFmt, listing, action_description='building paginated articles')
         else:
-            self._build_articles(listing, self.public_dir)
+            file_guard(self._build_articles, listing, self.public_dir, action_description='building articles')
 
         self.log("📄 Creating index file")
-        self._build_index(self.index_content)
+        file_guard(self._build_index, self.index_content, action_description='building index')
+        # self._build_index(self.index_content)
 
         self.log("📄 Serializing metadata")
-        self._write_metadata()
+        file_guard(self._write_metadata, action_description='serializing metadata')
 
         self.log('📄 Writing tag list')
-        self._write_tag_files()
+        file_guard(self._write_tag_files, action_description='writing tag list')
 
         self.log('📄 Preparing Search Template')
-        self._write_search_template()
+        file_guard(self._write_search_template, action_description='writing search template')
 
         self.log('✅ Build complete!')
 

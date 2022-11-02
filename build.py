@@ -28,8 +28,8 @@ def main():
     e.set_private_dir('private')
     e.set_source_dir('source')
 
-    if not options.keep:
-        e.clean_public_dir_before_building(True)
+    if options.keep:
+        e.clean_public_dir_before_building(False)
 
     e.add_includer_pattern('html.partial')
     e.add_includer_pattern('css', lambda s: '<style>{}</style>'.format(s))
