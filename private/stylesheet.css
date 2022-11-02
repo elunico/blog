@@ -92,8 +92,7 @@
 
 
 body {
-  margin: 5vmin;
-  margin-top: 0;
+  margin: 0 5vmin 5vmin;
   display: flex;
   align-items: center;
   justify-content: center;
