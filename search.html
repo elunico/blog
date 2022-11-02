@@ -136,7 +136,7 @@ main {
 }
 
 .index-post {
-  height: 17.5em;
+  height: clamp(10em, 30vh, 17em);
 }
 
 .index-post a:link,
@@ -182,6 +182,10 @@ h1 {
   font-weight: normal;
   font-family: var(--para-font);
 
+}
+
+.tags {
+  margin-top: 1em;
 }
 
 .tag {
