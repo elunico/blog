@@ -81,27 +81,19 @@ class Engine:
         for i, file in enumerate(listing):
             self._produce(file, destination, page)
 
-    def generate(self):
+    def file_guard(self, fn, *args, action_description='', **kwargs):
+        try:
+            fn(*args, **kwargs)
+        except OSError as e:
+            message = '‼️ ERROR while {}: {}'.format(action_description, e)
+            self.log(message, level=EBLogLevel.ERROR)
+            raise EngineBuildError(message) from e
 
-        def file_guard(fn, *args, action_description='', **kwargs):
-            try:
-                fn(*args, **kwargs)
-            except OSError as e:
-                message = '‼️ ERROR while {}: {}'.format(action_description, e)
-                self.log(message, level=EBLogLevel.ERROR)
-                raise EngineBuildError(message) from e
+    def generate(self):
 
         if self.clean_before_building:
             self.log('❗️ Cleaning public dir')
-            if os.path.exists(self.public_dir) and not os.path.isdir(self.public_dir):
-                raise EngineBuildError('‼️ specified public director "{}" is not a directory'.format(self.public_dir))
-            if not os.path.exists(self.public_dir):
-                self.log('⚠️ Cleaning public dir specified, but no public dir found', level=EBLogLevel.WARN)
-            else:
-                file_guard(shutil.rmtree, self.public_dir, action_description='removing existing files')
-
-            self.log('📂 Re-creating public dir')
-            file_guard(os.mkdir, self.public_dir, action_description='Re-creating public dir')
+            self._clean_build_dir()
 
         listing = sorted(os.listdir(self.source_dir), key=birthtime_for_filename, reverse=True)
 
@@ -111,24 +103,35 @@ class Engine:
         if article_count > self.articles_per_page:
             self.log(f"⚠️ Too many articles! {article_count} articles will be broken up into {page_count} pages ",
                      level=EBLogLevel.WARN)
-            file_guard(self._build_paginated_articles, page_count, self.kPageUrlFmt, listing, action_description='building paginated articles')
+            self.file_guard(self._build_paginated_articles, page_count, self.kPageUrlFmt, listing,
+                            action_description='building paginated articles')
         else:
-            file_guard(self._build_articles, listing, self.public_dir, action_description='building articles')
+            self.file_guard(self._build_articles, listing, self.public_dir, action_description='building articles')
 
         self.log("📄 Creating index file")
-        file_guard(self._build_index, self.index_content, action_description='building index')
+        self.file_guard(self._build_index, self.index_content, action_description='building index')
         # self._build_index(self.index_content)
 
         self.log("📄 Serializing metadata")
-        file_guard(self._write_metadata, action_description='serializing metadata')
+        self.file_guard(self._write_metadata, action_description='serializing metadata')
 
         self.log('📄 Writing tag list')
-        file_guard(self._write_tag_files, action_description='writing tag list')
+        self.file_guard(self._write_tag_files, action_description='writing tag list')
 
         self.log('📄 Preparing Search Template')
-        file_guard(self._write_search_template, action_description='writing search template')
+        self.file_guard(self._write_search_template, action_description='writing search template')
 
         self.log('✅ Build complete!')
+
+    def _clean_build_dir(self):
+        if os.path.exists(self.public_dir) and not os.path.isdir(self.public_dir):
+            raise EngineBuildError('‼️ specified public director "{}" is not a directory'.format(self.public_dir))
+        if not os.path.exists(self.public_dir):
+            self.log('⚠️ Cleaning public dir specified, but no public dir found', level=EBLogLevel.WARN)
+        else:
+            self.file_guard(shutil.rmtree, self.public_dir, action_description='removing existing files')
+        self.log('📂 Re-creating public dir')
+        self.file_guard(os.mkdir, self.public_dir, action_description='Re-creating public dir')
 
     def _write_search_template(self):
         with (open(os.path.join(self.private_dir, 'search.html.template')) as f,
