@@ -57,6 +57,7 @@ class EngineBuilder:
 
     def set_log_level(self, level: EBLogLevel) -> 'EngineBuilder':
         self.log_level = level
+        return self
 
     def build(self):
         e = Engine(self.source_dir, self.private_dir, self.public_dir, self.articles_per_page)
