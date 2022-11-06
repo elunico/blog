@@ -331,22 +331,35 @@ code {
 
   <style>
     :root {
-        --nv-background-color: linear-gradient(#586e75, #657b83);
-        --nv-text-color: white;
-        --nv-shadow: rgb(123, 123, 123) 0px 4px 2px;
+        --nv-background-color: var(--main-background-color);
+        --nv-text-color: black;
+        --nv-shadow: 1px 1px 0 rgb(147 147 147);
     }
 
     @media (prefers-color-scheme: dark) {
         :root {
-            --nv-background-color: linear-gradient(#002b36, #073642);
+            --nv-background-color: var(--main-background-color);;
             --nv-text-color: white;
-            --nv-shadow: rgb(44, 43, 43) 0px 4px 2px;
+            --nv-shadow: 1px 1px 0 rgb(96 96 96);
         }
     }
 
+    div[data-mode="light"] {
+        --nv-background-color: var(--main-background-color);
+        --nv-text-color: black;
+        --nv-shadow: 1px 1px 0 rgb(147 147 147);
+    }
+
+    div[data-mode="dark"] {
+        --nv-background-color: var(--main-background-color);;
+        --nv-text-color: white;
+        --nv-shadow: 1px 1px 0 rgb(96 96 96);
+    }
+
+
     .nav-background {
         height: 3em;
-        position: sticky;
+        position: static;
         top: 0px;
         /* background-color: rgb(91, 121, 255); */
         background: var(--nv-background-color);
@@ -383,12 +396,16 @@ code {
         }
     }
 
-    .navbar>div {
+    .navbar > div {
         width: 100%;
         height: 100%;
         /* border: 2px solid darkgray; */
         /* border-radius: 10px; */
         line-height: unset;
+    }
+
+    .double-col {
+        grid-column: 1/3;
     }
 
     @supports (display: grid) {
@@ -402,10 +419,11 @@ code {
         }
 
 
-        .navbar>div {
+        .navbar > div {
 
             display: grid;
             place-items: center;
+            grid-template-columns: 1fr 2fr;
 
             width: 100%;
             height: 100%;
@@ -417,21 +435,21 @@ code {
 
     }
 
-    .navitem>a:link,
-    .navitem>a:visited,
+    .navitem > a:link,
+    .navitem > a:visited,
     label {
         color: var(--nv-text-color);
     }
 
-    .navitem>select {
+    .navitem > select {
         width: 80%;
     }
 
 </style>
 <div class="nav-background">
     <nav class="navbar" id="navbar">
-        <div class="navitem"><a href="http://eluni.co">eluni.co</a></div>
-        <div class="navitem"><a href="/blog/">Blog Homepage</a></div>
+        <div class="navitem"><a class="double-col" href="http://eluni.co">eluni.co</a></div>
+        <div class="navitem"><a class="double-col" href="/blog/">Blog Homepage</a></div>
         <div class="navitem">
             <label class="navitem" for="search-box">Filter by Tag: </label>
             <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
