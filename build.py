@@ -2,7 +2,8 @@ import argparse
 import re
 from datetime import datetime
 
-from ebbuild import EngineBuilder, BasicListMetadataFactory, BasicStrMetadataFactory
+from ebbuild import (EngineBuilder, BasicListMetadataFactory, 
+                     BasicStrMetadataFactory)
 from ebbuild.util import EBLogLevel
 
 
