@@ -13,13 +13,13 @@
         }
     }
 
-    div[data-mode="light"] {
+    [data-mode="light"] {
         --nv-background-color: var(--main-background-color);
         --nv-text-color: black;
         --nv-shadow: 1px 1px 0 rgb(147 147 147);
     }
 
-    div[data-mode="dark"] {
+    [data-mode="dark"] {
         --nv-background-color: var(--main-background-color);;
         --nv-text-color: white;
         --nv-shadow: 1px 1px 0 rgb(96 96 96);

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+  @include theme_toggle
   @include navbar
 
   <h1 class="main-title">Tom's Blog%{{page-title}}</h1>
