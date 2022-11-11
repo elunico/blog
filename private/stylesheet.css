@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
     --transition-time: 100ms;
     --transition-func: linear;
     --transition-var: color var(--transition-time) var(--transition-func),
-    background-color calc(var(--transition-time) + 90ms) var(--transition-func),
-    box-shadow var(--transition-time) var(--transition-func);
+        background-color calc(var(--transition-time) + 90ms) var(--transition-func),
+        box-shadow var(--transition-time) var(--transition-func);
     --root-font-size: 1.05em;
     --footer-color: rgb(123, 123, 123);
     --tag-background-color: aliceblue;
@@ -14,10 +15,10 @@
     --tag-padding: calc(var(--tag-border-radius) / 6) calc(var(--tag-border-radius));
     /*--base-font-size: 1em;*/
 
-    --main-font-family: "Crimson Text", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
-    --main-font-lineheight: 1.4;
-    --main-font-size: 1.1em;
-    --code-font-size: 1.1em;
+    --main-font-family: "Amiri", "Crimson Text", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
+    --main-font-lineheight: 1.25;
+    --main-font-size: 1.105em;
+    --code-font-size: 1em;
 
     --para-font: var(--main-font-family);
     --base-font-size: var(--main-font-size);
@@ -260,13 +261,13 @@ a:visited {
     color: var(--link-visited-color);
 }
 
-.tag > a:link,
-.tag > a:visited {
+.tag>a:link,
+.tag>a:visited {
     text-decoration: none;
     color: inherit;
 }
 
-.tag > a:hover {
+.tag>a:hover {
     color: var(--link-color);
     text-decoration: underline;
 }
