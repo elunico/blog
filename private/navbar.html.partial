@@ -48,7 +48,7 @@
         justify-content: center;
         transform: translateX(50%);
 
-        height: 3em;
+        height: var(--nav-height);
         position: sticky;
         top: 0;
         width: 50%;

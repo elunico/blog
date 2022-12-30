@@ -48,6 +48,7 @@
     --base-display: inline;
     --light-display: var(--base-display);
     --dark-display: none;
+    --nav-height: 3em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -130,6 +131,11 @@ body[data-mode="light"] {
         --main-template-columns: minmax(300px, 1fr);
 
 
+    }
+
+
+    .mode-toggle {
+        top: calc(var(--nav-height) + 10px) !important;
     }
 
 
@@ -377,3 +383,5 @@ code {
     height: 100%;
     width: 100%;
 }
+
+
