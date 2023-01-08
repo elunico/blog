@@ -1,4 +1,4 @@
-%tags battery,ios,macos,mac,apple,system settings
+%tags battery, ios, macos, mac, apple, system settings
 %summary I am pro optimized-battery charging... except when
 %date 2023-01-08T13:51:21.606464
 
