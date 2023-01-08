@@ -8,6 +8,7 @@ import sys
 import urllib.parse
 import re
 
+
 def filename_from_link(link):
     parts = urllib.parse.urlsplit(link).path.split('/')
     file = parts[-1]
@@ -35,7 +36,7 @@ def main():
             return
 
     if len(sys.argv) <= 1 or (len(sys.argv) > 1 and sys.argv[1] != '-q'):
-        tags = input("Enter comma separated tags: ")
+        tags = re.split(r',\s*', input("Enter comma separated tags: "))
         summary = input("Enter article summary: ")
     else:
         tags = summary = ''
