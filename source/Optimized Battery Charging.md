@@ -2,7 +2,7 @@
 %summary I am pro optimized-battery charging... except when
 %date 2023-01-08T13:51:21.606464
 
-# Optimized-Battery-Charging
+# Optimized Battery Charging
 
 Optimized battery charging is a feature that Apple includes on their iPhones, MacBooks, Apple Watches, and AirPods. (Not all models of the devices listed support it, and I'm sure other companies
 that are not Apple have similar things, but I don't care about any of those things becasue I don't own them.). The purpose of this feature is to (machine) learn how you use your devices
