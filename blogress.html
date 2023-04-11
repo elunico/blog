@@ -596,7 +596,7 @@ I am not trying to claim to be making the next Blogspot here, but I am having fu
 <p>One thing that I know just based on feel, but also based on looking at the code that I wrote, is that things are fairly
 tightly coupled. My build code could do with a lot more modularization and genericization. Extending things further or for
 other uses would definitely need quite a refactoring job. I am trying to keep things separated at least at the procedure level,
-but still there is room for improvment. The build system is done in Python, and—while my relationship with Python can best be
+but still there is room for improvement. The build system is done in Python, and—while my relationship with Python can best be
 described as "frenemies"—Python is good for expressive and concise code. When I write Python, I feel like I can take a complex
 thought and express easily in one line...until of course I have to write something like a for...else loop. Anyway, the
 issue I seem to have with the code is often the issue I have with Python code which is that it is so expressive and concise
@@ -604,7 +604,7 @@ that I often start writing without much regard for custom data types, class hier
 time. At this point I am quite satisfied with the functionality of the blog for the amount of time that I have been working on
 it so now might be a good time to take a step back and focus on design and organization.</p>
 <p>Another place I would like to improve is the <code>stylesheet.css</code> file. This file is currently the one and only global
-CSS file that applies to all classes. Obviously this is nice becasue it keeps design consistent, but it also is not
+CSS file that applies to all classes. Obviously this is nice because it keeps design consistent, but it also is not
 ideal due to the cascade and name collisions. I would like to redo things to tie the name of the stylesheet to the
 HTML that it should apply to. I already have a mechanism for including HTML parts into larger HTML files or templates,
 and I think this approach might work for the CSS. On a more...ambitious level, I would like to add a way of not only
