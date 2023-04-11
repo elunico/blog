@@ -1,14 +1,17 @@
 import copy
 from typing import Callable
 
+import tecoradors
+from pyfunctional import alwaysfalse, identity
+
 from ebbuild.builder import Tracker
 from ebbuild.engine import Engine
 from ebbuild.fileincluder import FileIncluder
 from ebbuild.metadatacategory import MetadataCategory
-from ebbuild.util import autorepr, logger,EBLogLevel
+from ebbuild.util import logger, EBLogLevel
 
 
-@autorepr
+@tecoradors.stringable
 @logger
 class EngineBuilder:
     def __init__(self) -> None:
@@ -22,7 +25,7 @@ class EngineBuilder:
         self.clean_before_building = True
         self.articles_per_page = 10
         self.meta_categories: list[MetadataCategory] = []
-        self.toc_condition: Callable[[str, int, Tracker], bool] = lambda s, i, t: False
+        self.toc_condition: Callable[[str, int, Tracker], bool] = alwaysfalse
         self.includer = FileIncluder()
 
     def set_articles_per_page(self, count: int) -> "EngineBuilder":
@@ -42,7 +45,7 @@ class EngineBuilder:
         return self
 
     def add_includer_pattern(self, file_extension: str,
-                             include_transform: Callable[[str], str] = lambda a: a) -> 'EngineBuilder':
+                             include_transform: Callable[[str], str] = identity) -> 'EngineBuilder':
         self.includer.add_pattern(file_extension, include_transform)
         return self
 

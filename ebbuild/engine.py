@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Callable
 
 import markdown
+from pyfunctional import alwaysfalse
 
 from ebbuild.builder import Tracker, no_pages, render_template, page_nav, strip_file_meta, add_tags
 from ebbuild.fileincluder import FileIncluder
@@ -34,7 +35,7 @@ class Engine:
         self.articles_per_page = articles_per_page
         self.metadata: dict[str, dict[str, MetadataCategory]] = {}
         self.meta_categories: list[MetadataCategory] = []
-        self.toc_condition: Callable[[str, int, Tracker], bool] = lambda s, i, t: False
+        self.toc_condition: Callable[[str, int, Tracker], bool] = alwaysfalse
         self.includer = FileIncluder()
         self.clean_before_building = True
         self.md_extensions = []

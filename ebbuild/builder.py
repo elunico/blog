@@ -3,6 +3,8 @@ import re
 from datetime import datetime
 from typing import *
 
+from pyfunctional import alwaysfalse
+
 from ebbuild.fileincluder import FileIncluder
 from ebbuild.html import index_entry
 from ebbuild.metadatacategory import MetadataCategory
@@ -15,7 +17,7 @@ kMDLineFixerPattern = re.compile(r'\n([^\n])')
 
 def strip_file_meta(path: str,
                     metas: list[MetadataCategory],
-                    toc_condition: Callable[[str, int, Tracker], bool] = lambda *a: False) -> tuple[Tracker, str]:
+                    toc_condition: Callable[[str, int, Tracker], bool] = alwaysfalse) -> tuple[Tracker, str]:
     track: dict[str, MetadataCategory] = {m.name: m for m in metas}
     content = ''
     sections = 0

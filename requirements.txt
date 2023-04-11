@@ -1,0 +1,3 @@
+Markdown==3.4.3
+pyfunctional-elunico==0.16.0
+tecoradors-elunico==5.1.1

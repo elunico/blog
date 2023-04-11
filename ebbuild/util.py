@@ -41,13 +41,13 @@ def birthtime_for_filename(filename: str) -> float:
     # return os.stat(os.path.join('source', filename)).st_birthtime
 
 
-def autorepr(cls):
-    def debug_repr(self):
-        inner = ', '.join(['{}={}'.format(attr, repr(val)) for attr, val in self.__dict__.items()])
-        return '{}({})'.format(type(self).__name__, inner)
-
-    setattr(cls, '__repr__', debug_repr)
-    return cls
+# def autorepr(cls):
+#     def debug_repr(self):
+#         inner = ', '.join(['{}={}'.format(attr, repr(val)) for attr, val in self.__dict__.items()])
+#         return '{}({})'.format(type(self).__name__, inner)
+#
+#     setattr(cls, '__repr__', debug_repr)
+#     return cls
 
 
 def include_suffix(extension: str) -> str:

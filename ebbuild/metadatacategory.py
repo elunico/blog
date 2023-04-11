@@ -1,6 +1,5 @@
+import tecoradors
 from typing import Generic, List, Callable, TypeVar
-
-from ebbuild.util import autorepr
 
 T = TypeVar('T')
 Result = TypeVar('Result')
@@ -8,7 +7,7 @@ Result = TypeVar('Result')
 Of = TypeVar('Of')
 
 
-@autorepr
+@tecoradors.stringable
 class MetadataCategory(Generic[T, Result]):
     def __init__(self, name: str) -> None:
         self.name = name

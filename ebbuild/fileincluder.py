@@ -1,17 +1,19 @@
 import os
 import re
+import tecoradors
+from pyfunctional import identity
 from typing import Callable
 
-from ebbuild.util import autorepr, include_suffix
+from ebbuild.util import include_suffix
 
 
-@autorepr
+@tecoradors.stringable
 class FileIncluder:
     def __init__(self, base_dir='./private'):
         self.substitutions = []
         self.base_dir = os.path.realpath(base_dir)
 
-    def add_pattern(self, file_extension: str, include_transform: Callable[[str], str] = lambda a: a) -> 'FileIncluder':
+    def add_pattern(self, file_extension: str, include_transform: Callable[[str], str] = identity) -> 'FileIncluder':
         pattern = re.compile(r'@include{}\s+(\w+)'.format(re.escape(include_suffix(file_extension))))
         self.substitutions.append((file_extension, include_transform, pattern))
         return self
