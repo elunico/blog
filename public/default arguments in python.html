@@ -614,7 +614,7 @@ for things like length, filter, reduce, and map, are... ugly—to be frank—but
 there are better-looking solutions but considering how dynamic Python's types can be, I get why the design is the way that it is.</p>
 <p>All the same, there are things that I just do not understand and also hate a lot all the time.</p>
 <h2 id="things-i-hate-a-lot-all-the-time">Things I Hate a Lot All The Time</h2>
-<p>I will attempt to order these in order of least aggregious to most.</p>
+<p>I will attempt to order these in order of least egregious to most.</p>
 <h3 id="assignment">Assignment</h3>
 <p>They actually fixed this one in 3.10 adding the walrus operator (<code>:=</code>) for assignment expressions, but still
 I think they should have done it sooner, because not a lot of places run 3.10 yet.</p>
@@ -646,7 +646,7 @@ because nothing about using the Python language itself, would indicate this is t
 unexpected bug in code that uses it, and I have never had a person do this, find out why it was wrong, and not be shocked and appalled by its existence.</p>
 <p>I find it especially odd that a language like Python would choose to avoid labeled breaks and assignment expressions in order
 to avoid confusion and easy-to-cause bugs, and then implement default arguments in this way.</p>
-<p>By the way, the recommneded way to do this is</p>
+<p>By the way, the recommended way to do this is</p>
 <pre class="codehilite"><code class="language-python">def better_fn(arg1, arg2=None):
     if arg2 is None:
         arg2 = []

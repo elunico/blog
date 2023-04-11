@@ -18,7 +18,7 @@ All the same, there are things that I just do not understand and also hate a lot
 
 ## Things I Hate a Lot All The Time
 
-I will attempt to order these in order of least aggregious to most.
+I will attempt to order these in order of least egregious to most.
 
 ### Assignment
 
@@ -63,7 +63,7 @@ unexpected bug in code that uses it, and I have never had a person do this, find
 I find it especially odd that a language like Python would choose to avoid labeled breaks and assignment expressions in order
 to avoid confusion and easy-to-cause bugs, and then implement default arguments in this way.
 
-By the way, the recommneded way to do this is
+By the way, the recommended way to do this is
 
 ```python
 def better_fn(arg1, arg2=None):

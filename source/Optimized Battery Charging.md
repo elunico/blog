@@ -5,7 +5,7 @@
 # Optimized Battery Charging
 
 Optimized battery charging is a feature that Apple includes on their iPhones, MacBooks, Apple Watches, and AirPods. (Not all models of the devices listed support it, and I'm sure other companies
-that are not Apple have similar things, but I don't care about any of those things becasue I don't own them.). The purpose of this feature is to (machine) learn how you use your devices
+that are not Apple have similar things, but I don't care about any of those things because I don't own them.). The purpose of this feature is to (machine) learn how you use your devices
 and when you choose to charge them in order to prevent forcing the battery to 100% and keeping it there for extended periods of time. Lithium-ion batteries don't really like to be emptied of charge
 nor do they enjoy being charged and kept at 100%. This feature, therefore, is meant to increase the usable life of the devices battery, not for an individual charge, but over the many charge cycles
 it will go through in its serviceable years.
@@ -28,7 +28,7 @@ back into wired EarPods, but if they are the _only_ audio device I am carrying, 
 
 Because the AirPods do not have any of these 3 important features, but do, by default, have optimized battery charging, there have been several instances where I go to use my AirPods and
 have one or both die prematurely because they were not fully charged. It is only once I connect them to use them that I even notice, and then they cannot be charged again until I am done using them.
-I do appreciate the need for AirPods especially to have this feature as an option, becasue my older AirPods 2 have seen quite a lot of battery wear and it's not great to have to use them because of that. I also find the scheduling is not nearly as smart or consistent as the other devices I use, but to be fair to the AirPods, I do use them quite often, and probably more sporadically than the other devices.
+I do appreciate the need for AirPods especially to have this feature as an option, because my older AirPods 2 have seen quite a lot of battery wear and it's not great to have to use them because of that. I also find the scheduling is not nearly as smart or consistent as the other devices I use, but to be fair to the AirPods, I do use them quite often, and probably more sporadically than the other devices.
 
 Preserving the battery health of AirPods is good, and I would argue, that the real solution is to make the battery status easier to monitor. Just adding that simple feature to the AirPods so that I can
 tell if optimized battery charging is going to leave me at a 20% battery disadvantage when I go to pick up my AirPods would go along way to making the experience better. I used my AirPods 2 several hours a day almost every day for various things, and the battery—while degraded—did hold up fairly well, so hopefully my new AirPods 3 will fare similarly well without optimized battery charging.
