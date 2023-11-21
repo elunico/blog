@@ -18,6 +18,7 @@
     --tag-padding: calc(var(--tag-border-radius) / 6) calc(var(--tag-border-radius));
     /*--base-font-size: 1em;*/
 
+    
     --main-font-family: "Castoro", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
     --main-font-lineheight: 1.5;
     --main-font-size: 1.05em;
