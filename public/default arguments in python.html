@@ -12,7 +12,10 @@
   <script src="/analytics.js"></script>
   <style>/* @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+/*@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,:wght@400;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Castoro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
     --transition-time: 100ms;
@@ -27,7 +30,7 @@
     --tag-padding: calc(var(--tag-border-radius) / 6) calc(var(--tag-border-radius));
     /*--base-font-size: 1em;*/
 
-    --main-font-family: "Georgia", "Crimson Text", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
+    --main-font-family: "Castoro", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
     --main-font-lineheight: 1.5;
     --main-font-size: 1.05em;
     --code-font-size: 0.85em;
@@ -181,7 +184,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-family: "Verdana", "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
     padding-bottom: 20vh;
     line-height: var(--body-line-height);
     height: 100%;
@@ -635,10 +638,10 @@ language that I know of is more clear than a labeled break; break being somethin
 function are—according to <a href="https://docs.python.org/2/reference/compound_stmts.html#function">Python Documentation</a>—evaluated
 once at definition time. The arguments are then saved for the function throughout its life. This results in certain...quirks
 when defining a function. For example, if I define a function</p>
-<pre class="codehilite"><code class="language-python">def some_fn(arg1, arg2=[]):
-    # some function
-    ...
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">some_fn</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="c1"># some function</span>
+    <span class="o">...</span>
+</code></pre></div>
 
 <p>Every invocation of <code>some_fn</code> will use the <strong>exact same list for arg2</strong>. Any collection in this position will do the same be it
 <code>[]</code>, <code>list()</code>, <code>{}</code>, <code>dict()</code>, or <code>set()</code>. While this is well-documented, technically speaking, I find this the worst example
@@ -647,14 +650,14 @@ unexpected bug in code that uses it, and I have never had a person do this, find
 <p>I find it especially odd that a language like Python would choose to avoid labeled breaks and assignment expressions in order
 to avoid confusion and easy-to-cause bugs, and then implement default arguments in this way.</p>
 <p>By the way, the recommended way to do this is</p>
-<pre class="codehilite"><code class="language-python">def better_fn(arg1, arg2=None):
-    if arg2 is None:
-        arg2 = []
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">better_fn</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">arg2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">arg2</span> <span class="o">=</span> <span class="p">[]</span>
 
 
-    # function body
-    ...
-</code></pre>
+    <span class="c1"># function body</span>
+    <span class="o">...</span>
+</code></pre></div>
 
 <p>This is a terrible idiom that removes the implicit type† from the parameter, adds 2 lines of boilerplate cruft to the body of the function and separates the default value (and type) from the argument.</p>
 <p>This is easily the most annoying thing about Python, though I will admit it is a very close race between the lack of blocks, <code>for-else</code> loops and this default argument nonsense.</p>
