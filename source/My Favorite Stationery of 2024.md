@@ -76,7 +76,10 @@ I found the Pilot Frixion incredibly useful in 1 specific area of my planning wh
 
 ### Noodler's Liberty's Elysium
 
-This is a fountain pen ink and it is a Goulet Exclusive. It is on my list because I simply cannot have a favorite's list without mentioning. It has a cool name and a great story (even though the label has changed 🙁 recently) and it is the only ink _on Earth_ (that I know of) with the following two properties - It is a gorgeous, true cereulean blue. Like a real true incredible blue. Not light blue, not navy, not teal but **blue** - It is partially bulletproof and water resistant
+This is a fountain pen ink and it is a Goulet Exclusive. It is on my list because I simply cannot have a favorite's list without mentioning. It has a cool name and a great story (even though the label has changed 🙁 recently) and it is the only ink _on Earth_ (that I know of) with the following two properties
+
+- It is a gorgeous, true cereulean blue. Like a real true incredible blue. Not light blue, not navy, not teal but **blue**
+- It is partially bulletproof and water resistant
 
 Similar gorgeous blues like Monteverde Horizon Blue (possibly the single greatest blue ink ever devised) are so unbelievably water soluable that paper that Horizon blue was used on can quite literally be washed _clean_ by simple sink water. Horizon Blue is one of the best blue colors I know and Liberty's Elysium is very nearly identical (Horizon blue has a bit more red sheen and shades a hair darker) but yet is partially bulletproof and cannot simply be fully washed clean off a paper.
 
