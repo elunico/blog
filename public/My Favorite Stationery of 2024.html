@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My Favorite Stationery Of 2024</title>
+  <meta name="theme-color" content="#5E6F76" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#OF2B36" media="(prefers-color-scheme: dark)">
+
+  <script src="/analytics.js"></script>
+  <style>/* @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap'); */
+/*@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,:wght@400;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Castoro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --transition-time: 100ms;
+    --transition-func: linear;
+    --transition-var: color var(--transition-time) var(--transition-func),
+        background-color calc(var(--transition-time) + 90ms) var(--transition-func),
+        box-shadow var(--transition-time) var(--transition-func);
+    --root-font-size: 1.05em;
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: aliceblue;
+    --tag-border-radius: 10px;
+    --tag-padding: calc(var(--tag-border-radius) / 6) calc(var(--tag-border-radius));
+    /*--base-font-size: 1em;*/
+
+    
+    --main-font-family: "Castoro", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
+    --main-font-lineheight: 1.5;
+    --main-font-size: 1.05em;
+    --code-font-size: 0.85em;
+
+    --para-font: var(--main-font-family);
+    --base-font-size: var(--main-font-size);
+    --body-line-height: var(--main-font-lineheight);
+
+    --minor-font-size: calc(0.8 * var(--base-font-size));
+    --title-font-size: calc(1.35 * var(--base-font-size));
+
+    --post-padding-top: calc(1.1 * var(--base-font-size));
+    --post-padding-left: calc(1.1 * var(--base-font-size));
+    --blog-title-padding: calc(var(--base-font-size) / 3.25);
+    --main-content-width: 65%;
+
+    --main-background-color: #fff;
+    --code-background-color: #eee8d5;
+
+    --text-shadow: #aaa 5px 5px 10px;
+    --link-color: #0e51d2;
+    --body-main-color: black;
+    --link-visited-color: #992fc0;
+
+    --main-box-shadow: 8px 8px lightgray;
+    --main-border: 2px solid #222;
+
+    --main-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    --page-background-color: #f4f4f4;
+    --base-display: inline;
+    --light-display: var(--base-display);
+    --dark-display: none;
+    --nav-height: 3em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-var: none;
+    }
+}
+
+div {
+    --base-display: inline;
+}
+
+body[data-mode="dark"] {
+    --light-display: none;
+    --dark-display: var(--base-display);
+}
+
+body[data-mode="light"] {
+    --light-display: var(--base-display);
+
+    --dark-display: none;
+}
+
+
+[data-mode="light"] {
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: aliceblue;
+
+    --main-background-color: #fff;
+    --code-background-color: #eee8d5;
+
+    --text-shadow: #aaa 5px 5px 10px;
+    --link-color: #0e51d2;
+    --body-main-color: black;
+    --link-visited-color: #992fc0;
+
+    --main-box-shadow: 8px 8px lightgray;
+    --main-border: 2px solid #222;
+
+    --page-background-color: #f4f4f4;
+}
+
+
+[data-mode="dark"] {
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: #25252d;
+    --text-shadow: #070707 5px 5px 10px;
+    --link-color: #83c7ff;
+    --body-main-color: white;
+    --main-background-color: #2d2d2d;
+    --link-visited-color: #d285ee;
+
+    --code-background-color: #073642;
+    --main-box-shadow: 8px 8px rgb(30, 30, 30);
+    --main-border: 2px solid #ddd;
+    --page-background-color: rgb(55, 55, 55);
+}
+
+
+@media (max-width: 1200px) {
+    :root {
+        /* --root-font-size: 1.05em; */
+        --root-font-size: 1.85vh;
+        --tag-border-radius: 10px;
+        --tag-padding: calc(var(--tag-border-radius) / 2);
+        --minor-font-size: calc(0.8 * var(--base-font-size));
+
+
+        --main-font-size: 2vh;
+        --base-font-size: var(--main-font-size);
+        --title-font-size: calc(1.1 * var(--base-font-size));
+        --code-font-size: calc(var(--main-font-size) * 0.82);
+
+
+        --post-padding-top: calc(1.1 * var(--base-font-size));
+        --post-padding-left: calc(1.1 * var(--base-font-size));
+        --blog-title-padding: calc(var(--base-font-size) / 2.25);
+        --main-content-width: 85%;
+
+        --main-template-columns: minmax(300px, 1fr);
+
+
+    }
+
+
+    .mode-toggle {
+        top: calc(var(--nav-height) + 10px) !important;
+    }
+
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --footer-color: rgb(123, 123, 123);
+        --tag-background-color: #25252d;
+        --text-shadow: #070707 5px 5px 10px;
+        --link-color: #83c7ff;
+        --body-main-color: white;
+        --main-background-color: #2d2d2d;
+        --link-visited-color: #d285ee;
+
+        --code-background-color: #073642;
+        --main-box-shadow: 8px 8px rgb(30, 30, 30);
+        --main-border: 2px solid #ddd;
+        --page-background-color: rgb(55, 55, 55);
+        --light-display: none;
+
+        --dark-display: var(--base-display);
+    }
+}
+
+
+body {
+    --base-display: flex;
+    margin: 0 5vmin 5vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Inter", "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
+    padding-bottom: 20vh;
+    line-height: var(--body-line-height);
+    height: 100%;
+    font-size: var(--base-font-size);
+    color: var(--body-main-color);
+    background-color: var(--page-background-color);
+    font-variant-numeric: lining-nums;
+}
+
+main {
+    height: 100%;
+    padding: 1em;
+    /*border-radius: 15px;*/
+    /*border: var(--main-border);*/
+    /*box-shadow: var(--main-box-shadow);*/
+    margin-top: 15px;
+}
+
+.index-main {
+    display: grid;
+    grid-template-columns: var(--main-template-columns);
+    width: 100%;
+    text-align: center;
+}
+
+.index-post {
+    height: clamp(10em, 30vh, 17em);
+}
+
+.index-post a:link,
+.index-post a:visited {
+    color: var(--body-main-color);
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 50%;*/
+}
+
+
+.main-title {
+    font-size: 3.5em;
+    text-shadow: var(--text-shadow);
+}
+
+.footer {
+    font-size: var(--minor-font-size);
+    color: var(--footer-color);
+    font-weight: bold;
+    width: 100%;
+    padding: calc(var(--base-font-size) / 3);
+}
+
+h1 {
+    text-shadow: var(--text-shadow);
+
+}
+
+.blog-title {
+    font-size: var(--title-font-size);
+    font-weight: bold;
+    padding-bottom: var(--blog-title-padding);
+    text-decoration: underline;
+}
+
+.pub-date {
+    font-weight: normal;
+    font-family: var(--para-font);
+
+}
+
+.tags {
+    margin-top: 1em;
+}
+
+.tag {
+    font-style: italic;
+    border-radius: var(--tag-border-radius);
+    background-color: var(--tag-background-color);
+    padding: var(--tag-padding);
+    font-weight: normal;
+    font-family: var(--para-font);
+    display: inline-block;
+
+}
+
+a:link {
+    color: var(--link-color);
+}
+
+a:visited {
+    color: var(--link-visited-color);
+}
+
+.tag>a:link,
+.tag>a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tag>a:hover {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.post {
+    /* display: grid; */
+    /* place-items: center; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-main {
+    width: var(--main-content-width);
+}
+
+.post,
+.article-main {
+    background-color: var(--main-background-color);
+    padding: var(--post-padding-top) var(--post-padding-left);
+    border-radius: 15px;
+    border: var(--main-border);
+    box-shadow: var(--main-box-shadow);
+    margin: 1rem;
+}
+
+.summary {
+    /*padding: var(--post-padding-top) var(--post-padding-left);*/
+    /* font-family: var(--para-font); */
+    font-size: var(--base-font-size);
+}
+
+.hit-count {
+    padding-bottom: var(--blog-title-padding);
+    color: var(--footer-color);
+    font-size: var(--minor-font-size);
+}
+
+#results-area {
+    padding-top: calc(var(--blog-title-padding) * 2);
+}
+
+.article-tags {
+    padding-top: calc(var(--blog-title-padding) * 2);
+}
+
+.page-nav {
+    width: var(--main-content-width);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(50%);
+}
+
+@supports (display: grid) {
+    .page-nav {
+        transform: none;
+        align-items: unset;
+        align-content: unset;
+        justify-content: unset;
+
+        width: var(--main-content-width);
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        gap: var(--base-font-size);
+    }
+}
+
+p {
+    font-family: var(--para-font);
+    font-size: var(--base-font-size);
+}
+
+.toc {
+    font-family: var(--para-font);
+    font-size: var(--base-font-size);
+}
+
+#remove-button {
+    position: fixed !important;
+}
+
+code {
+    font-size: var(--code-font-size);
+    font-family: Menlo, "MesloLGS NF", "Meslo LG S DZ", "DejaVu Sans Mono", "Bitstream Vera Sans Mono" , "Monaco", "Consolas", "SF Mono", "Source Code Pro", monospace;
+}
+
+.codehilite {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5em 0;
+    overflow: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--body-main-color) var(--main-background-color);
+    background-color: var(--code-background-color);
+}
+
+.intro-blurb {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.post-outer-link {
+    height: 100%;
+    width: 100%;
+}
+
+
+</style>
+  <script defer src="https://eluni.co/background-render.js"></script>
+  <link rel="stylesheet" href="https://eluni.co/background-style.css">
+</head>
+
+<body>
+<div id="theme-toggle">
+    <img data-mode="light" class="mode-toggle" src="https://eluni.co/images/light-toggle.svg">
+    <img data-mode="dark" class="mode-toggle" src="https://eluni.co/images/dark-toggle.svg">
+
+</div>
+
+<script src="https://eluni.co/color-toggle.js"></script>
+<link rel="stylesheet" href="https://eluni.co/color-toggle.css">
+
+  <style>
+    :root {
+        --nv-background-color: var(--main-background-color);
+        --nv-text-color: black;
+        --nv-shadow: 1px 1px 0 rgb(147 147 147);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --nv-background-color: var(--main-background-color);;
+            --nv-text-color: white;
+            --nv-shadow: 1px 1px 0 rgb(96 96 96);
+        }
+    }
+
+    [data-mode="light"] {
+        --nv-background-color: var(--main-background-color);
+        --nv-text-color: black;
+        --nv-shadow: 1px 1px 0 rgb(147 147 147);
+    }
+
+    [data-mode="dark"] {
+        --nv-background-color: var(--main-background-color);;
+        --nv-text-color: white;
+        --nv-shadow: 1px 1px 0 rgb(96 96 96);
+    }
+
+
+    .nav-background {
+        height: 3em;
+        position: static;
+        top: 0px;
+        /* background-color: rgb(91, 121, 255); */
+        background: var(--nv-background-color);
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        box-shadow: var(--nv-shadow);
+
+    }
+
+    .navbar {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(50%);
+
+        height: var(--nav-height);
+        position: sticky;
+        top: 0;
+        width: 50%;
+        text-align: center;
+    }
+
+    @media (max-width: 1200px) {
+        .navbar {
+            width: max(100%, 100px);
+        }
+
+        .nav-background {
+            width: max(100vw, 100px);
+        }
+    }
+
+    .navbar > div {
+        width: 100%;
+        height: 100%;
+        /* border: 2px solid darkgray; */
+        /* border-radius: 10px; */
+        line-height: unset;
+    }
+
+    .double-col {
+        grid-column: 1/3;
+    }
+
+    @supports (display: grid) {
+        .navbar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25em;
+            text-align: center;
+            place-items: center;
+            transform: none;
+        }
+
+
+        .navbar > div {
+
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 2fr;
+
+            width: 100%;
+            height: 100%;
+            /* border: 2px solid darkgray; */
+            /* border-radius: 10px; */
+            line-height: unset;
+
+        }
+
+    }
+
+    .navitem > a:link,
+    .navitem > a:visited,
+    label {
+        color: var(--nv-text-color);
+    }
+
+    .navitem > select {
+        width: 80%;
+    }
+
+</style>
+<div class="nav-background">
+    <nav class="navbar" id="navbar">
+        <div class="navitem"><a class="double-col" href="http://eluni.co">eluni.co</a></div>
+        <div class="navitem"><a class="double-col" href="/blog/">Blog Homepage</a></div>
+        <div class="navitem">
+            <label class="navitem" for="search-box">Filter by Tag: </label>
+            <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
+            <select name="search-box" disabled id="search-box" class="navitem"></select>
+
+            <script>
+                const clearOption = '<no filter>';
+                let pageTag = new URLSearchParams(window.location.search).get('tag');
+
+                let box = document.querySelector('#search-box');
+
+                fetch('/blog/tags/all.json').then(r => r.json()).then(obj => {
+                    let tags = obj;
+                    tags.sort();
+                    for (let tag of tags) {
+                        let option = document.createElement('option');
+                        option.textContent = tag;
+                        box.appendChild(option);
+                    }
+                    box.removeAttribute('disabled');
+
+                    let option = document.createElement('option');
+                    option.textContent = clearOption;
+                    box.appendChild(option);
+
+                    box.selectedIndex = box.options.length - 1;
+
+                    if (pageTag) {
+                        let optionString = [];
+                        for (let i = 0; i < box.options.length; i++) {
+                            optionString.push(box.options[i].value);
+                        }
+                        console.log(optionString);
+                        box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
+                    }
+                });
+
+                box.addEventListener('change', event => {
+                    let tag = box.options[box.selectedIndex].value;
+                    if (tag === clearOption) {
+                        window.location = "./";
+                    } else {
+                        window.location = `/blog/search?tag=${tag}`;
+                    }
+                })
+            </script>
+        </div>
+        <!-- <div class="navitem"><a href="javascript:window.history.back()">Back</a></div> -->
+    </nav>
+</div>
+
+
+
+  <main id="main" class="article-main">
+    <h1 id="my-favorite-stationery-of-2024">My Favorite Stationery Of 2024</h1>
+<div class="toc">
+<ul>
+<li><a href="#my-favorite-stationery-of-2024">My Favorite Stationery Of 2024</a><ul>
+<li><a href="#pens">Pens</a><ul>
+<li><a href="#pentel-energel">Pentel Energel</a></li>
+<li><a href="#bic-gelocity">BIC Gelocity</a></li>
+</ul>
+</li>
+<li><a href="#paper-products">Paper Products</a><ul>
+<li><a href="#hobonichi-techo-original-avec">Hobonichi Techo Original (Avec)</a></li>
+<li><a href="#stalogy-365-a6">Stalogy 365 A6</a></li>
+<li><a href="#hobonichi-weeks">Hobonichi Weeks</a></li>
+</ul>
+</li>
+<li><a href="#other-items">Other Items</a><ul>
+<li><a href="#midori-index-clips-silver">Midori Index Clips (Silver)</a></li>
+<li><a href="#dot-markers">Dot Markers</a></li>
+<li><a href="#planner-stickers">Planner Stickers</a></li>
+</ul>
+</li>
+<li><a href="#honorable-mentions">Honorable Mentions</a><ul>
+<li><a href="#pilot-frixion">Pilot Frixion</a></li>
+<li><a href="#noodlers-libertys-elysium">Noodler's Liberty's Elysium</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>As a big stationery lover, I am always interested in trying new things as well as maintaining my grail stationery habits. In this article, I will
+focus on the stationery in 2024 that I started using and really enjoyed. I will not be necessarily focusing on stationery that was released in 2024
+nor will I be focusing on stationery that I already knew I liked going into 2024. (For more about my mainstay stationery see <a href="https://eluni.co/projects/pen-ranking/">this article</a>). Instead, this is only the stationery which I discovered to be important to me this year.</p>
+<h2 id="pens">Pens</h2>
+<p>Recently, Uniball announced the discontinuation of many, many colors of the Signo DX line of gel pens. This was <strong>tremendously</strong> disappointing to me, as the DX has been my favorite pen for years. As a consequence of the foreboding lack of colors in my favorite pen line, combined with a general resentment for the discontinuation of these colors, I began to look elsewhere. Thus, a lot of my pen discoveries for the year were lead on by this event.</p>
+<h3 id="pentel-energel">Pentel Energel</h3>
+<p>I am not entirely new to the Pentel Energel. I think a lot of people have heard of and tried this pen. However, for a very long time, I was insistant on using a permanent and archival pen for my writing. Recently, I had sort of let go of this requriement, and in light of the disappointment with the Signo DX line, I was looking for a highly available pen with a lot of really nice colors, and—with the relaxing of the waterproofness requirement—the Energel was a great candidate. The Energel is highly available in the US and now comes in 20 colors. It has some of the nicest and most vibrant colors of any pen I have seen (especially the Energel Blue which is the best blue pen I have ever written with), plus it is the smoothest pen I have ever used even outclassing the second smoothest—my beloved Signo DX line. I enjoy using this pen mostly in 0.7 and 0.5 mm size but the 0.4 clena is nice as well. To really put the cherry on top of the Energel, it is very quick drying and makes for an excellent highlight-able pen. I love to highlight so this is a huge bonus to me. Plus, as you will see later, I began using Hobonichi products this year, and so the fast drying highlight-ability of the Energel pairs wonderfully with the Hobonichi.</p>
+<h3 id="bic-gelocity">BIC Gelocity</h3>
+<p>The BIC Gelocity Quick Dry (specifically the Quick Dry, not the standard line) are some of the smoothest pens I have ever used. They are also incredibly vibrant. I do not find them as ubiquitous or as consistent as the Energel. I think the best green pen color ever is the BIC Gelocity Green, but since I prefer the color blue, and the Energel has the best Blue color pen I have ever used I would still rank the Energel higher, but the Gelocity is much more affordable and has some excellent options especially if you find Amazon's price of $1.70 to $2.50 per Energel pen hard to swallow—Gelocities can be had for $0.80 to $1.40 per pen. These pens are really excellent especially for the price but I would still rank them just under the Energel</p>
+<h2 id="paper-products">Paper Products</h2>
+<p>I was an avid Bullet Journal-er for about 3 years until the end of 2020. I found Bullet Journaling really excellent for a lot of reasons, but the one place it fell short for me was future planning. After concluding my Bullet Journaling, I hopped around quite a bit from system to system on paper and digital. In 2021, I tried using a Hobonichi Techo Cousin with the old Tomoe River Paper and I didn't love it for a couple of reasons: (1) I found the paper really frustrating because nothing I liked to write with would ever dry and I was unable to highlight without smearing (Hobonichi problem) and (2) I found that I was not using the system appropriately—I was trying to force my bullet journal methods/habits into this planner system (user error). I, therefore, continued to hop around until I started using the Jibun Techo from September to December 2023. I really enjoyed this planner, but I found the weekly vertical a bit limiting in terms of space and so I tried the Hobonichi Cousin for the first half of 2024. At that point Hobonichi had moved to the new Tomoe River Paper S paper from Sanzen. This paper allowed for so much faster dry times, I was able to actually use the tools I like on the paper and I was even able to <em>highlight my writing!!!!</em>. This was a huge development for me, as I have always liked the Hobonichi Techos but had a hard time using the paper. The lack of a decent system I had in 2021, was easily remedied by my continued exploration of planning systems and my aclimation to the Jibun Techo system. Since this experience allowed me to make effective use of the Hobonichis, the only remaining obsticle was the paper quality which was fully remedied by the switch to the Sanzen TRP. Still, none of these items are making my list for My Favorite Stationery of 2024. That is because, even though I was thrilled about the paper, and I had a working system for the Cousin, I found it to be clunky. It was large and heavy, and it was never quick to my hand when I needed it. I thought the answer to this was the Hobonichi weeks, but I found the cream paper unpleasant and not as highlighter-friendly nor as quick drying as the White TRP in the Cousin. Also the lack of space made the Hobonichi weeks impractical for my needs. Therefore, I gave Hobonichi one last shot which brings me to my actual favorite:</p>
+<h3 id="hobonichi-techo-original-avec">Hobonichi Techo Original (Avec)</h3>
+<p>I love the original (A6) Hobonichi so much. Specially, I find the Avec version to be the ideal size. It had plenty of space for my tasks and my plans and my records while also being thin and small enough to go with me in my back pocket literally everywhere. It is so functional yet so uninstrusive. I can have it with me at all times when I need it, yet not even notice or think about it when I do not need and it is always there at my beck and call. The new TRP S paper means I can write with any pen I like and can even highlight over my writing which is very important to my planning system. I also pair it with one of the Hobonichi accessory memo pads in the A6 size that I clip in the back. This memo pad could get an entry on its own. It is smaller than the Techo so it easily fits inside its cover, it has perferated pages which is perfect for when you need to write something down and give it to someone, and they come in packs of 3 so you have the ability to switch one out if it gets full and even tear out the pages to save important notes when the notebook itself it being retired. I think the use and availability of these memo books (which I believe are a fairly new innovation from Hobonichi) easily 2-3x the usefulness and convenience of the Techo especially since the Avec version has only 2 notes pages in the back (compared to about 13 in the English HON version).</p>
+<p>I do have some complaints in decreasing order of severity: (1) I wish they made the Avec in English like the original so that I could read the quotes and see at a glance what the day of the week is, but these are minor complaints when considering how unbelievably useful I find the A6 Avec size. (2) I wish the cover was stronger. The card stock cover is very flimsy and the exposed binding is constantly being chewed at. I know cover culture in Hobonichi is big, but I need my planner to stay as thin as possible to be carry-able and so I do not want a cover. (3) I like the idea of the whole year being in one book but the original A6 is too thick to carry in a pocket. Finally (4) the grid is quite small, which isn't really a problem, but I would not mind a larger grid size just to make the writing that much easier.</p>
+<p>Honorable mention also goes to the English A6 HON by Hobonichi. It is serving as my journal/daily note/reflection/memory keeper kind of book for 2025. It is one of the most aesthetically pleasing notebooks I have ever owned and I cannot wait to see it filled out for every day with an important note or memory sitting on my shelf with the adorable gilded 2025 looking out sideways across my office.</p>
+<h3 id="stalogy-365-a6">Stalogy 365 A6</h3>
+<p>In my quest to find a pocketable planner, I actually first purchased a Stalogy 365 Half Year A6 notebook. It was far cheaper than buying a Hobonichi A6 in the middle of the year for nearly $40 (the Stalogy book was around $11) and I thought it would give me an opportunity to test drive the size before commiting to the full Hobonichi. I can say that this experience definitely drove me to go for the Hobonichi itself. I had virtually 0 experience using an A6 size before this point (around July 2024) and I had no idea how useful and effective it would be to move my planner from my backpack and office desk to my back pocket. The increase in availability took a huge load off my mind and allowed me to plan with intent and fine detail. Any time something happened I could immediately inbox it, and I had always-on access to check my planner to help me not get distracted and stay on task.</p>
+<p>In addition, the Stalogy book itself is terrific. It addresses a lot of the complaints I have about the Hobonichi as a matter of fact: (1) The printing is in English (The Stalogy book has a small area to allow you to mark the date on the page which is written in English) (2) it has a gorgeous plasticine cover with no exposed binding that is far more robust (and claims to be waterproof) than the Hobonichi (3) and it has a full 5 mm grid rather than the very small grid of the Hobonichi. In addition, I find the Stalogy paper dries even faster than the Hobonichi paper, but the absolute stand out feature of the Stalogy is that wonderful cover.</p>
+<p>That said the Stalogy has its own drawbacks: (1) for a planner, not being preprinted with calendars and dates makes it an immediate non-starter. That was my original reason for leaving Bullet Journaling so right away that is a no go from me. Still, even as a notebook it has a couple of disadvantages again in decreasing order of severity: (1) The paper is slightly more prone to bleeding than something more robust but equally thin like the TRP and certainly moreso than something of higher weight like LT1917 or Maruman or Rhodia. (2) the space at the top where the grid ends so that the date can be entered can be intrusive and a bit annoying if you want to use the entire page with a grid system.</p>
+<p>All that is to say that, as a Notebook, I really, really like the Stalogy and could see it having a place in my line up as a process notebook or even as a pocket jotter or a Long Term Collections book or even a mindfulness Journal.</p>
+<h3 id="hobonichi-weeks">Hobonichi Weeks</h3>
+<p>I already mentioned the Hobonichi weeks briefly. I did not find it adequate for my personal planning. The space was too limiting, and even though I liked the extensive notes section the unstructedness of it is once again reminiscent of bullet journalining which I was unable to make work after 2020. I simply need more structure to my planning now-a-days.</p>
+<p>Even though it failed as my everyday planner, I did find a use for it. Inspired by a YouTube video I saw, I began using my Weeks as a <em>Work Archive</em>. This is a book that I use to write down important things that happen at work when needed. Anything that happens that I want to remember or want a record of for any reason. Anything I think someone might ask about, or that I or someone else might need to reference goes in the Weeks. The Weeks book itself also never leaves work, since it does not need to: it is a record of things that happen at work.</p>
+<p>I think the Weeks is a really great format for this. Even though for my daily planning, I found the layout confounding, it works wonders as an archive. Each day of the week gets a dedicated space to highlight the most important events of the day and things that happened. Plus each week gets a note page right next to the daily events to elaborate on the wider-reaching implications or longer-term going-ons of that time. Finally, if there are any big events or just general lists, or collections, or stories, or groups of knoweledge or reference information that is needed, there is an indexed note area in the back for such things. I could not have made a better book for work archiving if I tried. In 2025, I will be using a Hobonichi Weeks Mega as my archive since I think the extra space could be useful, and I have no need to transport my archive around with me—I simply fill it in when I finish a day at work before I leave my office</p>
+<p>I think that the Weeks could serve a similar personal archiving function in place of my planned use of the A6 HON, but for personal matters, I feel the page per day format combined with a mindful journal in a separate book for longer reflections makes a bit more sense.</p>
+<h2 id="other-items">Other Items</h2>
+<p>These are small items that have greatly improved a small part of my stationery life</p>
+<h3 id="midori-index-clips-silver">Midori Index Clips (Silver)</h3>
+<p>Having moved to the A6 Techo, I miss the bookmark ribbons that you often find in other planners. However, to solve this, I have been using Midori Index Clips and I could not be happier with them. They are my second favorite accessory for use with my Hobonichi after the memo books</p>
+<h3 id="dot-markers">Dot Markers</h3>
+<p>Inspired by all the YouTuber's with the Zig Clean Color Dot markers, I acquired some dot markers from Amazon (not the Zig ones even though I just <em>love</em> everything that Zig makes, they are too expensive when I wasn't even sure if I was going to like them). I liked these a lot and I used them to track different habits in the Monthly section of my Hobonichi. It was very satisfying and enlightening to see the full month filled out with the dots for each habit, but I must admit, I really only managed to do July, August, and the beginning of September this year, but I will definitely be keeping the dot markers and I would like to try again starting in January and keep it going for the whole year 2025.</p>
+<h3 id="planner-stickers">Planner Stickers</h3>
+<p>Like the Dot Markers, I got some on Amazon and absolutely loved using them and I still enjoy looking back on the times where they were used as some of my most pleasing looking planning, but also like with the Dot Markers, I fell off on these two. I will try to use up the ones I have in 2025, but I don't know if I will get more even though I like them because I just did not use them that much.</p>
+<h2 id="honorable-mentions">Honorable Mentions</h2>
+<h3 id="pilot-frixion">Pilot Frixion</h3>
+<p>I found the Pilot Frixion incredibly useful in 1 specific area of my planning where I began using it heavily this year. It was the perfect solution for what I needed but it really only gets used in this one context. That said, Pilot came out with the Frixion Synergy Clicker (similar to the Frixion Point Knock they released in Japan) and I am <strong>obsessed</strong> with the new 0.5 mm American Marker Frixion pen.</p>
+<h3 id="noodlers-libertys-elysium">Noodler's Liberty's Elysium</h3>
+<p>This is a fountain pen ink and it is a Goulet Exclusive. It is on my list because I simply cannot have a favorite's list without mentioning. It has a cool name and a great story (even though the label has changed 🙁 recently) and it is the only ink <em>on Earth</em> (that I know of) with the following two properties - It is a gorgeous, true cereulean blue. Like a real true incredible blue. Not light blue, not navy, not teal but <strong>blue</strong> - It is partially bulletproof and water resistant</p>
+<p>Similar gorgeous blues like Monteverde Horizon Blue (possibly the single greatest blue ink ever devised) are so unbelievably water soluable that paper that Horizon blue was used on can quite literally be washed <em>clean</em> by simple sink water. Horizon Blue is one of the best blue colors I know and Liberty's Elysium is very nearly identical (Horizon blue has a bit more red sheen and shades a hair darker) but yet is partially bulletproof and cannot simply be fully washed clean off a paper.</p>
+<p>Liberty's Elysium may be the one ink that I would choose as my one ink if I were only allowed to every use one ink.</p>
+    <footer class="article-tags">
+      <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=stationery">stationery</a></span>
+<span class="tag"><a href="/blog/search.html?tag=pens">pens</a></span>
+<span class="tag"><a href="/blog/search.html?tag=2024">2024</a></span>
+<span class="tag"><a href="/blog/search.html?tag=favorites">favorites</a></span></div>
+    </footer>
+    <section class="footer published">Published: <span data-has-date class="pub-date">2024-12-22T15:00:41.619526</span></section>
+  </main>
+
+  <script>
+
+    function logging(a) {
+        console.log(a);
+        return a;
+    }
+
+    let elements = document.querySelectorAll('*[data-has-date]');
+    for (let element of elements) {
+        let text = element.textContent.trim();
+        let date = Date.parse(text);
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        }
+        element.textContent = new Intl.DateTimeFormat(navigator.language, options).format(date);
+        element.removeAttribute('data-has-date');
+    }
+</script>
+
+
+</body>
+
+</html>

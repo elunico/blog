@@ -639,10 +639,10 @@ language that I know of is more clear than a labeled break; break being somethin
 function are—according to <a href="https://docs.python.org/2/reference/compound_stmts.html#function">Python Documentation</a>—evaluated
 once at definition time. The arguments are then saved for the function throughout its life. This results in certain...quirks
 when defining a function. For example, if I define a function</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">some_fn</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="c1"># some function</span>
-    <span class="o">...</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">def some_fn(arg1, arg2=[]):
+    # some function
+    ...
+</code></pre>
 
 <p>Every invocation of <code>some_fn</code> will use the <strong>exact same list for arg2</strong>. Any collection in this position will do the same be it
 <code>[]</code>, <code>list()</code>, <code>{}</code>, <code>dict()</code>, or <code>set()</code>. While this is well-documented, technically speaking, I find this the worst example
@@ -651,14 +651,14 @@ unexpected bug in code that uses it, and I have never had a person do this, find
 <p>I find it especially odd that a language like Python would choose to avoid labeled breaks and assignment expressions in order
 to avoid confusion and easy-to-cause bugs, and then implement default arguments in this way.</p>
 <p>By the way, the recommended way to do this is</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">better_fn</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">arg2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">arg2</span> <span class="o">=</span> <span class="p">[]</span>
+<pre class="codehilite"><code class="language-python">def better_fn(arg1, arg2=None):
+    if arg2 is None:
+        arg2 = []
 
 
-    <span class="c1"># function body</span>
-    <span class="o">...</span>
-</code></pre></div>
+    # function body
+    ...
+</code></pre>
 
 <p>This is a terrible idiom that removes the implicit type† from the parameter, adds 2 lines of boilerplate cruft to the body of the function and separates the default value (and type) from the argument.</p>
 <p>This is easily the most annoying thing about Python, though I will admit it is a very close race between the lack of blocks, <code>for-else</code> loops and this default argument nonsense.</p>
