@@ -592,12 +592,19 @@ code {
 
 
   <main id="main" class="article-main">
-    <h1 id="blogress">blogress</h1>
-<p>The roll-your-own-blog blog has gotten off to a voracious start. In only 2 days, I am quite satisfied with the progress that
+    
+# blogress
+
+
+The roll-your-own-blog blog has gotten off to a voracious start. In only 2 days, I am quite satisfied with the progress that
 I have made. Obviously it is still far from being anything more than a 2-day side-project version of re-inventing the wheel.
-I am not trying to claim to be making the next Blogspot here, but I am having fun.</p>
-<h2 id="issues-and-debt">Issues and Debt</h2>
-<p>One thing that I know just based on feel, but also based on looking at the code that I wrote, is that things are fairly
+I am not trying to claim to be making the next Blogspot here, but I am having fun.
+
+
+## Issues and Debt
+
+
+One thing that I know just based on feel, but also based on looking at the code that I wrote, is that things are fairly
 tightly coupled. My build code could do with a lot more modularization and genericization. Extending things further or for
 other uses would definitely need quite a refactoring job. I am trying to keep things separated at least at the procedure level,
 but still there is room for improvement. The build system is done in Python, and—while my relationship with Python can best be
@@ -606,8 +613,10 @@ thought and express easily in one line...until of course I have to write somethi
 issue I seem to have with the code is often the issue I have with Python code which is that it is so expressive and concise
 that I often start writing without much regard for custom data types, class hierarchies, or modules. I hope to remedy this in
 time. At this point I am quite satisfied with the functionality of the blog for the amount of time that I have been working on
-it so now might be a good time to take a step back and focus on design and organization.</p>
-<p>Another place I would like to improve is the <code>stylesheet.css</code> file. This file is currently the one and only global
+it so now might be a good time to take a step back and focus on design and organization.
+
+
+Another place I would like to improve is the `stylesheet.css` file. This file is currently the one and only global
 CSS file that applies to all classes. Obviously this is nice because it keeps design consistent, but it also is not
 ideal due to the cascade and name collisions. I would like to redo things to tie the name of the stylesheet to the
 HTML that it should apply to. I already have a mechanism for including HTML parts into larger HTML files or templates,
@@ -616,12 +625,22 @@ modularizing the CSS but possibly parsing the HTML to mangle CSS selectors to be
 indicated to be universal. This would require quite a bit of tooling not only for the parsing, but the scoping of CSS selectors
 as well as the organziation of code and files. For now, I imagine the single stylesheet will suffice, and I would rather tackle
 the Python code refactor before dealing with the CSS. *I have very, very briefly considered another style provider like SCSS or
-SASS, but—in keeping with the roll-your-own aspect of the blog—the more "vanilla" I can keep things that happier I will be.</p>
-<h2 id="future-plans">Future Plans</h2>
-<p>Separate from the issues and debt, there are some future plans I have that do not involve addressing any <em>current</em> problems.</p>
-<p>For one thing, I would like to create a general text search rather than the current ability to only filter by tag. This might be
+SASS, but—in keeping with the roll-your-own aspect of the blog—the more "vanilla" I can keep things that happier I will be.
+
+
+## Future Plans
+
+
+Separate from the issues and debt, there are some future plans I have that do not involve addressing any *current* problems.
+
+
+For one thing, I would like to create a general text search rather than the current ability to only filter by tag. This might be
 a bit difficult especially with many, large articles. Further complicating this is the fact that I am hosting the website statically on Github Pages currently, so there is no backend currently for executing efficient searches by database. All work
-must be done on the client. Currently, for the size of the blog, this is not an issue, but it may be in the future.</p>
+must be done on the client. Currently, for the size of the blog, this is not an issue, but it may be in the future.
+
+
+
+
     <footer class="article-tags">
       <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=update">update</a></span>
 <span class="tag"><a href="/blog/search.html?tag=meta">meta</a></span>
