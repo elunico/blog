@@ -134,3 +134,23 @@ class BasicBoolMetadataFactory(MetadataCategory):
 
     def backing_collection(self) -> bool:
         return self.contents
+
+class BasicBoolMetadataFalse(BasicBoolMetadataFactory):
+    def __init__(self) -> None:
+        super().__init__('<anonymous>', lambda x: False, False)
+
+    def line_to_item_transform(self, item: str) -> bool:
+        return False
+
+    def extend(self, item: bool) -> None:
+        pass  # No-op since this is always false
+
+class BasicBoolMetadataTrue(BasicBoolMetadataFactory):
+    def __init__(self) -> None:
+        super().__init__('<anonymous>', lambda x: True, True)
+
+    def line_to_item_transform(self, item: str) -> bool:
+        return True
+
+    def extend(self, item: bool) -> None:
+        pass  # No-op since this is always true
