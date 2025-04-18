@@ -106,12 +106,12 @@ class Engine:
             self.index_content[page] = self.index_content.get(page, "") + index_entry(
                 html_name(filename), self.metadata[filename], page
             )
-            print(self.metadata[filename])
+            # this is where we convert the markdown to HTML
+            # the option to use raw HTML is also here, I think this check is a bit fragile
+            # so if there is an issue, maybe look at this section
             if not self.metadata[filename].get("raw", BBFalse()).was_set:
-                print("Converting markdown to HTML")
                 html = markdown.markdown(file_content, extensions=self.md_extensions)
             else:
-                print("Skipping markdown conversion")
                 html = file_content
 
             with (
