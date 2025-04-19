@@ -31,10 +31,12 @@
     /*--base-font-size: 1em;*/
 
     
-    --main-font-family: "Castoro", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif;
+    /* --main-font-family: "Castoro", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif; */
+    --main-font-family: Verdana, "Bitstream Vera Sans", "Helvetica", "Helvetica Neue", "FreeSans", "Nimbus Sans L", "DejaVu Sans", "Arial", sans-serif;
     --main-font-lineheight: 1.5;
-    --main-font-size: 1.05em;
-    --code-font-size: 0.85em;
+    /* --main-font-size: 1.05em; */
+    --main-font-size: 10pt;
+    --code-font-size: 0.75em;
 
     --para-font: var(--main-font-family);
     --base-font-size: var(--main-font-size);
@@ -133,7 +135,7 @@ body[data-mode="light"] {
         --minor-font-size: calc(0.8 * var(--base-font-size));
 
 
-        --main-font-size: 2vh;
+        --main-font-size: 1.4rem;
         --base-font-size: var(--main-font-size);
         --title-font-size: calc(1.1 * var(--base-font-size));
         --code-font-size: calc(var(--main-font-size) * 0.82);
@@ -185,7 +187,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-family: "Inter", "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
+    font-family: "Verdana", "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
     padding-bottom: 20vh;
     line-height: var(--body-line-height);
     height: 100%;
@@ -306,6 +308,8 @@ a:visited {
 
 .article-main {
     width: var(--main-content-width);
+    max-width: 800px;
+    line-height: calc(var(--body-line-height) + 0.1);
 }
 
 .post,
