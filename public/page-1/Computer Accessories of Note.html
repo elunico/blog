@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Computer Accessories Of Note</title>
+  <meta name="theme-color" content="#5E6F76" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#OF2B36" media="(prefers-color-scheme: dark)">
+
+  <script src="/analytics.js"></script>
+  <style>/* @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap'); */
+/*@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,:wght@400;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Castoro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --transition-time: 100ms;
+    --transition-func: linear;
+    --transition-var: color var(--transition-time) var(--transition-func),
+        background-color calc(var(--transition-time) + 90ms) var(--transition-func),
+        box-shadow var(--transition-time) var(--transition-func);
+    --root-font-size: 1.05em;
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: aliceblue;
+    --tag-border-radius: 10px;
+    --tag-padding: calc(var(--tag-border-radius) / 6) calc(var(--tag-border-radius));
+    /*--base-font-size: 1em;*/
+
+    
+    /* --main-font-family: "Castoro", "Linux Libertine", "Hoefler Text", "Minion Pro", "Linux Libertine O", "Crimson Pro", serif; */
+    --main-font-family: Verdana, "Bitstream Vera Sans", "Helvetica", "Helvetica Neue", "FreeSans", "Nimbus Sans L", "DejaVu Sans", "Arial", sans-serif;
+    --main-font-lineheight: 1.5;
+    /* --main-font-size: 1.05em; */
+    --main-font-size: 10pt;
+    --code-font-size: 0.95em;
+
+    --para-font: var(--main-font-family);
+    --base-font-size: var(--main-font-size);
+    --body-line-height: var(--main-font-lineheight);
+
+    --minor-font-size: calc(0.8 * var(--base-font-size));
+    --title-font-size: calc(1.35 * var(--base-font-size));
+
+    --post-padding-top: calc(1.1 * var(--base-font-size));
+    --post-padding-left: calc(1.1 * var(--base-font-size));
+    --blog-title-padding: calc(var(--base-font-size) / 3.25);
+    --main-content-width: 65%;
+
+    --main-background-color: #fff;
+    --code-background-color: #eee8d5;
+
+    --text-shadow: #aaa 5px 5px 10px;
+    --link-color: #0e51d2;
+    --body-main-color: black;
+    --link-visited-color: #992fc0;
+
+    --main-box-shadow: 8px 8px lightgray;
+    --main-border: 2px solid #222;
+
+    --main-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    --page-background-color: #f4f4f4;
+    --base-display: inline;
+    --light-display: var(--base-display);
+    --dark-display: none;
+    --nav-height: 3em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-var: none;
+    }
+}
+
+div {
+    --base-display: inline;
+}
+
+body[data-mode="dark"] {
+    --light-display: none;
+    --dark-display: var(--base-display);
+}
+
+body[data-mode="light"] {
+    --light-display: var(--base-display);
+
+    --dark-display: none;
+}
+
+
+[data-mode="light"] {
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: aliceblue;
+
+    --main-background-color: #fff;
+    --code-background-color: #eee8d5;
+
+    --text-shadow: #aaa 5px 5px 10px;
+    --link-color: #0e51d2;
+    --body-main-color: black;
+    --link-visited-color: #992fc0;
+
+    --main-box-shadow: 8px 8px lightgray;
+    --main-border: 2px solid #222;
+
+    --page-background-color: #f4f4f4;
+}
+
+
+[data-mode="dark"] {
+    --footer-color: rgb(123, 123, 123);
+    --tag-background-color: #25252d;
+    --text-shadow: #070707 5px 5px 10px;
+    --link-color: #83c7ff;
+    --body-main-color: white;
+    --main-background-color: #2d2d2d;
+    --link-visited-color: #d285ee;
+
+    --code-background-color: #073642;
+    --main-box-shadow: 8px 8px rgb(30, 30, 30);
+    --main-border: 2px solid #ddd;
+    --page-background-color: rgb(55, 55, 55);
+}
+
+
+@media (max-width: 1200px) {
+    :root {
+        /* --root-font-size: 1.05em; */
+        --root-font-size: 1.85vh;
+        --tag-border-radius: 10px;
+        --tag-padding: calc(var(--tag-border-radius) / 2);
+        --minor-font-size: calc(0.8 * var(--base-font-size));
+
+
+        --main-font-size: 1.4rem;
+        --base-font-size: var(--main-font-size);
+        --title-font-size: calc(1.1 * var(--base-font-size));
+        --code-font-size: calc(var(--main-font-size) * 0.82);
+
+
+        --post-padding-top: calc(1.1 * var(--base-font-size));
+        --post-padding-left: calc(1.1 * var(--base-font-size));
+        --blog-title-padding: calc(var(--base-font-size) / 2.25);
+        --main-content-width: 85%;
+
+        --main-template-columns: minmax(300px, 1fr);
+
+
+    }
+
+
+    .mode-toggle {
+        top: calc(var(--nav-height) + 10px) !important;
+    }
+
+
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --footer-color: rgb(123, 123, 123);
+        --tag-background-color: #25252d;
+        --text-shadow: #070707 5px 5px 10px;
+        --link-color: #83c7ff;
+        --body-main-color: white;
+        --main-background-color: #2d2d2d;
+        --link-visited-color: #d285ee;
+
+        --code-background-color: #073642;
+        --main-box-shadow: 8px 8px rgb(30, 30, 30);
+        --main-border: 2px solid #ddd;
+        --page-background-color: rgb(55, 55, 55);
+        --light-display: none;
+
+        --dark-display: var(--base-display);
+    }
+}
+
+
+body {
+    --base-display: flex;
+    margin: 0 5vmin 5vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Verdana", "Helvetica Neue", "Helvetica", "FreeSans", "TeX Gyre Heroes", "Arial", Helvetica, Arial, sans-serif;
+    padding-bottom: 20vh;
+    line-height: var(--body-line-height);
+    height: 100%;
+    font-size: var(--base-font-size);
+    color: var(--body-main-color);
+    background-color: var(--page-background-color);
+    font-variant-numeric: lining-nums;
+}
+
+main {
+    height: 100%;
+    padding: 1em;
+    /*border-radius: 15px;*/
+    /*border: var(--main-border);*/
+    /*box-shadow: var(--main-box-shadow);*/
+    margin-top: 15px;
+}
+
+.index-main {
+    display: grid;
+    grid-template-columns: var(--main-template-columns);
+    width: 100%;
+    text-align: center;
+}
+
+.index-post {
+    height: clamp(10em, 30vh, 17em);
+}
+
+.index-post a:link,
+.index-post a:visited {
+    color: var(--body-main-color);
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 50%;*/
+}
+
+
+.main-title {
+    font-size: 3.5em;
+    text-shadow: var(--text-shadow);
+}
+
+.footer {
+    font-size: var(--minor-font-size);
+    color: var(--footer-color);
+    font-weight: bold;
+    width: 100%;
+    padding: calc(var(--base-font-size) / 3);
+}
+
+h1 {
+    text-shadow: var(--text-shadow);
+
+}
+
+.blog-title {
+    font-size: var(--title-font-size);
+    font-weight: bold;
+    padding-bottom: var(--blog-title-padding);
+    text-decoration: underline;
+}
+
+.pub-date {
+    font-weight: normal;
+    font-family: var(--para-font);
+
+}
+
+.tags {
+    margin-top: 1em;
+}
+
+.tag {
+    font-style: italic;
+    border-radius: var(--tag-border-radius);
+    background-color: var(--tag-background-color);
+    padding: var(--tag-padding);
+    font-weight: normal;
+    font-family: var(--para-font);
+    display: inline-block;
+
+}
+
+a:link {
+    color: var(--link-color);
+}
+
+a:visited {
+    color: var(--link-visited-color);
+}
+
+.tag>a:link,
+.tag>a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tag>a:hover {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.post {
+    /* display: grid; */
+    /* place-items: center; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-main {
+    width: var(--main-content-width);
+    max-width: 800px;
+    line-height: calc(var(--body-line-height) + 0.1);
+}
+
+.post,
+.article-main {
+    background-color: var(--main-background-color);
+    padding: var(--post-padding-top) var(--post-padding-left);
+    border-radius: 15px;
+    border: var(--main-border);
+    box-shadow: var(--main-box-shadow);
+    margin: 1rem;
+}
+
+.summary {
+    /*padding: var(--post-padding-top) var(--post-padding-left);*/
+    /* font-family: var(--para-font); */
+    font-size: var(--base-font-size);
+}
+
+.hit-count {
+    padding-bottom: var(--blog-title-padding);
+    color: var(--footer-color);
+    font-size: var(--minor-font-size);
+}
+
+#results-area {
+    padding-top: calc(var(--blog-title-padding) * 2);
+}
+
+.article-tags {
+    padding-top: calc(var(--blog-title-padding) * 2);
+}
+
+.page-nav {
+    width: var(--main-content-width);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(50%);
+}
+
+@supports (display: grid) {
+    .page-nav {
+        transform: none;
+        align-items: unset;
+        align-content: unset;
+        justify-content: unset;
+
+        width: var(--main-content-width);
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        gap: var(--base-font-size);
+    }
+}
+
+p {
+    font-family: var(--para-font);
+    font-size: var(--base-font-size);
+}
+
+.toc {
+    font-family: var(--para-font);
+    font-size: var(--base-font-size);
+}
+
+#remove-button {
+    position: fixed !important;
+}
+
+code {
+    font-size: var(--code-font-size);
+    font-family: Menlo, "MesloLGS NF", "Meslo LG S DZ", "DejaVu Sans Mono", "Bitstream Vera Sans Mono" , "Monaco", "Consolas", "SF Mono", "Source Code Pro", monospace;
+}
+
+.codehilite {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5em 0;
+    overflow: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--body-main-color) var(--main-background-color);
+    background-color: var(--code-background-color);
+}
+
+.intro-blurb {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.post-outer-link {
+    height: 100%;
+    width: 100%;
+}
+
+
+</style>
+  <script defer src="https://eluni.co/background-render.js"></script>
+  <link rel="stylesheet" href="https://eluni.co/background-style.css">
+</head>
+
+<body>
+<div id="theme-toggle">
+    <img data-mode="light" class="mode-toggle" src="https://eluni.co/images/light-toggle.svg">
+    <img data-mode="dark" class="mode-toggle" src="https://eluni.co/images/dark-toggle.svg">
+
+</div>
+
+<script src="https://eluni.co/color-toggle.js"></script>
+<link rel="stylesheet" href="https://eluni.co/color-toggle.css">
+
+  <style>
+    :root {
+        --nv-background-color: var(--main-background-color);
+        --nv-text-color: black;
+        --nv-shadow: 1px 1px 0 rgb(147 147 147);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --nv-background-color: var(--main-background-color);;
+            --nv-text-color: white;
+            --nv-shadow: 1px 1px 0 rgb(96 96 96);
+        }
+    }
+
+    [data-mode="light"] {
+        --nv-background-color: var(--main-background-color);
+        --nv-text-color: black;
+        --nv-shadow: 1px 1px 0 rgb(147 147 147);
+    }
+
+    [data-mode="dark"] {
+        --nv-background-color: var(--main-background-color);;
+        --nv-text-color: white;
+        --nv-shadow: 1px 1px 0 rgb(96 96 96);
+    }
+
+
+    .nav-background {
+        height: 3em;
+        position: static;
+        top: 0px;
+        /* background-color: rgb(91, 121, 255); */
+        background: var(--nv-background-color);
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        box-shadow: var(--nv-shadow);
+
+    }
+
+    .navbar {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(50%);
+
+        height: var(--nav-height);
+        position: sticky;
+        top: 0;
+        width: 50%;
+        text-align: center;
+    }
+
+    @media (max-width: 1200px) {
+        .navbar {
+            width: max(100%, 100px);
+        }
+
+        .nav-background {
+            width: max(100vw, 100px);
+        }
+    }
+
+    .navbar > div {
+        width: 100%;
+        height: 100%;
+        /* border: 2px solid darkgray; */
+        /* border-radius: 10px; */
+        line-height: unset;
+    }
+
+    .double-col {
+        grid-column: 1/3;
+    }
+
+    @supports (display: grid) {
+        .navbar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.25em;
+            text-align: center;
+            place-items: center;
+            transform: none;
+        }
+
+
+        .navbar > div {
+
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 2fr;
+
+            width: 100%;
+            height: 100%;
+            /* border: 2px solid darkgray; */
+            /* border-radius: 10px; */
+            line-height: unset;
+
+        }
+
+    }
+
+    .navitem > a:link,
+    .navitem > a:visited,
+    label {
+        color: var(--nv-text-color);
+    }
+
+    .navitem > select {
+        width: 80%;
+    }
+
+</style>
+<div class="nav-background">
+    <nav class="navbar" id="navbar">
+        <div class="navitem"><a class="double-col" href="http://eluni.co">eluni.co</a></div>
+        <div class="navitem"><a class="double-col" href="/blog/">Blog Homepage</a></div>
+        <div class="navitem">
+            <label class="navitem" for="search-box">Filter by Tag: </label>
+            <!-- <input type="text" name="search-box" id="search-box" class="navitem" /> -->
+            <select name="search-box" disabled id="search-box" class="navitem"></select>
+
+            <script>
+                const clearOption = '<no filter>';
+                let pageTag = new URLSearchParams(window.location.search).get('tag');
+
+                let box = document.querySelector('#search-box');
+
+                fetch('/blog/tags/all.json').then(r => r.json()).then(obj => {
+                    let tags = obj;
+                    tags.sort();
+                    for (let tag of tags) {
+                        let option = document.createElement('option');
+                        option.textContent = tag;
+                        box.appendChild(option);
+                    }
+                    box.removeAttribute('disabled');
+
+                    let option = document.createElement('option');
+                    option.textContent = clearOption;
+                    box.appendChild(option);
+
+                    box.selectedIndex = box.options.length - 1;
+
+                    if (pageTag) {
+                        let optionString = [];
+                        for (let i = 0; i < box.options.length; i++) {
+                            optionString.push(box.options[i].value);
+                        }
+                        console.log(optionString);
+                        box.selectedIndex = optionString.indexOf(optionString.filter(option => option == pageTag)[0]);
+                    }
+                });
+
+                box.addEventListener('change', event => {
+                    let tag = box.options[box.selectedIndex].value;
+                    if (tag === clearOption) {
+                        window.location = "./";
+                    } else {
+                        window.location = `/blog/search?tag=${tag}`;
+                    }
+                })
+            </script>
+        </div>
+        <!-- <div class="navitem"><a href="javascript:window.history.back()">Back</a></div> -->
+    </nav>
+</div>
+
+
+
+  <main id="main" class="article-main">
+    <h1 id="computer-accessories-of-note">Computer Accessories Of Note</h1>
+<p>It is no secret that I am a huge fan of the Mac. First and foremost, I am a Mac user. I appreciate iOS and my iPhone, the iPad, the Apple Watch, and the entire Apple Ecosystem. I also was an AirPort Express user from 2009 until 2017. Still, as much as I appreciate all of Apple's wonderful offerings, I am a Mac-first operation. macOS since 10.0 has been and continues to be the best Desktop operating system available. It is worth noting, that I do appreciate Apple's hardware—Mac and otherwise, but not every category of technology must be occupied by some sort of Apple device (except for computers, which should always be Mac; and frankly tablets and phones which should also only be Apple).</p>
+<p>Apple has dabbled in printers in the past, and has displays right now, but these are some of the areas where I do not believe Apple has the best offering. (Obviously, Apple has no offering in the printer or wi-fi router <em>anymore</em> and so are obviously not the best)</p>
+<h2 id="best-printers">Best Printers</h2>
+<p>Printers are not always the most charming devices to interact with. I have all but written off InkJets at this point in my life. The abhorrent UI, the ink that dries out, the exorbitent cost of ink, the cheap and easily broken construction. I understand they are good for photo printing, but I don't do that and if I really needed photos it is not prohibitvely expensive to send digital photos to be printed somewhere else especially considering the frequency with which I print photos.</p>
+<p>I believe laser printers are the way to go. I understand that they are more expensive upfront and the toner is quite pricey as well, but they tend to be a lot more reliable, and faster; they print crisper text (which is most of the printing that I do) and their toner lasts for hundreds to thousands of pages without drying out after periods of non-use.</p>
+<p>My brand of choice these days is Canon. I have a Canon Color imageCLASS LBP632Cdw. This is a <strong>color</strong> laser printer. It was a bit pricey when I bought it but it has been a tremendously reliable printer—easily the most reliable printer I have ever used. I am extremely satisfied with the size, the starter ink, the print quality, and the reliability. It also has both Wifi and Ethernet and it works flawlessly on my home wifi with all my Macs.</p>
+<p>Historically, when it comes to InkJets, even though I do not like them, I have had the best luck with Brother, though I have never tried a Canon InkJet.</p>
+<p>I absolutely despise and refuse to use an HP printer for a variety of reasons. Their software is terrible, and it constantly prompts for admin rights, their printers are cryptic, poorly put together, and fail constantly, and they brick their own devices if you buy third party ink.</p>
+<h2 id="best-monitors">Best Monitors</h2>
+<p>I think the Studio Display is a bad value. I think the Pro Display XDR is also a bad value. I do not think they are bad <em>screens</em> but they are a bad <em>value</em>.</p>
+<p>My brand of choice for monitors is Dell. I have never had a Dell monitor that was not excellent. I have had older, newer, high-DPI, low-DPI, every kind of Dell mointor you can imagine, and I love them.</p>
+<p>I don't feel the same strong brand loyalty to Dell in the monitor space as I do to Canon in the printer space, because honestly I have not had a lot of bad experiences with other well known brands of screen (unlike printers, most of which are trash). Still, I believe Dell has the <strong>best</strong> screen experiences of all brands; especially in the high-end productivity space (i.e. 4K 60Hz IPS or 120 Hz IPS).</p>
+<p>Honorable mention goes to LG who tends to also make excellent productivity monitors including the famous UltraFine 5K which was the same gorgeous panel that was in the 27" 5K iMac. Perhaps a bit on the older side now, it was a glorious screen and umatched by anything else for many years.</p>
+<h2 id="best-wifi-options">Best Wifi Options</h2>
+<p>Since there is no longer an Apple options in this area, it has been hard to find a great, universal contender. A lot of wifi technology runs miscellaneous firmware from who-knows-where which makes all wifi equipment unpleasant and suspicious to me. Currently, I am using TP-Link's deco mesh system and I am fairly well satisfied by it so I suppose that is my recommendation.</p>
+<p>Honorable mention to Netgear for their excellent 5 and 8 port network switches which are tremendously affordable, but also quite reliable and good.</p>
+    <footer class="article-tags">
+      <div class="footer tags">Tags: <span class="tag"><a href="/blog/search.html?tag=mac">mac</a></span>
+<span class="tag"><a href="/blog/search.html?tag=computer">computer</a></span>
+<span class="tag"><a href="/blog/search.html?tag=technology">technology</a></span>
+<span class="tag"><a href="/blog/search.html?tag=opinion">opinion</a></span>
+<span class="tag"><a href="/blog/search.html?tag=best%20of">best of</a></span></div>
+    </footer>
+    <section class="footer published">Published: <span data-has-date class="pub-date">2025-04-20T01:10:34.028637</span></section>
+  </main>
+
+  <script>
+
+    function logging(a) {
+        console.log(a);
+        return a;
+    }
+
+    let elements = document.querySelectorAll('*[data-has-date]');
+    for (let element of elements) {
+        let text = element.textContent.trim();
+        let date = Date.parse(text);
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+        }
+        element.textContent = new Intl.DateTimeFormat(navigator.language, options).format(date);
+        element.removeAttribute('data-has-date');
+    }
+</script>
+
+
+</body>
+
+</html>
