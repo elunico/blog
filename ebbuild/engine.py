@@ -71,7 +71,8 @@ class Engine:
             with open(os.path.join(self.public_dir, "index.html"), "w") as f:
                 f.write(
                     no_pages(
-                        render_template(template, self.includer, content=content[None])
+                        render_template(template, self.includer,
+                                        content=content[None])
                     )
                 )
         else:
@@ -79,7 +80,8 @@ class Engine:
             for page_key in content:
                 with open(
                     os.path.join(
-                        self.public_dir, self.kPageUrlFmt.format(page_key), "index.html"
+                        self.public_dir, self.kPageUrlFmt.format(
+                            page_key), "index.html"
                     ),
                     "w",
                 ) as f:
@@ -110,7 +112,8 @@ class Engine:
             # the option to use raw HTML is also here, I think this check is a bit fragile
             # so if there is an issue, maybe look at this section
             if not self.metadata[filename].get("raw", BBFalse()).was_set:
-                html = markdown.markdown(file_content, extensions=self.md_extensions)
+                html = markdown.markdown(
+                    file_content, extensions=self.md_extensions)
             else:
                 html = file_content
 
@@ -183,10 +186,12 @@ class Engine:
         # self._build_index(self.index_content)
 
         self.log("📄 Serializing metadata")
-        self.file_guard(self._write_metadata, action_description="serializing metadata")
+        self.file_guard(self._write_metadata,
+                        action_description="serializing metadata")
 
         self.log("📄 Writing tag list")
-        self.file_guard(self._write_tag_files, action_description="writing tag list")
+        self.file_guard(self._write_tag_files,
+                        action_description="writing tag list")
 
         self.log("📄 Preparing Search Template")
         self.file_guard(
@@ -227,7 +232,8 @@ class Engine:
 
     def _write_tag_files(self):
         serialize(
-            list(self.tag_data.keys()), os.path.join(self.public_dir, "tags"), "all"
+            list(self.tag_data.keys()), os.path.join(
+                self.public_dir, "tags"), "all"
         )
         self.log("🗂  Writing tag files")
         tags = list(self.tag_data)
@@ -235,11 +241,13 @@ class Engine:
         for tag in tags:
             self.log("\t┣ Writing tag file for '{}'".format(tag))
             serialize(
-                list(self.tag_data[tag]), os.path.join(self.public_dir, "tags"), tag
+                list(self.tag_data[tag]), os.path.join(
+                    self.public_dir, "tags"), tag
             )
         self.log("\t┗ Writing tag file for '{}'".format(last))
         serialize(
-            list(self.tag_data[last]), os.path.join(self.public_dir, "tags"), last
+            list(self.tag_data[last]), os.path.join(
+                self.public_dir, "tags"), last
         )
 
     def _write_metadata(self):
@@ -257,7 +265,7 @@ class Engine:
         for i in range(dir_count - 1):
             slice = listing[
                 current_page
-                * self.articles_per_page : (current_page + 1)
+                * self.articles_per_page: (current_page + 1)
                 * self.articles_per_page
             ]
             current_page = self._render_paged_article(
@@ -268,7 +276,7 @@ class Engine:
             current_page,
             dir_count - 1,
             kPageString,
-            listing[current_page * self.articles_per_page :],
+            listing[current_page * self.articles_per_page:],
         )
 
     def _render_paged_article(self, current_page, i, kPageString, listing_slice):
